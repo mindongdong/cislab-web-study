@@ -2,7 +2,8 @@
 
 <div align="center">
 
-  [![CISLAB]](https://cislab.cau.ac.kr/images/assets/logo.png)
+  <img style="width:40rem" src="https://cislab.cau.ac.kr/images/assets/logo.png"/>
+  
   [![Frontend](https://img.shields.io/badge/Frontend-React-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
   [![Backend](https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
   
