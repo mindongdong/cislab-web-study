@@ -103,7 +103,7 @@ CISLAB 웹 개발 스터디는 프론트엔드와 백엔드 개발을 학습하�
 
 ### 프론트엔드
 - [제로초 - 리액트 무료 강의](https://inf.run/LWuoL)
-
+- [캡틴판교 - 리액트 유료 강의](https://inf.run/yeDin)
 ### 백엔드
 - [FastAPI 공식문서 가이드](https://fastapi.tiangolo.com/ko/tutorial/first-steps/)
 
