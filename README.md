@@ -131,14 +131,6 @@ cislab-web-study/
 │       ├── oh-seongjin/
 │       └── kim-jinseo/
 │
-├── 📂 projects/                  # 팀 프로젝트
-│   ├── team1/
-│   │   ├── frontend/
-│   │   └── backend/
-│   └── team2/
-│       ├── frontend/
-│       └── backend/
-│
 ├── 📂 resources/                 # 참고 자료
 │   ├── references/
 │   └── templates/
