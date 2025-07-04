@@ -37,7 +37,7 @@ CISLAB 웹 개발 스터디는 프론트엔드와 백엔드 개발을 학습하�
 | 이름   | 역할               | GitHub                         |
 | ------ | ------------------ | ------------------------------ |
 | 최선미 | Frontend Developer | [@github](https://github.com/) |
-| 김도균 | Frontend Developer | [@github](https://github.com/) |
+| 김도균 | Frontend Developer | [@github](https://github.com/tansan7271) |
 | 오성진 | Backend Developer  | [@github](https://github.com/) |
 | 김진서 | Backend Developer  | [@github](https://github.com/) |
 
