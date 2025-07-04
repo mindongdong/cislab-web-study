@@ -18,6 +18,7 @@
 - [팀 프로젝트](#-팀-프로젝트)
 - [추천 강의](#-추천-강의)
 - [프로젝트 구조](#-프로젝트-구조)
+- [VSCode 필수 확장 프로그램](resources/references/vscode-extensions.md)
 - [🛠️ Git 사용 가이드](#-git-사용-가이드)
 
 ## 🎯 소개
