@@ -170,7 +170,3 @@ cislab-web-study/
 
 - [backend/members/README.md](backend/members/README.md)
 - [frontend/members/README.md](frontend/members/README.md)
-
-## 디스코드 초대 링크
-
-https://discord.gg/RM5syVxr
