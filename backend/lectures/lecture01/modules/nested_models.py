@@ -15,7 +15,7 @@
 from typing import List, Set, Optional, Dict, Union
 from datetime import datetime
 from pydantic import BaseModel, Field, HttpUrl, validator
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Body
 from enum import Enum
 
 # 라우터 생성
@@ -57,7 +57,7 @@ class Image(BaseModel):
 class Tag(BaseModel):
     """태그 모델"""
     name: str = Field(..., min_length=1, max_length=30, description="태그 이름")
-    color: Optional[str] = Field(None, regex="^#[0-9A-Fa-f]{6}$", description="태그 색상 (hex)")
+    color: Optional[str] = Field(None, pattern="^#[0-9A-Fa-f]{6}$", description="태그 색상 (hex)")
     
 class Category(BaseModel):
     """카테고리 모델"""
@@ -103,8 +103,8 @@ class Address(BaseModel):
 
 class Contact(BaseModel):
     """연락처 모델"""
-    email: str = Field(..., regex="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
-    phone: Optional[str] = Field(None, regex="^[0-9+-]+$", description="전화번호")
+    email: str = Field(..., pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+    phone: Optional[str] = Field(None, pattern="^[0-9+-]+$", description="전화번호")
     website: Optional[HttpUrl] = Field(None, description="웹사이트")
 
 class Company(BaseModel):
@@ -390,7 +390,7 @@ async def create_bulk_items(request: BulkItemRequest):
 
 @router.post("/flexible-data")
 async def process_flexible_data(
-    data: Dict[str, Union[str, int, float, List, Dict]] = Field(..., description="유연한 데이터 구조")
+    data: Dict[str, Union[str, int, float, List, Dict]] = Body(..., description="유연한 데이터 구조")
 ):
     """
     유연한 데이터 구조 처리 API

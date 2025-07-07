@@ -3,7 +3,7 @@
 
 강의 내용:
 1. 경로 매개변수 기본 사용법
-2. 타입 ��트와 자동 변환
+2. 타입 트와 자동 변환
 3. Enum을 사용한 사전 정의 값
 4. 경로를 포함하는 매개변수
 5. 경로 작동 순서의 중요성
@@ -276,8 +276,8 @@ async def get_product_review(
 
 @router.get("/api/v1/{service}/{version}/{resource_id}")
 async def get_versioned_resource(
-    service: str = Path(..., regex="^[a-z]+$", description="서비스 이름 (소문자만)"),
-    version: str = Path(..., regex="^v[0-9]+$", description="API 버전 (v1, v2 등)"),
+    service: str = Path(..., pattern="^[a-z]+$", description="서비스 이름 (소문자만)"),
+    version: str = Path(..., pattern="^v[0-9]+$", description="API 버전 (v1, v2 등)"),
     resource_id: str = Path(..., min_length=1, max_length=50, description="리소스 ID")
 ):
     """

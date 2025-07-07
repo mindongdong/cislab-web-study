@@ -13,7 +13,7 @@
 from typing import Optional, List, Union
 from datetime import datetime
 from fastapi import APIRouter, Body, HTTPException
-from pydantic import BaseModel, Field, EmailStr, validator
+from pydantic import BaseModel, Field, validator
 from enum import Enum
 
 # 라우터 생성
@@ -54,7 +54,7 @@ class User(BaseModel):
 class UserCreate(BaseModel):
     """사용자 생성용 모델 (비밀번호 포함)"""
     name: str = Field(..., min_length=2, max_length=50)
-    email: str = Field(..., regex="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+    email: str = Field(..., pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
     password: str = Field(..., min_length=8, description="비밀번호 (최소 8자)")
     age: Optional[int] = Field(None, ge=13, le=150, description="나이 (13-150)")
     role: UserRole = UserRole.user
@@ -81,7 +81,7 @@ class UserCreate(BaseModel):
 class UserUpdate(BaseModel):
     """사용자 수정용 모델 (모든 필드 선택적)"""
     name: Optional[str] = Field(None, min_length=2, max_length=50)
-    email: Optional[str] = Field(None, regex="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+    email: Optional[str] = Field(None, pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
     age: Optional[int] = Field(None, ge=13, le=150)
     bio: Optional[str] = Field(None, max_length=500)
 
@@ -341,8 +341,8 @@ async def create_project_with_team(
 
 class Settings(BaseModel):
     """설정 모델"""
-    theme: str = Field("light", regex="^(light|dark)$")
-    language: str = Field("ko", regex="^(ko|en|ja)$")
+    theme: str = Field("light", pattern="^(light|dark)$")
+    language: str = Field("ko", pattern="^(ko|en|ja)$")
     notifications: bool = Field(True)
     auto_save: bool = Field(True)
     timeout: int = Field(300, ge=60, le=3600, description="세션 타임아웃 (초)")
@@ -385,7 +385,7 @@ class Product(BaseModel):
     )
     category: str = Field(
         ...,
-        regex="^[a-z_]+$",
+        pattern="^[a-z_]+$",
         title="카테고리",
         description="소문자와 언더스코어만 허용되는 카테고리"
     )
@@ -393,7 +393,7 @@ class Product(BaseModel):
         ...,
         min_length=8,
         max_length=12,
-        regex="^[A-Z]{3}[0-9]{5,9}$",
+        pattern="^[A-Z]{3}[0-9]{5,9}$",
         title="SKU",
         description="상품 코드 (대문자 3자 + 숫자 5-9자)"
     )
@@ -471,7 +471,7 @@ class Order(BaseModel):
     customer_email: str = Field(..., description="고객 이메일")
     items: List[dict] = Field(..., min_items=1, description="주문 상품 목록")
     shipping_address: dict = Field(..., description="배송 주소")
-    payment_method: str = Field(..., regex="^(card|bank|paypal)$", description="결제 방법")
+    payment_method: str = Field(..., pattern="^(card|bank|paypal)$", description="결제 방법")
     notes: Optional[str] = Field(None, max_length=200, description="주문 메모")
     
     class Config:

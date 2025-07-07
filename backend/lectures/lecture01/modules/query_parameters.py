@@ -225,8 +225,8 @@ async def get_users(
 async def generate_report(
     start_date: str = Query(..., description="시작 날짜 (YYYY-MM-DD)"),
     end_date: str = Query(..., description="종료 날짜 (YYYY-MM-DD)"),
-    report_type: str = Query(..., regex="^(daily|weekly|monthly)$", description="리포트 타입"),
-    email: Optional[str] = Query(None, regex="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", 
+    report_type: str = Query(..., pattern="^(daily|weekly|monthly)$", description="리포트 타입"),
+    email: Optional[str] = Query(None, pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", 
                                 description="결과를 받을 이메일 (선택적)")
 ):
     """
@@ -360,7 +360,7 @@ async def advanced_query_validation(
                               description="숫자 매개변수 (1-100)"),
     float_param: float = Query(default=0.0, gt=0.0, lt=1000.0,
                               description="실수 매개변수 (0초과 1000미만)"),
-    regex_param: Optional[str] = Query(default=None, regex="^[A-Z]{2,5}$",
+    regex_param: Optional[str] = Query(default=None, pattern="^[A-Z]{2,5}$",
                                       description="정규식 매개변수 (대문자 2-5자)"),
     deprecated_param: Optional[str] = Query(default=None, deprecated=True,
                                            description="더 이상 사용되지 않는 매개변수")
@@ -404,10 +404,10 @@ async def get_analytics(
                                      description="시작 날짜 (YYYY-MM-DD)"),
     end_date: Optional[str] = Query(default=None,
                                    description="종료 날짜 (YYYY-MM-DD)"),
-    granularity: str = Query(default="daily", regex="^(hourly|daily|weekly|monthly)$",
+    granularity: str = Query(default="daily", pattern="^(hourly|daily|weekly|monthly)$",
                             description="데이터 세분화 수준"),
     include_meta: bool = Query(default=False, description="메타데이터 포함 여부"),
-    export_format: Optional[str] = Query(default=None, regex="^(json|csv|xlsx)$",
+    export_format: Optional[str] = Query(default=None, pattern="^(json|csv|xlsx)$",
                                         description="내보내기 형식")
 ):
     """
