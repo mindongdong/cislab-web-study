@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 폼 요소 학습</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .form-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .form-example {
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        .button-secondary {
+            background-color: #2196F3;
+        }
+        
+        .button-secondary:hover {
+            background-color: #1976D2;
+        }
+        
+        .button-danger {
+            background-color: #f44336;
+        }
+        
+        .button-danger:hover {
+            background-color: #d32f2f;
+        }
+        
+        .checkbox-group, .radio-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .checkbox-item, .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .checkbox-item input, .radio-item input {
+            width: auto;
+            margin: 0;
+        }
+        
+        .code-example {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .form-output {
+            background-color: #e8f5e8;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            border: 1px solid #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML 폼 요소 학습</h1>
+    <p>웹페이지에서 사용자 입력을 받기 위한 다양한 폼 요소들을 학습해보겠습니다.</p>
+
+    <!-- 기본 입력 요소들 -->
+    <section class="form-section">
+        <h2>1. 기본 입력 요소 (Input Types)</h2>
+        
+        <div class="form-example">
+            <h3>다양한 input type 예시</h3>
+            <form id="basic-form">
+                <div class="form-group">
+                    <label for="text-input">텍스트 입력:</label>
+                    <input type="text" id="text-input" name="text" placeholder="이름을 입력하세요">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email-input">이메일 입력:</label>
+                    <input type="email" id="email-input" name="email" placeholder="example@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password-input">비밀번호:</label>
+                    <input type="password" id="password-input" name="password" placeholder="비밀번호를 입력하세요">
+                </div>
+                
+                <div class="form-group">
+                    <label for="number-input">숫자 입력:</label>
+                    <input type="number" id="number-input" name="number" min="0" max="100" placeholder="0-100 사이의 숫자">
+                </div>
+                
+                <div class="form-group">
+                    <label for="date-input">날짜 선택:</label>
+                    <input type="date" id="date-input" name="date">
+                </div>
+                
+                <div class="form-group">
+                    <label for="time-input">시간 선택:</label>
+                    <input type="time" id="time-input" name="time">
+                </div>
+                
+                <div class="form-group">
+                    <label for="color-input">색상 선택:</label>
+                    <input type="color" id="color-input" name="color">
+                </div>
+                
+                <div class="form-group">
+                    <label for="range-input">범위 선택:</label>
+                    <input type="range" id="range-input" name="range" min="0" max="100" value="50">
+                    <span id="range-value">50</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="file-input">파일 업로드:</label>
+                    <input type="file" id="file-input" name="file" accept="image/*">
+                </div>
+            </form>
+        </div>
+        
+        <div class="code-example">
+&lt;input type="text" placeholder="텍스트 입력"&gt;
+&lt;input type="email" placeholder="이메일 입력"&gt;
+&lt;input type="password" placeholder="비밀번호"&gt;
+&lt;input type="number" min="0" max="100"&gt;
+&lt;input type="date"&gt;
+&lt;input type="color"&gt;
+&lt;input type="file" accept="image/*"&gt;
+        </div>
+    </section>
+
+    <!-- 체크박스와 라디오 버튼 -->
+    <section class="form-section">
+        <h2>2. 선택 요소 (Checkbox & Radio)</h2>
+        
+        <div class="form-example">
+            <h3>체크박스 (다중 선택 가능)</h3>
+            <div class="form-group">
+                <label>좋아하는 프로그래밍 언어:</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="javascript" name="languages" value="javascript">
+                        <label for="javascript">JavaScript</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="python" name="languages" value="python">
+                        <label for="python">Python</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="java" name="languages" value="java">
+                        <label for="java">Java</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="cpp" name="languages" value="cpp">
+                        <label for="cpp">C++</label>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>라디오 버튼 (단일 선택)</h3>
+            <div class="form-group">
+                <label>선호하는 개발 분야:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="frontend" name="field" value="frontend">
+                        <label for="frontend">프론트엔드</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="backend" name="field" value="backend">
+                        <label for="backend">백엔드</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="fullstack" name="field" value="fullstack">
+                        <label for="fullstack">풀스택</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="mobile" name="field" value="mobile">
+                        <label for="mobile">모바일</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="code-example">
+&lt;!-- 체크박스 --&gt;
+&lt;input type="checkbox" id="js" name="languages" value="javascript"&gt;
+&lt;label for="js"&gt;JavaScript&lt;/label&gt;
+
+&lt;!-- 라디오 버튼 --&gt;
+&lt;input type="radio" id="fe" name="field" value="frontend"&gt;
+&lt;label for="fe"&gt;프론트엔드&lt;/label&gt;
+        </div>
+    </section>
+
+    <!-- 텍스트 영역과 선택 목록 -->
+    <section class="form-section">
+        <h2>3. 텍스트 영역과 선택 목록</h2>
+        
+        <div class="form-example">
+            <div class="form-group">
+                <label for="textarea-input">자기소개 (textarea):</label>
+                <textarea id="textarea-input" name="bio" rows="4" placeholder="자기소개를 작성해주세요..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="select-input">국가 선택 (select):</label>
+                <select id="select-input" name="country">
+                    <option value="">국가를 선택하세요</option>
+                    <option value="kr">대한민국</option>
+                    <option value="us">미국</option>
+                    <option value="jp">일본</option>
+                    <option value="cn">중국</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="multiple-select">기술 스택 (다중 선택):</label>
+                <select id="multiple-select" name="skills" multiple size="4">
+                    <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="react">React</option>
+                    <option value="vue">Vue.js</option>
+                    <option value="angular">Angular</option>
+                </select>
+                <small>Ctrl/Cmd 키를 누르고 클릭하여 다중 선택 가능</small>
+            </div>
+        </div>
+        
+        <div class="code-example">
+&lt;textarea rows="4" placeholder="내용을 입력하세요"&gt;&lt;/textarea&gt;
+
+&lt;select name="country"&gt;
+    &lt;option value=""&gt;선택하세요&lt;/option&gt;
+    &lt;option value="kr"&gt;대한민국&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;select name="skills" multiple&gt;
+    &lt;option value="html"&gt;HTML&lt;/option&gt;
+    &lt;option value="css"&gt;CSS&lt;/option&gt;
+&lt;/select&gt;
+        </div>
+    </section>
+
+    <!-- 버튼 요소들 -->
+    <section class="form-section">
+        <h2>4. 버튼 요소들</h2>
+        
+        <div class="form-example">
+            <h3>다양한 버튼 타입</h3>
+            <div class="form-group">
+                <button type="button" onclick="showMessage('일반 버튼이 클릭되었습니다!')">일반 버튼</button>
+                <button type="submit" class="button-secondary">제출 버튼</button>
+                <button type="reset" class="button-danger">초기화 버튼</button>
+            </div>
+            
+            <h3>Input 버튼 방식</h3>
+            <div class="form-group">
+                <input type="button" value="Input 버튼" onclick="showMessage('Input 버튼이 클릭되었습니다!')">
+                <input type="submit" value="Input 제출" class="button-secondary">
+                <input type="reset" value="Input 초기화" class="button-danger">
+            </div>
+        </div>
+        
+        <div class="code-example">
+&lt;button type="button"&gt;일반 버튼&lt;/button&gt;
+&lt;button type="submit"&gt;제출 버튼&lt;/button&gt;
+&lt;button type="reset"&gt;초기화 버튼&lt;/button&gt;
+
+&lt;input type="button" value="Input 버튼"&gt;
+&lt;input type="submit" value="제출"&gt;
+&lt;input type="reset" value="초기화"&gt;
+        </div>
+    </section>
+
+    <!-- 완전한 폼 예시 -->
+    <section class="form-section">
+        <h2>5. 완전한 폼 예시</h2>
+        
+        <div class="form-example">
+            <form id="complete-form">
+                <h3>회원가입 폼</h3>
+                
+                <div class="form-group">
+                    <label for="username">사용자명 (필수):</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="user-email">이메일 (필수):</label>
+                    <input type="email" id="user-email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="user-password">비밀번호 (필수):</label>
+                    <input type="password" id="user-password" name="password" required minlength="8">
+                </div>
+                
+                <div class="form-group">
+                    <label for="user-age">나이:</label>
+                    <input type="number" id="user-age" name="age" min="13" max="120">
+                </div>
+                
+                <div class="form-group">
+                    <label for="user-bio">자기소개:</label>
+                    <textarea id="user-bio" name="bio" rows="3" maxlength="200"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>관심사:</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="interest-web" name="interests" value="web">
+                            <label for="interest-web">웹 개발</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="interest-mobile" name="interests" value="mobile">
+                            <label for="interest-mobile">모바일 앱</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="interest-ai" name="interests" value="ai">
+                            <label for="interest-ai">AI/ML</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="agree" name="agree" required>
+                        <label for="agree">이용약관에 동의합니다 (필수)</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit">회원가입</button>
+                    <button type="reset" class="button-danger">초기화</button>
+                </div>
+            </form>
+            
+            <div id="form-result" class="form-output" style="display: none;"></div>
+        </div>
+    </section>
+
+    <script>
+        function showMessage(message) {
+            alert(message);
+        }
+        
+        // 범위 슬라이더 값 표시
+        const rangeInput = document.getElementById('range-input');
+        const rangeValue = document.getElementById('range-value');
+        
+        rangeInput.addEventListener('input', function() {
+            rangeValue.textContent = this.value;
+        });
+        
+        // 완전한 폼 제출 처리
+        document.getElementById('complete-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const result = document.getElementById('form-result');
+            
+            let output = '<h4>입력된 데이터:</h4>';
+            
+            for (let [key, value] of formData.entries()) {
+                output += `<p><strong>${key}:</strong> ${value}</p>`;
+            }
+            
+            result.innerHTML = output;
+            result.style.display = 'block';
+        });
+        
+        // 페이지 로드 시 현재 날짜 설정
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('date-input');
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.value = today;
+        });
+    </script>
+</body>
+</html>

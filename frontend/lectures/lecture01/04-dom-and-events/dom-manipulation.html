@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM 조작과 이벤트 처리</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        h2 {
+            color: #2196F3;
+            border-bottom: 2px solid #2196F3;
+            padding-bottom: 5px;
+        }
+        
+        .code-example {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            border-left: 4px solid #2196F3;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .interactive-demo {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .demo-result {
+            background-color: #e8f5e8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            border-left: 4px solid #4CAF50;
+            min-height: 50px;
+        }
+        
+        .demo-container {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            margin: 10px 0;
+            min-height: 100px;
+            background-color: #fafafa;
+        }
+        
+        button {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        
+        button:hover {
+            background-color: #1976D2;
+        }
+        
+        button.danger {
+            background-color: #f44336;
+        }
+        
+        button.danger:hover {
+            background-color: #d32f2f;
+        }
+        
+        button.success {
+            background-color: #4CAF50;
+        }
+        
+        button.success:hover {
+            background-color: #45a049;
+        }
+        
+        input, select, textarea {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .highlight {
+            background-color: yellow;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        .created-element {
+            background-color: #e3f2fd;
+            border: 1px solid #2196F3;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .created-element:hover {
+            transform: scale(1.02);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .event-log {
+            background-color: #fff3e0;
+            border: 1px solid #ff9800;
+            border-radius: 4px;
+            padding: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        
+        .draggable {
+            background-color: #ffeb3b;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+            cursor: move;
+            display: inline-block;
+            user-select: none;
+            transition: transform 0.2s;
+        }
+        
+        .draggable:hover {
+            transform: scale(1.05);
+        }
+        
+        .drop-zone {
+            border: 3px dashed #ccc;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            min-height: 100px;
+            text-align: center;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+        
+        .drop-zone.drag-over {
+            border-color: #4CAF50;
+            background-color: #e8f5e8;
+        }
+        
+        .form-validation {
+            margin: 10px 0;
+        }
+        
+        .error-message {
+            color: #f44336;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        
+        .success-message {
+            color: #4CAF50;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        
+        .tab-container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .tab-header {
+            display: flex;
+            background-color: #f5f5f5;
+        }
+        
+        .tab-button {
+            padding: 15px 20px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button.active {
+            background-color: white;
+            border-bottom-color: #2196F3;
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            padding: 20px;
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+            position: relative;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>DOM 조작과 이벤트 처리</h1>
+    
+    <!-- 1. DOM 선택 메서드 -->
+    <section class="section">
+        <h2>1. DOM 요소 선택</h2>
+        
+        <div class="code-example">
+// DOM 요소 선택 방법들
+
+// 1. 단일 요소 선택
+const elementById = document.getElementById('myId');
+const elementByQuery = document.querySelector('.myClass');
+const elementByTag = document.querySelector('h1');
+
+// 2. 여러 요소 선택
+const elementsByClass = document.getElementsByClassName('myClass');
+const elementsByTag = document.getElementsByTagName('div');
+const elementsByQuery = document.querySelectorAll('.myClass');
+
+// 3. 고급 선택자
+const firstChild = document.querySelector('div:first-child');
+const lastChild = document.querySelector('div:last-child');
+const nthChild = document.querySelector('div:nth-child(2)');
+const attribute = document.querySelector('[data-role="button"]');
+const descendant = document.querySelector('div p.highlight');
+
+// 4. 상대적 탐색
+const parent = element.parentElement;
+const children = element.children;
+const siblings = element.nextElementSibling;
+const previousSibling = element.previousElementSibling;
+
+// 5. 특정 요소에서 시작하는 선택
+const container = document.querySelector('.container');
+const childElement = container.querySelector('.child');
+const allChildren = container.querySelectorAll('.child');
+        </div>
+        
+        <div class="interactive-demo">
+            <h3>🔧 DOM 선택 실습</h3>
+            <div class="demo-container">
+                <div id="target1" class="demo-item">ID로 선택될 요소</div>
+                <div class="demo-item highlight">클래스로 선택될 요소</div>
+                <p data-role="special">속성으로 선택될 요소</p>
+                <span>태그로 선택될 요소</span>
+            </div>
+            
+            <button onclick="selectById()">ID로 선택</button>
+            <button onclick="selectByClass()">클래스로 선택</button>
+            <button onclick="selectByAttribute()">속성으로 선택</button>
+            <button onclick="selectByTag()">태그로 선택</button>
+            <button onclick="selectAll()">모든 요소 선택</button>
+            
+            <div class="demo-result" id="selection-result">
+                선택 결과가 여기에 표시됩니다.
+            </div>
+        </div>
+    </section>
+    
+    <!-- 2. DOM 요소 생성과 조작 -->
+    <section class="section">
+        <h2>2. DOM 요소 생성과 조작</h2>
+        
+        <div class="code-example">
+// DOM 요소 생성과 조작
+
+// 1. 요소 생성
+const newDiv = document.createElement('div');
+const newText = document.createTextNode('안녕하세요');
+const newSpan = document.createElement('span');
+
+// 2. 속성 설정
+newDiv.id = 'myNewDiv';
+newDiv.className = 'new-element';
+newDiv.setAttribute('data-custom', 'value');
+newDiv.style.backgroundColor = 'lightblue';
+newDiv.style.padding = '10px';
+
+// 3. 내용 설정
+newDiv.textContent = '텍스트 내용';
+newDiv.innerHTML = '<strong>HTML 내용</strong>';
+newDiv.innerText = '렌더된 텍스트'; // CSS에 의해 숨겨진 내용은 제외
+
+// 4. 요소 추가
+const container = document.querySelector('.container');
+container.appendChild(newDiv);           // 마지막에 추가
+container.insertBefore(newDiv, firstChild); // 특정 위치에 추가
+container.prepend(newDiv);              // 첫 번째로 추가
+container.append(newDiv);               // 마지막에 추가 (최신 방법)
+
+// 5. 요소 제거
+newDiv.remove();                        // 자기 자신 제거
+container.removeChild(newDiv);          // 자식 요소 제거
+
+// 6. 요소 복제
+const clonedDiv = newDiv.cloneNode(true); // true: 자식도 함께 복제
+
+// 7. 요소 교체
+container.replaceChild(newDiv, oldDiv);
+
+// 8. 클래스 조작
+newDiv.classList.add('new-class');
+newDiv.classList.remove('old-class');
+newDiv.classList.toggle('active');
+newDiv.classList.contains('active'); // true/false 반환
+
+// 9. 데이터 속성 조작
+newDiv.dataset.userId = '123';          // data-user-id="123"
+const userId = newDiv.dataset.userId;   // "123"
+        </div>
+        
+        <div class="interactive-demo">
+            <h3>🔧 DOM 조작 실습</h3>
+            
+            <div class="demo-container" id="manipulation-container">
+                <!-- 동적으로 요소가 추가될 공간 -->
+            </div>
+            
+            <div>
+                <input type="text" id="element-text" placeholder="요소 텍스트 입력" value="새로운 요소">
+                <select id="element-type">
+                    <option value="div">DIV</option>
+                    <option value="p">P</option>
+                    <option value="span">SPAN</option>
+                    <option value="button">BUTTON</option>
+                </select>
+                <input type="color" id="element-color" value="#e3f2fd">
+            </div>
+            
+            <button onclick="createElement()">요소 생성</button>
+            <button onclick="toggleClass()">클래스 토글</button>
+            <button onclick="changeStyle()">스타일 변경</button>
+            <button onclick="removeLastElement()">마지막 요소 제거</button>
+            <button onclick="clearAllElements()">모두 제거</button>
+            
+            <div class="demo-result" id="manipulation-result">
+                조작 결과가 여기에 표시됩니다.
+            </div>
+        </div>
+    </section>
+    
+    <!-- 3. 이벤트 처리 -->
+    <section class="section">
+        <h2>3. 이벤트 처리</h2>
+        
+        <div class="code-example">
+// 이벤트 처리 방법들
+
+// 1. 기본 이벤트 리스너
+element.addEventListener('click', function(event) {
+    console.log('클릭됨!', event);
+});
+
+// 2. 화살표 함수 사용
+element.addEventListener('click', (event) => {
+    console.log('화살표 함수로 처리');
+});
+
+// 3. 이벤트 객체 활용
+element.addEventListener('mousemove', (event) => {
+    console.log(`마우스 위치: (${event.clientX}, ${event.clientY})`);
+});
+
+// 4. 이벤트 제거
+function clickHandler(event) {
+    console.log('클릭 처리');
+}
+element.addEventListener('click', clickHandler);
+element.removeEventListener('click', clickHandler);
+
+// 5. 이벤트 옵션
+element.addEventListener('scroll', handler, {
+    passive: true,    // preventDefault() 호출하지 않음
+    once: true,       // 한 번만 실행
+    capture: true     // 캡처링 단계에서 실행
+});
+
+// 6. 폼 이벤트
+form.addEventListener('submit', (event) => {
+    event.preventDefault(); // 기본 제출 동작 방지
+    // 커스텀 제출 로직
+});
+
+input.addEventListener('input', (event) => {
+    console.log('입력값 변경:', event.target.value);
+});
+
+// 7. 키보드 이벤트
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        console.log('엔터 키 눌림');
+    }
+    if (event.ctrlKey && event.key === 's') {
+        event.preventDefault(); // Ctrl+S 기본 동작 방지
+        console.log('저장 단축키');
+    }
+});
+
+// 8. 커스텀 이벤트
+const customEvent = new CustomEvent('myEvent', {
+    detail: { message: '커스텀 데이터' }
+});
+element.dispatchEvent(customEvent);
+
+element.addEventListener('myEvent', (event) => {
+    console.log('커스텀 이벤트:', event.detail.message);
+});
+        </div>
+        
+        <div class="interactive-demo">
+            <h3>🔧 이벤트 처리 실습</h3>
+            
+            <div class="demo-container">
+                <button id="click-btn">클릭 이벤트</button>
+                <button id="double-click-btn">더블클릭 이벤트</button>
+                <div id="mouse-area" style="background: #f0f0f0; padding: 20px; margin: 10px; border-radius: 4px;">
+                    마우스 이벤트 영역 (마우스를 올려보세요)
+                </div>
+                <input type="text" id="input-field" placeholder="키보드 이벤트 테스트">
+            </div>
+            
+            <div class="event-log" id="event-log">
+                이벤트 로그가 여기에 표시됩니다...
+            </div>
+            
+            <button onclick="clearEventLog()">로그 지우기</button>
+            <button onclick="triggerCustomEvent()">커스텀 이벤트 발생</button>
+        </div>
+    </section>
+    
+    <!-- 4. 이벤트 버블링과 캡처링 -->
+    <section class="section">
+        <h2>4. 이벤트 버블링과 캡처링</h2>
+        
+        <div class="code-example">
+// 이벤트 전파 (Event Propagation)
+
+// 1. 버블링 (기본값) - 자식 → 부모
+outer.addEventListener('click', () => console.log('Outer clicked'));
+inner.addEventListener('click', () => console.log('Inner clicked'));
+// Inner 클릭 시: "Inner clicked" → "Outer clicked"
+
+// 2. 캡처링 - 부모 → 자식
+outer.addEventListener('click', () => console.log('Outer clicked'), true);
+inner.addEventListener('click', () => console.log('Inner clicked'), true);
+// Inner 클릭 시: "Outer clicked" → "Inner clicked"
+
+// 3. 이벤트 전파 중단
+inner.addEventListener('click', (event) => {
+    event.stopPropagation(); // 버블링/캡처링 중단
+    console.log('Inner clicked - 전파 중단');
+});
+
+// 4. 즉시 전파 중단
+inner.addEventListener('click', (event) => {
+    event.stopImmediatePropagation(); // 같은 요소의 다른 리스너도 중단
+});
+
+// 5. 기본 동작 방지
+link.addEventListener('click', (event) => {
+    event.preventDefault(); // 링크 이동 방지
+});
+
+// 6. 이벤트 위임 (Event Delegation)
+document.querySelector('.button-container').addEventListener('click', (event) => {
+    if (event.target.classList.contains('dynamic-button')) {
+        console.log('동적 버튼 클릭됨:', event.target.textContent);
+    }
+});
+        </div>
+        
+        <div class="interactive-demo">
+            <h3>🔧 이벤트 전파 실습</h3>
+            
+            <div id="propagation-outer" style="background: #ffcdd2; padding: 30px; border-radius: 8px;">
+                <strong>외부 요소 (빨간색)</strong>
+                <div id="propagation-middle" style="background: #fff3e0; padding: 20px; margin: 10px; border-radius: 6px;">
+                    <strong>중간 요소 (주황색)</strong>
+                    <div id="propagation-inner" style="background: #e8f5e8; padding: 10px; margin: 10px; border-radius: 4px;">
+                        <strong>내부 요소 (초록색) - 클릭해보세요</strong>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin: 10px 0;">
+                <label>
+                    <input type="checkbox" id="stop-propagation"> 이벤트 전파 중단
+                </label>
+                <label>
+                    <input type="checkbox" id="capture-mode"> 캡처링 모드
+                </label>
+            </div>
+            
+            <div class="event-log" id="propagation-log">
+                이벤트 전파 로그가 여기에 표시됩니다...
+            </div>
+            
+            <button onclick="clearPropagationLog()">로그 지우기</button>
+            <button onclick="setupPropagationDemo()">이벤트 리스너 재설정</button>
+        </div>
+    </section>
+    
+    <!-- 5. 실용적인 예제들 -->
+    <section class="section">
+        <h2>5. 실용적인 예제들</h2>
+        
+        <!-- 탭 컴포넌트 -->
+        <div class="interactive-demo">
+            <h3>🔧 탭 컴포넌트</h3>
+            
+            <div class="tab-container">
+                <div class="tab-header">
+                    <button class="tab-button active" data-tab="tab1">HTML</button>
+                    <button class="tab-button" data-tab="tab2">CSS</button>
+                    <button class="tab-button" data-tab="tab3">JavaScript</button>
+                </div>
+                
+                <div class="tab-content active" id="tab1">
+                    <h4>HTML 내용</h4>
+                    <p>HTML은 웹페이지의 구조를 만드는 마크업 언어입니다.</p>
+                    <ul>
+                        <li>시멘틱 태그 사용</li>
+                        <li>접근성 고려</li>
+                        <li>SEO 최적화</li>
+                    </ul>
+                </div>
+                
+                <div class="tab-content" id="tab2">
+                    <h4>CSS 내용</h4>
+                    <p>CSS는 웹페이지의 스타일을 정의하는 언어입니다.</p>
+                    <ul>
+                        <li>레이아웃 디자인</li>
+                        <li>반응형 웹</li>
+                        <li>애니메이션</li>
+                    </ul>
+                </div>
+                
+                <div class="tab-content" id="tab3">
+                    <h4>JavaScript 내용</h4>
+                    <p>JavaScript는 웹페이지에 동적 기능을 추가하는 프로그래밍 언어입니다.</p>
+                    <ul>
+                        <li>DOM 조작</li>
+                        <li>이벤트 처리</li>
+                        <li>비동기 프로그래밍</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 드래그 앤 드롭 -->
+        <div class="interactive-demo">
+            <h3>🔧 드래그 앤 드롭</h3>
+            
+            <div style="display: flex; gap: 20px;">
+                <div>
+                    <h4>드래그 가능한 아이템들</h4>
+                    <div class="draggable" draggable="true" data-item="apple">🍎 사과</div>
+                    <div class="draggable" draggable="true" data-item="banana">🍌 바나나</div>
+                    <div class="draggable" draggable="true" data-item="orange">🍊 오렌지</div>
+                </div>
+                
+                <div>
+                    <h4>드롭 영역</h4>
+                    <div class="drop-zone" id="drop-zone">
+                        여기에 과일을 드래그해주세요
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 폼 검증 -->
+        <div class="interactive-demo">
+            <h3>🔧 실시간 폼 검증</h3>
+            
+            <form id="validation-form" novalidate>
+                <div class="form-validation">
+                    <label for="username">사용자명:</label>
+                    <input type="text" id="username" name="username" required minlength="3">
+                    <div class="error-message" id="username-error"></div>
+                </div>
+                
+                <div class="form-validation">
+                    <label for="email">이메일:</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="email-error"></div>
+                </div>
+                
+                <div class="form-validation">
+                    <label for="password">비밀번호:</label>
+                    <input type="password" id="password" name="password" required minlength="8">
+                    <div class="error-message" id="password-error"></div>
+                </div>
+                
+                <div class="form-validation">
+                    <label for="confirm-password">비밀번호 확인:</label>
+                    <input type="password" id="confirm-password" name="confirmPassword" required>
+                    <div class="error-message" id="confirm-password-error"></div>
+                </div>
+                
+                <button type="submit">회원가입</button>
+            </form>
+        </div>
+        
+        <!-- 모달 다이얼로그 -->
+        <div class="interactive-demo">
+            <h3>🔧 모달 다이얼로그</h3>
+            
+            <button onclick="openModal()">모달 열기</button>
+            
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h4>모달 다이얼로그</h4>
+                    <p>이것은 JavaScript로 구현한 모달 다이얼로그입니다.</p>
+                    <p>ESC 키를 누르거나 배경을 클릭하여 닫을 수 있습니다.</p>
+                    <button onclick="closeModal()">닫기</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // 1. DOM 선택 실습 함수들
+        function selectById() {
+            const element = document.getElementById('target1');
+            element.style.backgroundColor = '#ffeb3b';
+            document.getElementById('selection-result').innerHTML = 
+                '<strong>ID로 선택:</strong> ' + element.textContent;
+        }
+        
+        function selectByClass() {
+            const elements = document.querySelectorAll('.highlight');
+            elements.forEach(el => el.style.backgroundColor = '#4CAF50');
+            document.getElementById('selection-result').innerHTML = 
+                '<strong>클래스로 선택:</strong> ' + elements.length + '개 요소 선택됨';
+        }
+        
+        function selectByAttribute() {
+            const element = document.querySelector('[data-role="special"]');
+            element.style.color = '#f44336';
+            element.style.fontWeight = 'bold';
+            document.getElementById('selection-result').innerHTML = 
+                '<strong>속성으로 선택:</strong> ' + element.textContent;
+        }
+        
+        function selectByTag() {
+            const elements = document.querySelectorAll('span');
+            elements.forEach(el => {
+                el.style.border = '2px solid #2196F3';
+                el.style.padding = '5px';
+            });
+            document.getElementById('selection-result').innerHTML = 
+                '<strong>태그로 선택:</strong> ' + elements.length + '개 span 요소 선택됨';
+        }
+        
+        function selectAll() {
+            const container = document.querySelector('.demo-container');
+            const allElements = container.querySelectorAll('*');
+            allElements.forEach((el, index) => {
+                el.style.outline = `2px solid hsl(${index * 60}, 70%, 50%)`;
+            });
+            document.getElementById('selection-result').innerHTML = 
+                '<strong>모든 요소 선택:</strong> ' + allElements.length + '개 요소에 아웃라인 적용';
+        }
+        
+        // 2. DOM 조작 실습 함수들
+        let elementCounter = 0;
+        
+        function createElement() {
+            const container = document.getElementById('manipulation-container');
+            const text = document.getElementById('element-text').value;
+            const type = document.getElementById('element-type').value;
+            const color = document.getElementById('element-color').value;
+            
+            const newElement = document.createElement(type);
+            newElement.textContent = text;
+            newElement.className = 'created-element';
+            newElement.style.backgroundColor = color;
+            newElement.dataset.index = ++elementCounter;
+            
+            // 클릭 이벤트 추가
+            newElement.addEventListener('click', function() {
+                this.style.transform = 'rotate(5deg)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+            
+            container.appendChild(newElement);
+            
+            document.getElementById('manipulation-result').innerHTML = 
+                `<strong>요소 생성:</strong> ${type} 요소가 생성되었습니다. (총 ${elementCounter}개)`;
+        }
+        
+        function toggleClass() {
+            const elements = document.querySelectorAll('.created-element');
+            elements.forEach(el => {
+                el.classList.toggle('highlight');
+            });
+            
+            document.getElementById('manipulation-result').innerHTML = 
+                '<strong>클래스 토글:</strong> 모든 생성된 요소의 highlight 클래스가 토글되었습니다.';
+        }
+        
+        function changeStyle() {
+            const elements = document.querySelectorAll('.created-element');
+            const colors = ['#ffcdd2', '#f8bbd9', '#e1bee7', '#d1c4e9', '#c5cae9'];
+            
+            elements.forEach((el, index) => {
+                el.style.backgroundColor = colors[index % colors.length];
+                el.style.transform = `rotate(${Math.random() * 10 - 5}deg)`;
+            });
+            
+            document.getElementById('manipulation-result').innerHTML = 
+                '<strong>스타일 변경:</strong> 모든 요소의 색상과 회전이 변경되었습니다.';
+        }
+        
+        function removeLastElement() {
+            const container = document.getElementById('manipulation-container');
+            const lastElement = container.lastElementChild;
+            
+            if (lastElement) {
+                lastElement.remove();
+                document.getElementById('manipulation-result').innerHTML = 
+                    '<strong>요소 제거:</strong> 마지막 요소가 제거되었습니다.';
+            } else {
+                document.getElementById('manipulation-result').innerHTML = 
+                    '<strong>제거 실패:</strong> 제거할 요소가 없습니다.';
+            }
+        }
+        
+        function clearAllElements() {
+            const container = document.getElementById('manipulation-container');
+            container.innerHTML = '';
+            elementCounter = 0;
+            
+            document.getElementById('manipulation-result').innerHTML = 
+                '<strong>모두 제거:</strong> 모든 요소가 제거되었습니다.';
+        }
+        
+        // 3. 이벤트 처리 실습
+        function logEvent(message) {
+            const log = document.getElementById('event-log');
+            const time = new Date().toLocaleTimeString();
+            log.innerHTML += `[${time}] ${message}\n`;
+            log.scrollTop = log.scrollHeight;
+        }
+        
+        function clearEventLog() {
+            document.getElementById('event-log').innerHTML = '';
+        }
+        
+        function triggerCustomEvent() {
+            const customEvent = new CustomEvent('myCustomEvent', {
+                detail: { message: '커스텀 이벤트 데이터', timestamp: Date.now() }
+            });
+            document.dispatchEvent(customEvent);
+        }
+        
+        // 이벤트 리스너 설정
+        document.addEventListener('DOMContentLoaded', function() {
+            // 클릭 이벤트
+            document.getElementById('click-btn').addEventListener('click', function() {
+                logEvent('클릭 버튼이 클릭되었습니다.');
+            });
+            
+            // 더블클릭 이벤트
+            document.getElementById('double-click-btn').addEventListener('dblclick', function() {
+                logEvent('더블클릭 버튼이 더블클릭되었습니다.');
+            });
+            
+            // 마우스 이벤트
+            const mouseArea = document.getElementById('mouse-area');
+            mouseArea.addEventListener('mouseenter', () => logEvent('마우스가 영역에 들어왔습니다.'));
+            mouseArea.addEventListener('mouseleave', () => logEvent('마우스가 영역에서 나갔습니다.'));
+            mouseArea.addEventListener('mousemove', (e) => {
+                mouseArea.textContent = `마우스 위치: (${e.offsetX}, ${e.offsetY})`;
+            });
+            
+            // 키보드 이벤트
+            document.getElementById('input-field').addEventListener('input', function(e) {
+                logEvent(`입력 변경: "${e.target.value}"`);
+            });
+            
+            document.getElementById('input-field').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    logEvent('엔터 키가 눌렸습니다.');
+                } else if (e.key === 'Escape') {
+                    logEvent('ESC 키가 눌렸습니다.');
+                    e.target.value = '';
+                }
+            });
+            
+            // 커스텀 이벤트 리스너
+            document.addEventListener('myCustomEvent', function(e) {
+                logEvent(`커스텀 이벤트 수신: ${e.detail.message}`);
+            });
+        });
+        
+        // 4. 이벤트 전파 실습
+        function clearPropagationLog() {
+            document.getElementById('propagation-log').innerHTML = '';
+        }
+        
+        function setupPropagationDemo() {
+            const outer = document.getElementById('propagation-outer');
+            const middle = document.getElementById('propagation-middle');
+            const inner = document.getElementById('propagation-inner');
+            const log = document.getElementById('propagation-log');
+            
+            // 기존 리스너 제거를 위해 요소를 복제하여 교체
+            [outer, middle, inner].forEach(element => {
+                const newElement = element.cloneNode(true);
+                element.parentNode.replaceChild(newElement, element);
+            });
+            
+            // 새로운 참조 얻기
+            const newOuter = document.getElementById('propagation-outer');
+            const newMiddle = document.getElementById('propagation-middle');
+            const newInner = document.getElementById('propagation-inner');
+            
+            const capture = document.getElementById('capture-mode').checked;
+            
+            function addEventListeners(element, name) {
+                element.addEventListener('click', function(e) {
+                    const stopProp = document.getElementById('stop-propagation').checked;
+                    
+                    log.innerHTML += `${name} 요소 클릭됨 (${capture ? '캡처링' : '버블링'})\n`;
+                    
+                    if (stopProp && element === newInner) {
+                        e.stopPropagation();
+                        log.innerHTML += '이벤트 전파가 중단되었습니다.\n';
+                    }
+                    
+                    log.scrollTop = log.scrollHeight;
+                }, capture);
+            }
+            
+            addEventListeners(newOuter, '외부');
+            addEventListeners(newMiddle, '중간');
+            addEventListeners(newInner, '내부');
+            
+            log.innerHTML = `이벤트 리스너가 ${capture ? '캡처링' : '버블링'} 모드로 설정되었습니다.\n`;
+        }
+        
+        // 초기 이벤트 전파 데모 설정
+        document.addEventListener('DOMContentLoaded', setupPropagationDemo);
+        
+        // 5. 실용적인 예제들
+        
+        // 탭 컴포넌트
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // 모든 탭 버튼과 내용에서 active 클래스 제거
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // 클릭된 탭 버튼과 해당 내용에 active 클래스 추가
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+        });
+        
+        // 드래그 앤 드롭
+        document.addEventListener('DOMContentLoaded', function() {
+            const draggables = document.querySelectorAll('.draggable');
+            const dropZone = document.getElementById('drop-zone');
+            
+            draggables.forEach(draggable => {
+                draggable.addEventListener('dragstart', function(e) {
+                    e.dataTransfer.setData('text/plain', this.dataset.item);
+                    e.dataTransfer.setData('text/html', this.outerHTML);
+                    this.style.opacity = '0.5';
+                });
+                
+                draggable.addEventListener('dragend', function() {
+                    this.style.opacity = '';
+                });
+            });
+            
+            dropZone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('drag-over');
+            });
+            
+            dropZone.addEventListener('dragleave', function() {
+                this.classList.remove('drag-over');
+            });
+            
+            dropZone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('drag-over');
+                
+                const item = e.dataTransfer.getData('text/plain');
+                const html = e.dataTransfer.getData('text/html');
+                
+                this.innerHTML = `<div>드롭된 아이템: ${item}</div>` + html;
+            });
+        });
+        
+        // 폼 검증
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('validation-form');
+            const inputs = form.querySelectorAll('input');
+            
+            inputs.forEach(input => {
+                input.addEventListener('blur', validateField);
+                input.addEventListener('input', clearError);
+            });
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                inputs.forEach(input => {
+                    if (!validateField.call(input)) {
+                        isValid = false;
+                    }
+                });
+                
+                if (isValid) {
+                    alert('폼 검증 성공! 실제로는 서버로 데이터를 전송합니다.');
+                }
+            });
+            
+            function validateField() {
+                const value = this.value.trim();
+                const errorElement = document.getElementById(this.id + '-error');
+                
+                if (this.hasAttribute('required') && !value) {
+                    showError(errorElement, '이 필드는 필수입니다.');
+                    return false;
+                }
+                
+                if (this.type === 'email' && value && !isValidEmail(value)) {
+                    showError(errorElement, '올바른 이메일 형식이 아닙니다.');
+                    return false;
+                }
+                
+                if (this.hasAttribute('minlength') && value.length < this.minLength) {
+                    showError(errorElement, `최소 ${this.minLength}자 이상 입력해주세요.`);
+                    return false;
+                }
+                
+                if (this.id === 'confirm-password' && value !== document.getElementById('password').value) {
+                    showError(errorElement, '비밀번호가 일치하지 않습니다.');
+                    return false;
+                }
+                
+                showSuccess(errorElement, '올바른 형식입니다.');
+                return true;
+            }
+            
+            function clearError() {
+                const errorElement = document.getElementById(this.id + '-error');
+                errorElement.textContent = '';
+                errorElement.className = 'error-message';
+            }
+            
+            function showError(element, message) {
+                element.textContent = message;
+                element.className = 'error-message';
+            }
+            
+            function showSuccess(element, message) {
+                element.textContent = message;
+                element.className = 'success-message';
+            }
+            
+            function isValidEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+        });
+        
+        // 모달 다이얼로그
+        function openModal() {
+            document.getElementById('modal').style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+        
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // 모달 배경 클릭으로 닫기
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

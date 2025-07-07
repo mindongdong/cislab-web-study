@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 박스 모델과 Position</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        h2 {
+            color: #2196F3;
+            border-bottom: 2px solid #2196F3;
+            padding-bottom: 5px;
+        }
+        
+        .code-example {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            border-left: 4px solid #2196F3;
+            margin: 15px 0;
+        }
+        
+        .example-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        /* 1. 박스 모델 시각화 */
+        .box-model-demo {
+            width: 200px;
+            height: 100px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            margin: 20px;
+            padding: 20px;
+            border: 10px solid #2196F3;
+            box-sizing: border-box;
+        }
+        
+        .box-model-content {
+            width: 200px;
+            height: 100px;
+            background-color: #ff9800;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            margin: 20px;
+            padding: 20px;
+            border: 10px solid #f44336;
+        }
+        
+        /* 2. 다양한 박스 모델 예시 */
+        .margin-example {
+            background-color: #e8f5e8;
+            margin: 30px 20px 10px 40px; /* 상 우 하 좌 */
+            padding: 15px;
+            border: 2px solid #4CAF50;
+        }
+        
+        .padding-example {
+            background-color: #e3f2fd;
+            margin: 10px;
+            padding: 30px 20px 10px 40px; /* 상 우 하 좌 */
+            border: 2px solid #2196F3;
+        }
+        
+        .border-example {
+            background-color: #fff3e0;
+            margin: 10px;
+            padding: 15px;
+            border: 5px solid #ff9800;
+            border-radius: 10px;
+        }
+        
+        .border-style-examples {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .border-solid { border: 3px solid #333; }
+        .border-dashed { border: 3px dashed #333; }
+        .border-dotted { border: 3px dotted #333; }
+        .border-double { border: 3px double #333; }
+        
+        .border-style-examples > div {
+            padding: 10px;
+            background-color: #f0f0f0;
+            margin: 5px;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        /* 3. Position 속성 */
+        .position-container {
+            position: relative;
+            height: 300px;
+            background-color: #f0f0f0;
+            border: 2px solid #333;
+            margin: 20px 0;
+        }
+        
+        .position-static {
+            position: static;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin: 10px;
+        }
+        
+        .position-relative {
+            position: relative;
+            top: 20px;
+            left: 30px;
+            background-color: #2196F3;
+            color: white;
+            padding: 10px;
+            margin: 10px;
+        }
+        
+        .position-absolute {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background-color: #ff9800;
+            color: white;
+            padding: 10px;
+            width: 150px;
+        }
+        
+        .position-fixed {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #f44336;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        
+        /* 4. Z-index 예시 */
+        .z-index-container {
+            position: relative;
+            height: 200px;
+            background-color: #f0f0f0;
+            border: 2px solid #333;
+        }
+        
+        .z-index-box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            font-weight: bold;
+        }
+        
+        .z-index-1 {
+            background-color: #f44336;
+            top: 20px;
+            left: 20px;
+            z-index: 1;
+        }
+        
+        .z-index-2 {
+            background-color: #4CAF50;
+            top: 50px;
+            left: 50px;
+            z-index: 2;
+        }
+        
+        .z-index-3 {
+            background-color: #2196F3;
+            top: 80px;
+            left: 80px;
+            z-index: 3;
+        }
+        
+        /* 5. 실용적인 레이아웃 예시 */
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: #2196F3;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff9800;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        
+        /* 6. 중앙 정렬 기법들 */
+        .center-techniques {
+            height: 200px;
+            border: 2px solid #333;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .center-absolute {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        .center-flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            border: 2px solid #333;
+            margin: 20px 0;
+        }
+        
+        .center-flex-item {
+            background-color: #2196F3;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        /* 7. 반응형 박스 */
+        .responsive-box {
+            width: 100%;
+            max-width: 500px;
+            min-width: 200px;
+            height: 100px;
+            background-color: #9c27b0;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            resize: horizontal;
+            overflow: auto;
+        }
+        
+        /* 8. 애니메이션 효과 */
+        .animation-box {
+            width: 100px;
+            height: 100px;
+            background-color: #ff5722;
+            margin: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .animation-box:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* 9. 오버플로우 처리 */
+        .overflow-examples {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .overflow-box {
+            width: 150px;
+            height: 100px;
+            border: 2px solid #333;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+        
+        .overflow-visible { overflow: visible; }
+        .overflow-hidden { overflow: hidden; }
+        .overflow-scroll { overflow: scroll; }
+        .overflow-auto { overflow: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS 박스 모델과 Position</h1>
+        
+        <!-- 1. 박스 모델 기본 개념 -->
+        <section class="section">
+            <h2>1. 박스 모델 (Box Model)</h2>
+            <div class="example-box">
+                <p>모든 HTML 요소는 박스 모델로 구성됩니다:</p>
+                <ul>
+                    <li><strong>Content</strong>: 실제 내용</li>
+                    <li><strong>Padding</strong>: 내용과 테두리 사이의 간격</li>
+                    <li><strong>Border</strong>: 테두리</li>
+                    <li><strong>Margin</strong>: 요소 외부의 간격</li>
+                </ul>
+                
+                <div style="text-align: center;">
+                    <div class="box-model-demo">
+                        box-sizing: border-box
+                    </div>
+                    <div class="box-model-content">
+                        기본 박스 모델
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-example">
+/* 박스 모델 기본 구조 */
+.box {
+    width: 200px;          /* 내용 영역 너비 */
+    height: 100px;         /* 내용 영역 높이 */
+    padding: 20px;         /* 내부 여백 */
+    border: 10px solid blue; /* 테두리 */
+    margin: 20px;          /* 외부 여백 */
+}
+
+/* border-box: 전체 크기를 width/height로 설정 */
+.box-sizing-border {
+    box-sizing: border-box;
+}
+            </div>
+        </section>
+        
+        <!-- 2. Margin과 Padding -->
+        <section class="section">
+            <h2>2. Margin과 Padding</h2>
+            
+            <div class="margin-example">
+                <strong>Margin 예시:</strong> margin: 30px 20px 10px 40px; (상 우 하 좌)
+            </div>
+            
+            <div class="padding-example">
+                <strong>Padding 예시:</strong> padding: 30px 20px 10px 40px; (상 우 하 좌)
+            </div>
+            
+            <div class="code-example">
+/* 다양한 margin/padding 설정 방법 */
+.margin-all { margin: 20px; }                    /* 모든 방향 */
+.margin-vertical { margin: 20px 0; }             /* 상하 20px, 좌우 0 */
+.margin-each { margin: 10px 20px 30px 40px; }   /* 상 우 하 좌 */
+
+.padding-all { padding: 15px; }                  /* 모든 방향 */
+.padding-vertical { padding: 15px 0; }           /* 상하 15px, 좌우 0 */
+.padding-each { padding: 10px 20px 30px 40px; } /* 상 우 하 좌 */
+
+/* 개별 설정 */
+.individual {
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+    margin-left: 40px;
+}
+            </div>
+        </section>
+        
+        <!-- 3. Border 스타일 -->
+        <section class="section">
+            <h2>3. Border 스타일</h2>
+            
+            <div class="border-example">
+                <strong>Border 예시:</strong> border: 5px solid #ff9800; + border-radius: 10px;
+            </div>
+            
+            <div class="border-style-examples">
+                <div class="border-solid">solid</div>
+                <div class="border-dashed">dashed</div>
+                <div class="border-dotted">dotted</div>
+                <div class="border-double">double</div>
+            </div>
+            
+            <div class="code-example">
+/* Border 기본 설정 */
+.border-basic {
+    border: 2px solid #333;        /* 굵기 스타일 색상 */
+    border-radius: 5px;            /* 둥근 모서리 */
+}
+
+/* 개별 border 설정 */
+.border-individual {
+    border-top: 1px solid red;
+    border-right: 2px dashed blue;
+    border-bottom: 3px dotted green;
+    border-left: 4px double orange;
+}
+
+/* 다양한 border 스타일 */
+.border-styles {
+    border: 3px solid #333;    /* 실선 */
+    border: 3px dashed #333;   /* 점선 */
+    border: 3px dotted #333;   /* 점 */
+    border: 3px double #333;   /* 이중선 */
+}
+            </div>
+        </section>
+        
+        <!-- 4. Position 속성 -->
+        <section class="section">
+            <h2>4. Position 속성</h2>
+            
+            <div class="position-container">
+                <div class="position-static">Static (기본값)</div>
+                <div class="position-relative">Relative (원래 위치에서 이동)</div>
+                <div class="position-absolute">Absolute (부모 기준 절대 위치)</div>
+            </div>
+            
+            <div class="position-fixed">Fixed (화면 고정)</div>
+            
+            <div class="code-example">
+/* Position 종류 */
+.static {
+    position: static;    /* 기본값, 문서 흐름에 따라 배치 */
+}
+
+.relative {
+    position: relative;  /* 원래 위치에서 상대적으로 이동 */
+    top: 20px;
+    left: 30px;
+}
+
+.absolute {
+    position: absolute;  /* 부모(relative) 기준 절대 위치 */
+    top: 50px;
+    right: 20px;
+}
+
+.fixed {
+    position: fixed;     /* 화면(viewport) 기준 고정 */
+    top: 10px;
+    right: 10px;
+}
+
+.sticky {
+    position: sticky;    /* 스크롤 시 고정 */
+    top: 0;
+}
+            </div>
+        </section>
+        
+        <!-- 5. Z-index -->
+        <section class="section">
+            <h2>5. Z-index (쌓임 순서)</h2>
+            
+            <div class="z-index-container">
+                <div class="z-index-box z-index-1">Z: 1</div>
+                <div class="z-index-box z-index-2">Z: 2</div>
+                <div class="z-index-box z-index-3">Z: 3</div>
+            </div>
+            
+            <div class="code-example">
+/* Z-index는 position이 static이 아닌 요소에만 적용 */
+.layer-1 {
+    position: relative;
+    z-index: 1;          /* 낮은 값 (뒤쪽) */
+}
+
+.layer-2 {
+    position: absolute;
+    z-index: 2;          /* 중간 값 */
+}
+
+.layer-3 {
+    position: absolute;
+    z-index: 3;          /* 높은 값 (앞쪽) */
+}
+            </div>
+        </section>
+        
+        <!-- 6. 실용적인 레이아웃 예시 -->
+        <section class="section">
+            <h2>6. 실용적인 레이아웃 예시</h2>
+            
+            <div class="card">
+                <div class="badge">New</div>
+                <h3>카드 제목</h3>
+                <p>카드 내용입니다. 왼쪽에 파란색 선이 있고, 오른쪽 상단에 배지가 있습니다.</p>
+            </div>
+            
+            <div class="code-example">
+.card {
+    position: relative;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #2196F3;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff9800;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+            </div>
+        </section>
+        
+        <!-- 7. 중앙 정렬 기법 -->
+        <section class="section">
+            <h2>7. 중앙 정렬 기법</h2>
+            
+            <h3>7.1 Position + Transform</h3>
+            <div class="center-techniques">
+                <div class="center-absolute">절대 위치 중앙 정렬</div>
+            </div>
+            
+            <h3>7.2 Flexbox</h3>
+            <div class="center-flex">
+                <div class="center-flex-item">Flex 중앙 정렬</div>
+            </div>
+            
+            <div class="code-example">
+/* 방법 1: Position + Transform */
+.center-absolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 방법 2: Flexbox */
+.center-flex {
+    display: flex;
+    justify-content: center;  /* 수평 중앙 */
+    align-items: center;      /* 수직 중앙 */
+}
+
+/* 방법 3: Grid */
+.center-grid {
+    display: grid;
+    place-items: center;
+}
+
+/* 방법 4: Margin Auto (수평만) */
+.center-margin {
+    margin: 0 auto;
+    width: 300px;
+}
+            </div>
+        </section>
+        
+        <!-- 8. 반응형 박스 -->
+        <section class="section">
+            <h2>8. 반응형 박스</h2>
+            
+            <div class="responsive-box">
+                반응형 박스 (가로 크기 조절 가능)
+            </div>
+            
+            <div class="code-example">
+.responsive-box {
+    width: 100%;           /* 부모 너비에 맞춤 */
+    max-width: 500px;      /* 최대 너비 제한 */
+    min-width: 200px;      /* 최소 너비 보장 */
+    height: 100px;
+    resize: horizontal;     /* 사용자가 크기 조절 가능 */
+    overflow: auto;
+}
+            </div>
+        </section>
+        
+        <!-- 9. 애니메이션 효과 -->
+        <section class="section">
+            <h2>9. 애니메이션 효과</h2>
+            
+            <div class="animation-box">
+                마우스 호버
+            </div>
+            
+            <div class="code-example">
+.animation-box {
+    transition: all 0.3s ease;  /* 부드러운 전환 */
+}
+
+.animation-box:hover {
+    transform: scale(1.1) rotate(5deg);      /* 크기 + 회전 */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* 그림자 */
+}
+            </div>
+        </section>
+        
+        <!-- 10. 오버플로우 처리 -->
+        <section class="section">
+            <h2>10. 오버플로우 처리</h2>
+            
+            <div class="overflow-examples">
+                <div class="overflow-box overflow-visible">
+                    <strong>Visible:</strong> 이 텍스트는 박스를 벗어나도 모두 보입니다. 기본값입니다.
+                </div>
+                
+                <div class="overflow-box overflow-hidden">
+                    <strong>Hidden:</strong> 이 텍스트는 박스를 벗어나는 부분이 숨겨집니다.
+                </div>
+                
+                <div class="overflow-box overflow-scroll">
+                    <strong>Scroll:</strong> 이 텍스트는 박스를 벗어나면 스크롤바가 나타납니다.
+                </div>
+                
+                <div class="overflow-box overflow-auto">
+                    <strong>Auto:</strong> 이 텍스트는 필요할 때만 스크롤바가 나타납니다.
+                </div>
+            </div>
+            
+            <div class="code-example">
+.overflow-visible { overflow: visible; }  /* 기본값, 넘치는 내용 표시 */
+.overflow-hidden { overflow: hidden; }    /* 넘치는 내용 숨김 */
+.overflow-scroll { overflow: scroll; }    /* 항상 스크롤바 표시 */
+.overflow-auto { overflow: auto; }        /* 필요시에만 스크롤바 */
+
+/* 축별 개별 설정 */
+.overflow-x { overflow-x: hidden; }       /* 가로 방향만 */
+.overflow-y { overflow-y: scroll; }       /* 세로 방향만 */
+            </div>
+        </section>
+    </div>
+</body>
+</html>

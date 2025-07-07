@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시멘틱 HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        nav {
+            background-color: #444;
+            padding: 0.5rem;
+        }
+        
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #555;
+        }
+        
+        main {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 20px;
+        }
+        
+        .content {
+            flex: 2;
+        }
+        
+        aside {
+            flex: 1;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        section {
+            margin-bottom: 30px;
+        }
+        
+        article {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        
+        .example-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid #2196F3;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        .code {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- 페이지 헤더 -->
+    <header>
+        <h1>시멘틱 HTML 학습</h1>
+        <p>의미 있는 HTML 구조 만들기</p>
+    </header>
+
+    <!-- 네비게이션 -->
+    <nav>
+        <ul>
+            <li><a href="#intro">소개</a></li>
+            <li><a href="#elements">주요 요소</a></li>
+            <li><a href="#examples">예시</a></li>
+            <li><a href="#benefits">장점</a></li>
+        </ul>
+    </nav>
+
+    <!-- 메인 콘텐츠 -->
+    <main>
+        <div class="content">
+            <!-- 소개 섹션 -->
+            <section id="intro">
+                <h2>시멘틱 HTML이란?</h2>
+                <article>
+                    <h3>정의</h3>
+                    <p>시멘틱 HTML은 HTML 태그가 가진 의미를 살려 구조적으로 마크업하는 방식입니다. 
+                    각 태그가 담고 있는 내용의 의미를 명확히 전달합니다.</p>
+                    
+                    <div class="example-box">
+                        <strong>예시:</strong> &lt;div&gt; 대신 &lt;article&gt;, &lt;section&gt;, &lt;nav&gt; 등을 사용
+                    </div>
+                </article>
+            </section>
+
+            <!-- 주요 요소 섹션 -->
+            <section id="elements">
+                <h2>주요 시멘틱 요소들</h2>
+                
+                <article>
+                    <h3>&lt;header&gt;</h3>
+                    <p>페이지나 섹션의 헤더를 나타냅니다. 보통 제목, 로고, 네비게이션 등을 포함합니다.</p>
+                    <div class="code">
+&lt;header&gt;
+    &lt;h1&gt;사이트 제목&lt;/h1&gt;
+    &lt;nav&gt;네비게이션&lt;/nav&gt;
+&lt;/header&gt;
+                    </div>
+                </article>
+
+                <article>
+                    <h3>&lt;nav&gt;</h3>
+                    <p>네비게이션 링크들을 그룹화하는 요소입니다.</p>
+                    <div class="code">
+&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#home"&gt;홈&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#about"&gt;소개&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+                    </div>
+                </article>
+
+                <article>
+                    <h3>&lt;main&gt;</h3>
+                    <p>페이지의 주요 콘텐츠를 나타냅니다. 페이지당 하나만 사용해야 합니다.</p>
+                    <div class="code">
+&lt;main&gt;
+    &lt;!-- 페이지의 주요 내용 --&gt;
+&lt;/main&gt;
+                    </div>
+                </article>
+
+                <article>
+                    <h3>&lt;section&gt;</h3>
+                    <p>문서의 구역을 나타냅니다. 관련된 내용을 그룹화할 때 사용합니다.</p>
+                    <div class="code">
+&lt;section&gt;
+    &lt;h2&gt;섹션 제목&lt;/h2&gt;
+    &lt;p&gt;섹션 내용&lt;/p&gt;
+&lt;/section&gt;
+                    </div>
+                </article>
+
+                <article>
+                    <h3>&lt;article&gt;</h3>
+                    <p>독립적으로 배포 가능한 콘텐츠를 나타냅니다. 블로그 포스트, 뉴스 기사 등에 사용합니다.</p>
+                    <div class="code">
+&lt;article&gt;
+    &lt;h2&gt;기사 제목&lt;/h2&gt;
+    &lt;p&gt;기사 내용&lt;/p&gt;
+&lt;/article&gt;
+                    </div>
+                </article>
+
+                <article>
+                    <h3>&lt;aside&gt;</h3>
+                    <p>주요 내용과 관련되지만 독립적인 내용을 나타냅니다. 사이드바, 광고 등에 사용합니다.</p>
+                    <div class="code">
+&lt;aside&gt;
+    &lt;h3&gt;관련 링크&lt;/h3&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;관련 기사 1&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/aside&gt;
+                    </div>
+                </article>
+
+                <article>
+                    <h3>&lt;footer&gt;</h3>
+                    <p>페이지나 섹션의 푸터를 나타냅니다. 저작권, 연락처 등을 포함합니다.</p>
+                    <div class="code">
+&lt;footer&gt;
+    &lt;p&gt;&copy; 2024 회사명. 모든 권리 보유.&lt;/p&gt;
+&lt;/footer&gt;
+                    </div>
+                </article>
+            </section>
+
+            <!-- 예시 섹션 -->
+            <section id="examples">
+                <h2>비교 예시</h2>
+                
+                <article>
+                    <h3>❌ 시멘틱하지 않은 방식</h3>
+                    <div class="code">
+&lt;div class="header"&gt;
+    &lt;div class="title"&gt;제목&lt;/div&gt;
+    &lt;div class="nav"&gt;네비게이션&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="content"&gt;
+    &lt;div class="article"&gt;기사 내용&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="footer"&gt;푸터&lt;/div&gt;
+                    </div>
+                </article>
+
+                <article>
+                    <h3>✅ 시멘틱한 방식</h3>
+                    <div class="code">
+&lt;header&gt;
+    &lt;h1&gt;제목&lt;/h1&gt;
+    &lt;nav&gt;네비게이션&lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+    &lt;article&gt;기사 내용&lt;/article&gt;
+&lt;/main&gt;
+&lt;footer&gt;푸터&lt;/footer&gt;
+                    </div>
+                </article>
+            </section>
+        </div>
+
+        <!-- 사이드바 -->
+        <aside id="benefits">
+            <h2>시멘틱 HTML의 장점</h2>
+            
+            <h3>🔍 SEO 향상</h3>
+            <p>검색엔진이 페이지 구조를 더 잘 이해할 수 있습니다.</p>
+            
+            <h3>♿ 접근성 향상</h3>
+            <p>스크린 리더 등 보조 기술이 내용을 더 잘 해석할 수 있습니다.</p>
+            
+            <h3>📱 유지보수성</h3>
+            <p>코드의 의미가 명확해 유지보수가 쉬워집니다.</p>
+            
+            <h3>👥 팀 협업</h3>
+            <p>다른 개발자가 코드를 이해하기 쉬워집니다.</p>
+            
+            <h3>🎨 CSS 스타일링</h3>
+            <p>의미 있는 요소에 스타일을 적용하기 쉬워집니다.</p>
+        </aside>
+    </main>
+
+    <!-- 페이지 푸터 -->
+    <footer>
+        <p>&copy; 2024 CISLAB 웹 개발 스터디. 모든 권리 보유.</p>
+        <p>시멘틱 HTML 학습 자료</p>
+    </footer>
+</body>
+</html>

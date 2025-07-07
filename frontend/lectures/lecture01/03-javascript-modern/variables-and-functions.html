@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 변수와 함수</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        h2 {
+            color: #2196F3;
+            border-bottom: 2px solid #2196F3;
+            padding-bottom: 5px;
+        }
+        
+        .code-example {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            border-left: 4px solid #2196F3;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .output {
+            background-color: #e8f5e8;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #4CAF50;
+            margin: 10px 0;
+        }
+        
+        .warning {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+            margin: 10px 0;
+        }
+        
+        .interactive-demo {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        button {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background-color: #1976D2;
+        }
+        
+        input, select {
+            padding: 5px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript 현대 문법 - 변수와 함수</h1>
+    
+    <!-- 1. 변수 선언 -->
+    <section class="section">
+        <h2>1. 변수 선언 (var, let, const)</h2>
+        
+        <div class="code-example">
+// 1. var - 함수 스코프, 호이스팅, 재선언 가능
+var name = "홍길동";
+var name = "김철수"; // 재선언 가능
+console.log(name); // "김철수"
+
+// 2. let - 블록 스코프, 재할당 가능, 재선언 불가
+let age = 25;
+age = 26; // 재할당 가능
+// let age = 27; // 오류! 재선언 불가
+
+// 3. const - 블록 스코프, 재할당 불가, 재선언 불가
+const PI = 3.14159;
+// PI = 3.14; // 오류! 재할당 불가
+// const PI = 3.14; // 오류! 재선언 불가
+
+// 객체와 배열은 내용 변경 가능
+const person = { name: "이영희", age: 30 };
+person.age = 31; // 가능! 객체 내용 변경
+person.city = "서울"; // 가능! 새로운 속성 추가
+
+const fruits = ["사과", "바나나"];
+fruits.push("오렌지"); // 가능! 배열 내용 변경
+        </div>
+        
+        <div class="interactive-demo">
+            <h3>🔧 변수 선언 실습</h3>
+            <button onclick="demonstrateVariables()">변수 차이점 확인하기</button>
+            <div id="variable-output"></div>
+        </div>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>특징</th>
+                    <th>var</th>
+                    <th>let</th>
+                    <th>const</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>스코프</td>
+                    <td>함수 스코프</td>
+                    <td>블록 스코프</td>
+                    <td>블록 스코프</td>
+                </tr>
+                <tr>
+                    <td>재할당</td>
+                    <td>가능</td>
+                    <td>가능</td>
+                    <td>불가능</td>
+                </tr>
+                <tr>
+                    <td>재선언</td>
+                    <td>가능</td>
+                    <td>불가능</td>
+                    <td>불가능</td>
+                </tr>
+                <tr>
+                    <td>호이스팅</td>
+                    <td>undefined로 초기화</td>
+                    <td>초기화되지 않음</td>
+                    <td>초기화되지 않음</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="warning">
+            <strong>권장사항:</strong> 모던 JavaScript에서는 <code>const</code>를 기본으로 사용하고, 
+            재할당이 필요한 경우에만 <code>let</code>을 사용하세요. <code>var</code>는 피하는 것이 좋습니다.
+        </div>
+    </section>
+    
+    <!-- 2. 화살표 함수 -->
+    <section class="section">
+        <h2>2. 화살표 함수 (Arrow Function)</h2>
+        
+        <div class="code-example">
+// 기존 함수 선언
+function add(a, b) {
+    return a + b;
+}
+
+// 함수 표현식
+const subtract = function(a, b) {
+    return a - b;
+};
+
+// 화살표 함수 - 기본형
+const multiply = (a, b) => {
+    return a * b;
+};
+
+// 화살표 함수 - 간단한 형태 (return 생략)
+const divide = (a, b) => a / b;
+
+// 매개변수가 하나인 경우 괄호 생략 가능
+const square = x => x * x;
+
+// 매개변수가 없는 경우
+const getRandomNumber = () => Math.random();
+
+// 객체 반환 시 괄호로 감싸기
+const createPerson = (name, age) => ({ name, age });
+
+// 고차 함수에서 자주 사용
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(x => x * 2);
+const evens = numbers.filter(x => x % 2 === 0);
+const sum = numbers.reduce((acc, x) => acc + x, 0);
+        </div>
+        
+        <div class="interactive-demo">
+            <h3>🔧 화살표 함수 실습</h3>
+            <input type="number" id="num1" placeholder="첫 번째 숫자" value="10">
+            <input type="number" id="num2" placeholder="두 번째 숫자" value="5">
+            <button onclick="demonstrateArrowFunctions()">화살표 함수 테스트</button>
+            <div id="arrow-output"></div>
+        </div>
+        
+        <div class="warning">
+            <strong>주의사항:</strong> 화살표 함수는 <code>this</code> 바인딩이 다릅니다. 
+            일반 함수와 달리 자신만의 <code>this</code>를 가지지 않고 상위 스코프의 <code>this</code>를 상속받습니다.
+        </div>
+    </section>
+    
+    <!-- 3. 템플릿 리터럴 -->
+    <section class="section">
+        <h2>3. 템플릿 리터럴 (Template Literals)</h2>
+        
+        <div class="code-example">
+// 기존 문자열 연결
+const name = "김민수";
+const age = 28;
+const oldWay = "안녕하세요! 제 이름은 " + name + "이고, 나이는 " + age + "세입니다.";
+
+// 템플릿 리터럴 (백틱 사용)
+const newWay = `안녕하세요! 제 이름은 ${name}이고, 나이는 ${age}세입니다.`;
+
+// 다중 라인 문자열
+const multiLine = `
+    첫 번째 줄
+    두 번째 줄
+    세 번째 줄
+`;
+
+// 표현식 사용 가능
+const price = 1000;
+const quantity = 3;
+const total = `총 가격: ${price * quantity}원`;
+
+// 함수 호출도 가능
+const getCurrentTime = () => new Date().toLocaleTimeString();
+const timeMessage = `현재 시간: ${getCurrentTime()}`;
+
+// 조건부 표현식
+const user = { name: "이수진", isAdmin: true };
+const greeting = `안녕하세요, ${user.name}님! ${user.isAdmin ? '(관리자)' : '(일반 사용자)'}`;
+
+// 태그드 템플릿 (고급)
+function highlight(strings, ...values) {
+    return strings.reduce((result, string, i) => {
+        const value = values[i] ? `<mark>${values[i]}</mark>` : '';
+        return result + string + value;
+    }, '');
+}
+
+const highlightedText = highlight`이름: ${name}, 나이: ${age}`;
+        </div>
+        
+        <div class="interactive-demo">
+            <h3>🔧 템플릿 리터럴 실습</h3>
+            <input type="text" id="userName" placeholder="이름" value="김철수">
+            <input type="number" id="userAge" placeholder="나이" value="25">
+            <select id="userRole">
+                <option value="user">일반 사용자</option>
+                <option value="admin">관리자</option>
+            </select>
+            <button onclick="demonstrateTemplateStrings()">메시지 생성</button>
+            <div id="template-output"></div>
+        </div>
+    </section>
+    
+    <!-- 4. 구조 분해 할당 -->
+    <section class="section">
+        <h2>4. 구조 분해 할당 (Destructuring)</h2>
+        
+        <div class="code-example">
+// 배열 구조 분해 할당
+const colors = ["빨강", "파랑", "초록"];
+const [first, second, third] = colors;
+console.log(first);  // "빨강"
+console.log(second); // "파랑"
+
+// 일부 요소 건너뛰기
+const [red, , green] = colors;
+console.log(red, green); // "빨강", "초록"
+
+// 기본값 설정
+const [a, b, c, d = "노랑"] = colors;
+console.log(d); // "노랑"
+
+// 나머지 요소 수집
+const numbers = [1, 2, 3, 4, 5];
+const [first, second, ...rest] = numbers;
+console.log(rest); // [3, 4, 5]
+
+// 객체 구조 분해 할당
+const person = {
+    name: "박지영",
+    age: 32,
+    city: "부산",
+    country: "Korea"
+};
+
+const { name, age } = person;
+console.log(name, age); // "박지영", 32
+
+// 다른 변수명으로 할당
+const { name: personName, age: personAge } = person;
+console.log(personName); // "박지영"
+
+// 기본값 설정
+const { name, age, job = "개발자" } = person;
+console.log(job); // "개발자"
+
+// 중첩 객체 구조 분해
+const student = {
+    info: {
+        name: "이학생",
+        grade: 3
+    },
+    subjects: ["수학", "과학"]
+};
+
+const { info: { name: studentName, grade }, subjects: [math, science] } = student;
+console.log(studentName, grade, math); // "이학생", 3, "수학"
+
+// 함수 매개변수에서 구조 분해
+function greet({ name, age, city = "서울" }) {
+    return `안녕하세요! ${name}님 (${age}세, ${city})`;
+}
+
+const result = greet({ name: "최민호", age: 29 });
+        </div>
+        
+        <div class="interactive-demo">
+            <h3>🔧 구조 분해 할당 실습</h3>
+            <button onclick="demonstrateDestructuring()">구조 분해 할당 예시</button>
+            <div id="destructuring-output"></div>
+        </div>
+    </section>
+    
+    <!-- 5. 스프레드와 레스트 연산자 -->
+    <section class="section">
+        <h2>5. 스프레드와 레스트 연산자 (...)</h2>
+        
+        <div class="code-example">
+// 스프레드 연산자 - 배열
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+
+// 배열 합치기
+const combined = [...arr1, ...arr2]; // [1, 2, 3, 4, 5, 6]
+
+// 배열 복사
+const copied = [...arr1]; // [1, 2, 3]
+
+// 배열에 요소 추가
+const extended = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]
+
+// 스프레드 연산자 - 객체
+const obj1 = { a: 1, b: 2 };
+const obj2 = { c: 3, d: 4 };
+
+// 객체 합치기
+const combinedObj = { ...obj1, ...obj2 }; // { a: 1, b: 2, c: 3, d: 4 }
+
+// 객체 복사
+const copiedObj = { ...obj1 }; // { a: 1, b: 2 }
+
+// 객체 속성 덮어쓰기
+const updated = { ...obj1, b: 10, e: 5 }; // { a: 1, b: 10, e: 5 }
+
+// 함수 호출에서 스프레드
+function sum(a, b, c) {
+    return a + b + c;
+}
+const numbers = [1, 2, 3];
+const result = sum(...numbers); // sum(1, 2, 3)과 동일
+
+// 레스트 연산자 - 함수 매개변수
+function calculateSum(...numbers) {
+    return numbers.reduce((sum, num) => sum + num, 0);
+}
+
+console.log(calculateSum(1, 2, 3, 4, 5)); // 15
+console.log(calculateSum(10, 20)); // 30
+
+// 레스트 연산자 - 구조 분해와 함께
+const [head, ...tail] = [1, 2, 3, 4, 5];
+console.log(head); // 1
+console.log(tail); // [2, 3, 4, 5]
+
+const { name, ...otherInfo } = { name: "김영수", age: 35, city: "인천" };
+console.log(name); // "김영수"
+console.log(otherInfo); // { age: 35, city: "인천" }
+        </div>
+        
+        <div class="interactive-demo">
+            <h3>🔧 스프레드/레스트 연산자 실습</h3>
+            <button onclick="demonstrateSpreadRest()">스프레드/레스트 연산자 테스트</button>
+            <div id="spread-output"></div>
+        </div>
+    </section>
+    
+    <!-- 6. 삼항 연산자와 단축 평가 -->
+    <section class="section">
+        <h2>6. 삼항 연산자와 단축 평가</h2>
+        
+        <div class="code-example">
+// 삼항 연산자 (조건 ? 참일때값 : 거짓일때값)
+const age = 18;
+const message = age >= 18 ? "성인입니다" : "미성년자입니다";
+
+// 중첩 삼항 연산자 (권장하지 않음)
+const score = 85;
+const grade = score >= 90 ? "A" : score >= 80 ? "B" : score >= 70 ? "C" : "F";
+
+// 더 나은 방법 - 함수 사용
+function getGrade(score) {
+    if (score >= 90) return "A";
+    if (score >= 80) return "B";
+    if (score >= 70) return "C";
+    return "F";
+}
+
+// 논리 AND (&&) 단축 평가
+const user = { name: "이름", isLoggedIn: true };
+user.isLoggedIn && console.log("로그인된 사용자입니다"); // 실행됨
+
+// 조건부 렌더링에서 자주 사용
+const showWelcome = user.isLoggedIn && `환영합니다, ${user.name}님!`;
+
+// 논리 OR (||) 단축 평가 - 기본값 설정
+const username = user.name || "게스트";
+const settings = user.settings || { theme: "light", language: "ko" };
+
+// null 병합 연산자 (??) - ES2020
+const userAge = user.age ?? "나이 정보 없음"; // null이나 undefined일 때만 기본값
+const count = 0;
+const defaultCount1 = count || 10;  // 10 (0은 falsy)
+const defaultCount2 = count ?? 10;  // 0 (null/undefined가 아님)
+
+// 옵셔널 체이닝 (?.) - ES2020
+const user2 = {
+    profile: {
+        social: {
+            twitter: "@user"
+        }
+    }
+};
+
+// 안전한 속성 접근
+const twitter = user2?.profile?.social?.twitter; // "@user"
+const instagram = user2?.profile?.social?.instagram; // undefined (오류 없음)
+
+// 배열과 함수에도 사용 가능
+const users = [{ name: "김철수" }, { name: "이영희" }];
+const firstUserName = users?.[0]?.name; // "김철수"
+
+const getUserInfo = user.getInfo?.(); // 함수가 존재할 때만 호출
+        </div>
+        
+        <div class="interactive-demo">
+            <h3>🔧 삼항 연산자와 단축 평가 실습</h3>
+            <input type="number" id="testScore" placeholder="점수 (0-100)" value="85">
+            <button onclick="demonstrateTernaryShortCircuit()">등급 계산하기</button>
+            <div id="ternary-output"></div>
+        </div>
+    </section>
+    
+    <script>
+        // 변수 차이점 시연
+        function demonstrateVariables() {
+            const output = document.getElementById('variable-output');
+            let result = '';
+            
+            try {
+                // var 테스트
+                result += '<h4>var 테스트:</h4>';
+                var varTest = "첫 번째 var";
+                result += `var varTest = "${varTest}"<br>`;
+                var varTest = "두 번째 var"; // 재선언 가능
+                result += `var varTest = "${varTest}" (재선언 성공)<br><br>`;
+                
+                // let 테스트
+                result += '<h4>let 테스트:</h4>';
+                let letTest = "첫 번째 let";
+                result += `let letTest = "${letTest}"<br>`;
+                letTest = "재할당된 let"; // 재할당 가능
+                result += `letTest = "${letTest}" (재할당 성공)<br><br>`;
+                
+                // const 테스트
+                result += '<h4>const 테스트:</h4>';
+                const constTest = "상수값";
+                result += `const constTest = "${constTest}"<br>`;
+                
+                const person = { name: "홍길동", age: 30 };
+                result += `const person = { name: "${person.name}", age: ${person.age} }<br>`;
+                person.age = 31; // 객체 내용 변경 가능
+                result += `person.age = ${person.age} (객체 내용 변경 성공)<br>`;
+                
+            } catch (error) {
+                result += `오류: ${error.message}<br>`;
+            }
+            
+            output.innerHTML = result;
+        }
+        
+        // 화살표 함수 시연
+        function demonstrateArrowFunctions() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const output = document.getElementById('arrow-output');
+            
+            // 다양한 화살표 함수 정의
+            const add = (a, b) => a + b;
+            const multiply = (a, b) => {
+                const result = a * b;
+                return result;
+            };
+            const square = x => x * x;
+            const getInfo = () => ({ time: new Date().toLocaleTimeString(), random: Math.random() });
+            
+            // 고차 함수 예시
+            const numbers = [num1, num2, num1 + num2, num1 * num2];
+            const doubled = numbers.map(x => x * 2);
+            const filtered = numbers.filter(x => x > 10);
+            
+            const result = `
+                <h4>화살표 함수 결과:</h4>
+                <p>덧셈: ${num1} + ${num2} = ${add(num1, num2)}</p>
+                <p>곱셈: ${num1} × ${num2} = ${multiply(num1, num2)}</p>
+                <p>첫 번째 수의 제곱: ${square(num1)}</p>
+                <p>정보: ${JSON.stringify(getInfo())}</p>
+                <p>배열 [${numbers.join(', ')}]을 2배: [${doubled.join(', ')}]</p>
+                <p>10보다 큰 수: [${filtered.join(', ')}]</p>
+            `;
+            
+            output.innerHTML = result;
+        }
+        
+        // 템플릿 리터럴 시연
+        function demonstrateTemplateStrings() {
+            const name = document.getElementById('userName').value;
+            const age = parseInt(document.getElementById('userAge').value);
+            const role = document.getElementById('userRole').value;
+            const output = document.getElementById('template-output');
+            
+            const isAdmin = role === 'admin';
+            const currentTime = new Date().toLocaleTimeString();
+            
+            // 다양한 템플릿 리터럴 사용
+            const greeting = `안녕하세요, ${name}님!`;
+            const info = `나이: ${age}세, 역할: ${isAdmin ? '관리자' : '일반 사용자'}`;
+            const multiLine = `
+                ===== 사용자 정보 =====
+                이름: ${name}
+                나이: ${age}세
+                권한: ${isAdmin ? '관리자 권한' : '일반 권한'}
+                로그인 시간: ${currentTime}
+                성인 여부: ${age >= 18 ? '성인' : '미성년자'}
+            `;
+            
+            const calculation = `내년 나이: ${age + 1}세`;
+            
+            output.innerHTML = `
+                <h4>템플릿 리터럴 결과:</h4>
+                <p>${greeting}</p>
+                <p>${info}</p>
+                <p>${calculation}</p>
+                <pre>${multiLine}</pre>
+            `;
+        }
+        
+        // 구조 분해 할당 시연
+        function demonstrateDestructuring() {
+            const output = document.getElementById('destructuring-output');
+            
+            // 배열 구조 분해
+            const fruits = ['사과', '바나나', '오렌지', '포도'];
+            const [first, second, ...rest] = fruits;
+            
+            // 객체 구조 분해
+            const person = {
+                name: '김개발',
+                age: 28,
+                city: '서울',
+                job: '개발자',
+                skills: ['JavaScript', 'React', 'Node.js']
+            };
+            
+            const { name, age, city, job = '무직', skills: [skill1, skill2] } = person;
+            
+            // 중첩 객체 구조 분해
+            const company = {
+                name: 'Tech Corp',
+                location: {
+                    country: 'Korea',
+                    city: 'Seoul'
+                },
+                employees: [
+                    { name: '김직원', position: '개발자' },
+                    { name: '이직원', position: '디자이너' }
+                ]
+            };
+            
+            const { 
+                name: companyName, 
+                location: { city: companyCity },
+                employees: [{ name: firstEmployee }]
+            } = company;
+            
+            // 함수 매개변수에서 구조 분해
+            function greetUser({ name, age, city = '미정' }) {
+                return `${name}님 (${age}세, ${city} 거주)`;
+            }
+            
+            const greeting = greetUser(person);
+            
+            const result = `
+                <h4>구조 분해 할당 결과:</h4>
+                <p><strong>배열 구조 분해:</strong></p>
+                <p>첫 번째 과일: ${first}</p>
+                <p>두 번째 과일: ${second}</p>
+                <p>나머지 과일: [${rest.join(', ')}]</p>
+                
+                <p><strong>객체 구조 분해:</strong></p>
+                <p>이름: ${name}</p>
+                <p>나이: ${age}</p>
+                <p>도시: ${city}</p>
+                <p>직업: ${job}</p>
+                <p>첫 번째 기술: ${skill1}</p>
+                <p>두 번째 기술: ${skill2}</p>
+                
+                <p><strong>중첩 객체 구조 분해:</strong></p>
+                <p>회사명: ${companyName}</p>
+                <p>회사 도시: ${companyCity}</p>
+                <p>첫 번째 직원: ${firstEmployee}</p>
+                
+                <p><strong>함수에서 구조 분해:</strong></p>
+                <p>${greeting}</p>
+            `;
+            
+            output.innerHTML = result;
+        }
+        
+        // 스프레드/레스트 연산자 시연
+        function demonstrateSpreadRest() {
+            const output = document.getElementById('spread-output');
+            
+            // 배열 스프레드
+            const arr1 = [1, 2, 3];
+            const arr2 = [4, 5, 6];
+            const combined = [...arr1, ...arr2];
+            const withExtra = [...arr1, 10, 20, ...arr2];
+            
+            // 객체 스프레드
+            const user = { name: '이용자', age: 25 };
+            const contact = { email: 'user@example.com', phone: '010-1234-5678' };
+            const profile = { ...user, ...contact, city: '부산' };
+            
+            // 레스트 매개변수
+            function calculateStats(...numbers) {
+                const sum = numbers.reduce((acc, num) => acc + num, 0);
+                const avg = sum / numbers.length;
+                const max = Math.max(...numbers);
+                const min = Math.min(...numbers);
+                return { sum, avg, max, min };
+            }
+            
+            const stats = calculateStats(10, 5, 8, 12, 3, 15);
+            
+            // 배열 구조 분해와 레스트
+            const colors = ['빨강', '파랑', '초록', '노랑', '보라'];
+            const [primary, secondary, ...otherColors] = colors;
+            
+            const result = `
+                <h4>스프레드/레스트 연산자 결과:</h4>
+                
+                <p><strong>배열 스프레드:</strong></p>
+                <p>arr1: [${arr1.join(', ')}]</p>
+                <p>arr2: [${arr2.join(', ')}]</p>
+                <p>합친 배열: [${combined.join(', ')}]</p>
+                <p>추가 요소와 함께: [${withExtra.join(', ')}]</p>
+                
+                <p><strong>객체 스프레드:</strong></p>
+                <p>user: ${JSON.stringify(user)}</p>
+                <p>contact: ${JSON.stringify(contact)}</p>
+                <p>profile: ${JSON.stringify(profile)}</p>
+                
+                <p><strong>레스트 매개변수 (calculateStats):</strong></p>
+                <p>합계: ${stats.sum}</p>
+                <p>평균: ${stats.avg.toFixed(2)}</p>
+                <p>최댓값: ${stats.max}</p>
+                <p>최솟값: ${stats.min}</p>
+                
+                <p><strong>배열 구조 분해 + 레스트:</strong></p>
+                <p>주요 색상: ${primary}, ${secondary}</p>
+                <p>기타 색상: [${otherColors.join(', ')}]</p>
+            `;
+            
+            output.innerHTML = result;
+        }
+        
+        // 삼항 연산자와 단축 평가 시연
+        function demonstrateTernaryShortCircuit() {
+            const score = parseInt(document.getElementById('testScore').value);
+            const output = document.getElementById('ternary-output');
+            
+            // 삼항 연산자
+            const grade = score >= 90 ? 'A' : score >= 80 ? 'B' : score >= 70 ? 'C' : score >= 60 ? 'D' : 'F';
+            const pass = score >= 60 ? '합격' : '불합격';
+            
+            // 단축 평가
+            const user = {
+                name: '김학생',
+                score: score,
+                isActive: score >= 60
+            };
+            
+            const welcomeMessage = user.isActive && `축하합니다, ${user.name}님!`;
+            const encourageMessage = !user.isActive && `다음에 더 열심히 해보세요, ${user.name}님!`;
+            
+            // null 병합과 옵셔널 체이닝
+            const bonus = null;
+            const finalScore = score + (bonus ?? 0); // bonus가 null이므로 0 사용
+            
+            const student = {
+                profile: {
+                    academic: {
+                        gpa: 3.8
+                    }
+                }
+            };
+            
+            const gpa = student?.profile?.academic?.gpa ?? '정보 없음';
+            const major = student?.profile?.academic?.major ?? '전공 미정';
+            
+            const result = `
+                <h4>삼항 연산자와 단축 평가 결과:</h4>
+                
+                <p><strong>기본 정보:</strong></p>
+                <p>점수: ${score}점</p>
+                <p>등급: ${grade}</p>
+                <p>결과: ${pass}</p>
+                
+                <p><strong>단축 평가:</strong></p>
+                <p>환영 메시지: ${welcomeMessage || '해당 없음'}</p>
+                <p>격려 메시지: ${encourageMessage || '해당 없음'}</p>
+                
+                <p><strong>null 병합 연산자:</strong></p>
+                <p>보너스 점수: ${bonus ?? '없음'}</p>
+                <p>최종 점수: ${finalScore}점</p>
+                
+                <p><strong>옵셔널 체이닝:</strong></p>
+                <p>GPA: ${gpa}</p>
+                <p>전공: ${major}</p>
+                
+                <p><strong>복합 조건:</strong></p>
+                <p>학점: ${score >= 95 ? 'A+' : score >= 90 ? 'A' : score >= 85 ? 'B+' : score >= 80 ? 'B' : 'C 이하'}</p>
+                <p>장학금 대상: ${score >= 90 && user.isActive ? '예' : '아니오'}</p>
+            `;
+            
+            output.innerHTML = result;
+        }
+    </script>
+</body>
+</html>

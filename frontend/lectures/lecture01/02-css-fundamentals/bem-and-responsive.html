@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEM 방법론과 반응형 웹</title>
+    <style>
+        /* 기본 스타일 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* BEM 방법론 예시 */
+        
+        /* Block: 독립적인 컴포넌트 */
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        /* Element: 블록의 구성 요소 */
+        .card__header {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .card__title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card__subtitle {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .card__body {
+            padding: 20px;
+        }
+        
+        .card__content {
+            margin-bottom: 15px;
+        }
+        
+        .card__footer {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card__actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .card__meta {
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+        
+        /* Modifier: 블록이나 엘리먼트의 변형 */
+        .card--featured {
+            border-left: 4px solid #007bff;
+        }
+        
+        .card--warning {
+            border-left: 4px solid #ffc107;
+        }
+        
+        .card--danger {
+            border-left: 4px solid #dc3545;
+        }
+        
+        .card--large {
+            padding: 30px;
+        }
+        
+        .card__title--large {
+            font-size: 2rem;
+        }
+        
+        .card__title--center {
+            text-align: center;
+        }
+        
+        /* Button 컴포넌트 - BEM 적용 */
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn__text {
+            font-weight: 500;
+        }
+        
+        .btn--primary {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .btn--primary:hover {
+            background-color: #0056b3;
+        }
+        
+        .btn--secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn--secondary:hover {
+            background-color: #545b62;
+        }
+        
+        .btn--small {
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+        
+        .btn--large {
+            padding: 12px 24px;
+            font-size: 16px;
+        }
+        
+        .btn--block {
+            width: 100%;
+            display: block;
+        }
+        
+        /* Navigation 컴포넌트 - BEM 적용 */
+        .nav {
+            background: #343a40;
+            padding: 1rem 0;
+        }
+        
+        .nav__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav__logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav__menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav__item {
+            /* 스타일 없음 - 구조적 요소 */
+        }
+        
+        .nav__link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .nav__link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav__link--active {
+            background-color: #007bff;
+        }
+        
+        .nav__toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .nav__toggle-line {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* 반응형 웹 - 미디어 쿼리 */
+        
+        /* 모바일 퍼스트 접근법 */
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .responsive-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        /* 태블릿 (768px 이상) */
+        @media (min-width: 768px) {
+            .responsive-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .card {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .card__body {
+                flex: 1;
+            }
+            
+            .nav__menu {
+                display: flex;
+            }
+        }
+        
+        /* 데스크톱 (992px 이상) */
+        @media (min-width: 992px) {
+            .responsive-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .container {
+                padding: 0 40px;
+            }
+        }
+        
+        /* 큰 화면 (1200px 이상) */
+        @media (min-width: 1200px) {
+            .responsive-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        /* 모바일 전용 스타일 (767px 이하) */
+        @media (max-width: 767px) {
+            .nav__menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #343a40;
+                flex-direction: column;
+                padding: 1rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+            
+            .nav__menu--active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .nav__toggle {
+                display: flex;
+            }
+            
+            .nav {
+                position: relative;
+            }
+            
+            .card {
+                margin-bottom: 15px;
+            }
+            
+            .card__header {
+                padding: 15px;
+            }
+            
+            .card__body {
+                padding: 15px;
+            }
+            
+            .card__footer {
+                padding: 15px;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        /* 세부 브레이크포인트 */
+        
+        /* 작은 모바일 (480px 이하) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .card__title {
+                font-size: 1.2rem;
+            }
+            
+            .btn {
+                padding: 10px 12px;
+                font-size: 12px;
+            }
+            
+            .responsive-grid {
+                gap: 15px;
+            }
+        }
+        
+        /* 프린트 스타일 */
+        @media print {
+            .nav,
+            .card__footer {
+                display: none;
+            }
+            
+            .card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+            
+            body {
+                font-size: 12pt;
+            }
+        }
+        
+        /* 다크 모드 */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #e0e0e0;
+            }
+            
+            .card {
+                background-color: #1e1e1e;
+                box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+            }
+            
+            .card__header,
+            .card__footer {
+                background-color: #2d2d2d;
+                border-color: #444;
+            }
+            
+            .responsive-item {
+                background-color: #2d2d2d;
+            }
+        }
+        
+        /* 유틸리티 클래스 */
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
+        
+        .mt-1 { margin-top: 0.25rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-3 { margin-top: 1rem; }
+        .mt-4 { margin-top: 1.5rem; }
+        .mt-5 { margin-top: 3rem; }
+        
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 1rem; }
+        .mb-4 { margin-bottom: 1.5rem; }
+        .mb-5 { margin-bottom: 3rem; }
+        
+        .p-1 { padding: 0.25rem; }
+        .p-2 { padding: 0.5rem; }
+        .p-3 { padding: 1rem; }
+        .p-4 { padding: 1.5rem; }
+        .p-5 { padding: 3rem; }
+        
+        .d-none { display: none; }
+        .d-block { display: block; }
+        .d-inline { display: inline; }
+        .d-flex { display: flex; }
+        .d-grid { display: grid; }
+        
+        /* 반응형 유틸리티 */
+        @media (max-width: 767px) {
+            .d-none-mobile { display: none; }
+            .d-block-mobile { display: block; }
+        }
+        
+        @media (min-width: 768px) {
+            .d-none-tablet { display: none; }
+            .d-block-tablet { display: block; }
+        }
+        
+        @media (min-width: 992px) {
+            .d-none-desktop { display: none; }
+            .d-block-desktop { display: block; }
+        }
+        
+        /* 코드 예시 스타일 */
+        .code-example {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            overflow-x: auto;
+            border-left: 4px solid #007bff;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin: 40px 0 20px 0;
+            color: #007bff;
+            text-align: center;
+        }
+        
+        .example-description {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav__container">
+                <a href="#" class="nav__logo">BEM & 반응형</a>
+                <ul class="nav__menu" id="navMenu">
+                    <li class="nav__item">
+                        <a href="#bem" class="nav__link nav__link--active">BEM</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#responsive" class="nav__link">반응형</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#examples" class="nav__link">예시</a>
+                    </li>
+                </ul>
+                <div class="nav__toggle" id="navToggle">
+                    <div class="nav__toggle-line"></div>
+                    <div class="nav__toggle-line"></div>
+                    <div class="nav__toggle-line"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="section-title">BEM 방법론과 반응형 웹</h1>
+        
+        <!-- BEM 방법론 섹션 -->
+        <section id="bem">
+            <h2 class="section-title">1. BEM 방법론</h2>
+            
+            <div class="example-description">
+                <h3>BEM이란?</h3>
+                <p><strong>BEM</strong>은 Block, Element, Modifier의 약자로, CSS 클래스명을 체계적으로 관리하는 방법론입니다.</p>
+                <ul>
+                    <li><strong>Block</strong>: 독립적인 컴포넌트 (예: card, nav, btn)</li>
+                    <li><strong>Element</strong>: 블록의 구성 요소 (예: card__title, nav__menu)</li>
+                    <li><strong>Modifier</strong>: 블록이나 엘리먼트의 변형 (예: btn--primary, card--large)</li>
+                </ul>
+            </div>
+            
+            <div class="code-example">
+/* BEM 명명 규칙 */
+.block { }                    /* 블록 */
+.block__element { }           /* 엘리먼트 */
+.block--modifier { }          /* 블록 수정자 */
+.block__element--modifier { } /* 엘리먼트 수정자 */
+
+/* 예시 */
+.card { }                     /* 카드 블록 */
+.card__title { }              /* 카드 제목 엘리먼트 */
+.card--featured { }           /* 특별한 카드 수정자 */
+.card__title--large { }       /* 큰 제목 수정자 */
+            </div>
+            
+            <!-- BEM 적용 예시 -->
+            <div class="card">
+                <div class="card__header">
+                    <h3 class="card__title">기본 카드</h3>
+                    <p class="card__subtitle">일반적인 카드 예시</p>
+                </div>
+                <div class="card__body">
+                    <p class="card__content">이것은 BEM 방법론을 적용한 기본 카드입니다.</p>
+                </div>
+                <div class="card__footer">
+                    <div class="card__actions">
+                        <button class="btn btn--primary">
+                            <span class="btn__text">확인</span>
+                        </button>
+                        <button class="btn btn--secondary">
+                            <span class="btn__text">취소</span>
+                        </button>
+                    </div>
+                    <div class="card__meta">2024-01-01</div>
+                </div>
+            </div>
+            
+            <div class="card card--featured">
+                <div class="card__header">
+                    <h3 class="card__title card__title--large">특별한 카드</h3>
+                    <p class="card__subtitle">featured 수정자 적용</p>
+                </div>
+                <div class="card__body">
+                    <p class="card__content">이 카드는 --featured 수정자가 적용되어 왼쪽에 파란색 선이 있습니다.</p>
+                </div>
+                <div class="card__footer">
+                    <div class="card__actions">
+                        <button class="btn btn--primary btn--large">
+                            <span class="btn__text">자세히 보기</span>
+                        </button>
+                    </div>
+                    <div class="card__meta">Featured</div>
+                </div>
+            </div>
+            
+            <div class="card card--warning">
+                <div class="card__header">
+                    <h3 class="card__title card__title--center">경고 카드</h3>
+                    <p class="card__subtitle">warning 수정자 적용</p>
+                </div>
+                <div class="card__body">
+                    <p class="card__content">이 카드는 --warning 수정자가 적용되어 노란색 선이 있습니다.</p>
+                </div>
+                <div class="card__footer">
+                    <div class="card__actions">
+                        <button class="btn btn--secondary btn--small">
+                            <span class="btn__text">확인</span>
+                        </button>
+                    </div>
+                    <div class="card__meta">Warning</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 반응형 웹 섹션 -->
+        <section id="responsive">
+            <h2 class="section-title">2. 반응형 웹 (Responsive Web)</h2>
+            
+            <div class="example-description">
+                <h3>반응형 웹이란?</h3>
+                <p>다양한 기기와 화면 크기에 자동으로 적응하는 웹사이트 디자인 방법입니다.</p>
+                <p><strong>미디어 쿼리</strong>를 사용하여 화면 크기에 따라 다른 스타일을 적용합니다.</p>
+            </div>
+            
+            <div class="code-example">
+/* 기본 브레이크포인트 */
+/* 모바일 퍼스트 접근 */
+.container {
+    padding: 0 15px;
+}
+
+/* 태블릿 (768px 이상) */
+@media (min-width: 768px) {
+    .container {
+        padding: 0 30px;
+    }
+}
+
+/* 데스크톱 (992px 이상) */
+@media (min-width: 992px) {
+    .container {
+        padding: 0 40px;
+    }
+}
+
+/* 큰 화면 (1200px 이상) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* 모바일 전용 (767px 이하) */
+@media (max-width: 767px) {
+    .mobile-only {
+        display: block;
+    }
+    .desktop-only {
+        display: none;
+    }
+}
+            </div>
+            
+            <h3>반응형 그리드 예시</h3>
+            <p>화면 크기를 조절하여 그리드 변화를 확인해보세요:</p>
+            
+            <div class="responsive-grid">
+                <div class="responsive-item">
+                    <h4>Item 1</h4>
+                    <p>모바일: 1열<br>태블릿: 2열<br>데스크톱: 3열<br>큰 화면: 4열</p>
+                </div>
+                <div class="responsive-item">
+                    <h4>Item 2</h4>
+                    <p>반응형 그리드 시스템</p>
+                </div>
+                <div class="responsive-item">
+                    <h4>Item 3</h4>
+                    <p>CSS Grid 사용</p>
+                </div>
+                <div class="responsive-item">
+                    <h4>Item 4</h4>
+                    <p>미디어 쿼리 적용</p>
+                </div>
+                <div class="responsive-item">
+                    <h4>Item 5</h4>
+                    <p>모바일 우선 디자인</p>
+                </div>
+                <div class="responsive-item">
+                    <h4>Item 6</h4>
+                    <p>다양한 기기 지원</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 실제 사용 예시 -->
+        <section id="examples">
+            <h2 class="section-title">3. 실제 사용 예시</h2>
+            
+            <div class="example-description">
+                <h3>반응형 표시/숨김</h3>
+                <p>화면 크기에 따라 다른 내용을 표시하는 예시입니다.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card__header">
+                    <h3 class="card__title">반응형 컨텐츠</h3>
+                </div>
+                <div class="card__body">
+                    <p class="d-none-mobile">데스크톱에서만 보이는 내용입니다.</p>
+                    <p class="d-block-mobile d-none-tablet d-none-desktop">모바일에서만 보이는 내용입니다.</p>
+                    <p class="d-none d-block-tablet d-none-desktop">태블릿에서만 보이는 내용입니다.</p>
+                    <p>모든 화면에서 보이는 내용입니다.</p>
+                </div>
+            </div>
+            
+            <div class="code-example">
+/* 반응형 유틸리티 클래스 */
+.d-none { display: none; }
+.d-block { display: block; }
+
+/* 모바일 전용 */
+@media (max-width: 767px) {
+    .d-none-mobile { display: none; }
+    .d-block-mobile { display: block; }
+}
+
+/* 태블릿 전용 */
+@media (min-width: 768px) and (max-width: 991px) {
+    .d-none-tablet { display: none; }
+    .d-block-tablet { display: block; }
+}
+
+/* 데스크톱 전용 */
+@media (min-width: 992px) {
+    .d-none-desktop { display: none; }
+    .d-block-desktop { display: block; }
+}
+            </div>
+            
+            <h3>완전한 BEM 컴포넌트 예시</h3>
+            <div class="card card--large">
+                <div class="card__header">
+                    <h3 class="card__title card__title--large card__title--center">
+                        완전한 BEM 예시
+                    </h3>
+                    <p class="card__subtitle text-center">
+                        모든 BEM 요소가 적용된 카드
+                    </p>
+                </div>
+                <div class="card__body">
+                    <p class="card__content">
+                        이 카드는 BEM 방법론을 완벽하게 적용한 예시입니다:
+                    </p>
+                    <ul class="card__content">
+                        <li><code>.card</code> - 메인 블록</li>
+                        <li><code>.card__header</code> - 헤더 엘리먼트</li>
+                        <li><code>.card__title--large</code> - 큰 제목 수정자</li>
+                        <li><code>.card--large</code> - 큰 카드 수정자</li>
+                    </ul>
+                </div>
+                <div class="card__footer">
+                    <div class="card__actions">
+                        <button class="btn btn--primary btn--block">
+                            <span class="btn__text">전체 너비 버튼</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-example">
+/* 완전한 BEM 구조 */
+&lt;div class="card card--large"&gt;
+    &lt;div class="card__header"&gt;
+        &lt;h3 class="card__title card__title--large card__title--center"&gt;
+            제목
+        &lt;/h3&gt;
+        &lt;p class="card__subtitle"&gt;부제목&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="card__body"&gt;
+        &lt;p class="card__content"&gt;내용&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="card__footer"&gt;
+        &lt;div class="card__actions"&gt;
+            &lt;button class="btn btn--primary btn--block"&gt;
+                &lt;span class="btn__text"&gt;버튼&lt;/span&gt;
+            &lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+            </div>
+        </section>
+        
+        <!-- 유틸리티 클래스 섹션 -->
+        <section>
+            <h2 class="section-title">4. 유틸리티 클래스</h2>
+            
+            <div class="example-description">
+                <h3>유틸리티 클래스란?</h3>
+                <p>자주 사용하는 스타일을 미리 정의해둔 클래스들입니다. 빠른 개발과 일관성을 위해 사용됩니다.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card__header">
+                    <h3 class="card__title text-center">유틸리티 클래스 예시</h3>
+                </div>
+                <div class="card__body">
+                    <p class="text-left mb-3">왼쪽 정렬 + 하단 마진</p>
+                    <p class="text-center mb-3">중앙 정렬 + 하단 마진</p>
+                    <p class="text-right mb-3">오른쪽 정렬 + 하단 마진</p>
+                    <div class="p-3 mt-4" style="background-color: #f8f9fa;">
+                        패딩 3 + 상단 마진 4
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-example">
+/* 텍스트 정렬 */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* 마진 */
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 3rem; }
+
+/* 패딩 */
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 1rem; }
+.p-4 { padding: 1.5rem; }
+.p-5 { padding: 3rem; }
+
+/* 표시/숨김 */
+.d-none { display: none; }
+.d-block { display: block; }
+.d-flex { display: flex; }
+.d-grid { display: grid; }
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // 모바일 네비게이션 토글
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        navToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('nav__menu--active');
+        });
+        
+        // 네비게이션 링크 클릭 시 메뉴 닫기 (모바일)
+        const navLinks = document.querySelectorAll('.nav__link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('nav__menu--active');
+            });
+        });
+        
+        // 화면 크기 변경 시 메뉴 상태 초기화
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 767) {
+                navMenu.classList.remove('nav__menu--active');
+            }
+        });
+        
+        // 현재 화면 크기 표시 (개발용)
+        function showScreenSize() {
+            const width = window.innerWidth;
+            let size = '';
+            
+            if (width < 480) {
+                size = '작은 모바일';
+            } else if (width < 768) {
+                size = '모바일';
+            } else if (width < 992) {
+                size = '태블릿';
+            } else if (width < 1200) {
+                size = '데스크톱';
+            } else {
+                size = '큰 화면';
+            }
+            
+            console.log(`현재 화면 크기: ${width}px (${size})`);
+        }
+        
+        // 창 크기 변경 시 로그 출력
+        window.addEventListener('resize', showScreenSize);
+        
+        // 초기 실행
+        showScreenSize();
+    </script>
+</body>
+</html>

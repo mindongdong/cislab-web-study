@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 선택자와 Display 속성</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .example-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .code-example {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            border-left: 4px solid #2196F3;
+            margin: 10px 0;
+        }
+        
+        /* 1. 태그 선택자 */
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #2196F3;
+            border-bottom: 2px solid #2196F3;
+            padding-bottom: 5px;
+        }
+        
+        p {
+            color: #666;
+        }
+        
+        /* 2. 클래스 선택자 */
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+        
+        .text-red {
+            color: red;
+        }
+        
+        .text-blue {
+            color: blue;
+        }
+        
+        .text-green {
+            color: green;
+        }
+        
+        .box {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        /* 3. ID 선택자 */
+        #unique-element {
+            background-color: #e8f5e8;
+            padding: 10px;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+        }
+        
+        #special-title {
+            color: #ff6b6b;
+            font-size: 24px;
+            text-decoration: underline;
+        }
+        
+        /* 4. Pseudo 선택자 */
+        .hover-effect:hover {
+            background-color: #ffeb3b;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .link-example:link {
+            color: blue;
+        }
+        
+        .link-example:visited {
+            color: purple;
+        }
+        
+        .link-example:hover {
+            color: red;
+            text-decoration: underline;
+        }
+        
+        .link-example:active {
+            color: orange;
+        }
+        
+        /* 5. Display 속성 예시 */
+        .display-examples {
+            border: 2px solid #333;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        .block-example {
+            display: block;
+            background-color: #ffcccb;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ff6b6b;
+        }
+        
+        .inline-example {
+            display: inline;
+            background-color: #add8e6;
+            padding: 5px;
+            margin: 5px;
+            border: 1px solid #4169e1;
+        }
+        
+        .inline-block-example {
+            display: inline-block;
+            background-color: #90ee90;
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #32cd32;
+            width: 150px;
+            text-align: center;
+        }
+        
+        .none-example {
+            display: none;
+        }
+        
+        .visible-example {
+            display: block;
+            background-color: #dda0dd;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        /* 6. Flexbox 예시 */
+        .flex-container {
+            display: flex;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border: 2px solid #666;
+            margin: 10px 0;
+        }
+        
+        .flex-item {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+        
+        .flex-column {
+            flex-direction: column;
+        }
+        
+        .justify-center {
+            justify-content: center;
+        }
+        
+        .align-center {
+            align-items: center;
+        }
+        
+        /* 7. Grid 예시 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border: 2px solid #666;
+            margin: 10px 0;
+        }
+        
+        .grid-item {
+            background-color: #2196F3;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .grid-item:nth-child(1) {
+            grid-column: span 2;
+        }
+        
+        /* 8. 고급 선택자 */
+        .advanced-selectors p:first-child {
+            color: red;
+            font-weight: bold;
+        }
+        
+        .advanced-selectors p:last-child {
+            color: blue;
+            font-style: italic;
+        }
+        
+        .advanced-selectors p:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        /* 9. 조합 선택자 */
+        .parent > .direct-child {
+            color: orange;
+            font-weight: bold;
+        }
+        
+        .parent .any-descendant {
+            color: green;
+        }
+        
+        .sibling + .adjacent {
+            color: purple;
+        }
+        
+        .general ~ .sibling {
+            background-color: #ffffcc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS 선택자와 Display 속성 학습</h1>
+        
+        <!-- 1. 태그 선택자 -->
+        <section class="section">
+            <h2>1. 태그 선택자 (Tag Selector)</h2>
+            <div class="example-box">
+                <p>이 문단은 태그 선택자로 스타일이 적용되었습니다.</p>
+                <p>모든 p 태그에 동일한 스타일이 적용됩니다.</p>
+            </div>
+            <div class="code-example">
+p {
+    color: #666;
+}
+
+h2 {
+    color: #2196F3;
+    border-bottom: 2px solid #2196F3;
+}
+            </div>
+        </section>
+        
+        <!-- 2. 클래스 선택자 -->
+        <section class="section">
+            <h2>2. 클래스 선택자 (Class Selector)</h2>
+            <div class="example-box">
+                <p class="highlight">이 문단은 .highlight 클래스가 적용되었습니다.</p>
+                <p class="text-red">빨간색 텍스트</p>
+                <p class="text-blue">파란색 텍스트</p>
+                <p class="text-green">초록색 텍스트</p>
+                <div class="box text-red">빨간색 박스</div>
+                <div class="box text-blue">파란색 박스</div>
+            </div>
+            <div class="code-example">
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
+
+.text-red {
+    color: red;
+}
+
+/* 다중 클래스 사용 */
+&lt;div class="box text-red"&gt;빨간색 박스&lt;/div&gt;
+            </div>
+        </section>
+        
+        <!-- 3. ID 선택자 -->
+        <section class="section">
+            <h2>3. ID 선택자 (ID Selector)</h2>
+            <div class="example-box">
+                <p id="unique-element">이 요소는 고유한 ID를 가집니다.</p>
+                <h3 id="special-title">특별한 제목</h3>
+                <p>ID는 페이지에서 유일해야 합니다.</p>
+            </div>
+            <div class="code-example">
+#unique-element {
+    background-color: #e8f5e8;
+    padding: 10px;
+    border: 2px solid #4CAF50;
+}
+
+#special-title {
+    color: #ff6b6b;
+    font-size: 24px;
+}
+            </div>
+        </section>
+        
+        <!-- 4. Pseudo 선택자 -->
+        <section class="section">
+            <h2>4. Pseudo 선택자 (Pseudo Selector)</h2>
+            <div class="example-box">
+                <p class="hover-effect">마우스를 올려보세요 (hover 효과)</p>
+                <a href="#" class="link-example">링크 상태별 스타일</a>
+                <p>링크를 클릭해보세요 (visited, active 상태 확인)</p>
+            </div>
+            <div class="code-example">
+.hover-effect:hover {
+    background-color: #ffeb3b;
+    cursor: pointer;
+}
+
+a:link { color: blue; }
+a:visited { color: purple; }
+a:hover { color: red; }
+a:active { color: orange; }
+            </div>
+        </section>
+        
+        <!-- 5. Display 속성 -->
+        <section class="section">
+            <h2>5. Display 속성</h2>
+            
+            <h3>5.1 Block, Inline, Inline-block</h3>
+            <div class="display-examples">
+                <div class="block-example">Block 요소 1 (전체 너비 차지)</div>
+                <div class="block-example">Block 요소 2 (전체 너비 차지)</div>
+                
+                <span class="inline-example">Inline 1</span>
+                <span class="inline-example">Inline 2</span>
+                <span class="inline-example">Inline 3</span>
+                
+                <div>
+                    <div class="inline-block-example">Inline-block 1</div>
+                    <div class="inline-block-example">Inline-block 2</div>
+                    <div class="inline-block-example">Inline-block 3</div>
+                </div>
+            </div>
+            
+            <h3>5.2 Display None/Block 토글</h3>
+            <div class="example-box">
+                <div id="toggle-element" class="visible-example">
+                    이 요소는 보였다가 숨겨집니다.
+                </div>
+                <button onclick="toggleDisplay()">보이기/숨기기</button>
+            </div>
+            
+            <div class="code-example">
+.block-example {
+    display: block;  /* 전체 너비 차지, 세로로 배치 */
+}
+
+.inline-example {
+    display: inline;  /* 필요한 만큼의 너비, 가로로 배치 */
+}
+
+.inline-block-example {
+    display: inline-block;  /* 가로 배치 + 크기 조절 가능 */
+}
+
+.none-example {
+    display: none;  /* 완전히 숨김 */
+}
+            </div>
+        </section>
+        
+        <!-- 6. Flexbox -->
+        <section class="section">
+            <h2>6. Flexbox Layout</h2>
+            
+            <h3>6.1 기본 Flex</h3>
+            <div class="flex-container">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+            </div>
+            
+            <h3>6.2 Flex Direction Column</h3>
+            <div class="flex-container flex-column" style="height: 200px;">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+            </div>
+            
+            <h3>6.3 Justify Content Center</h3>
+            <div class="flex-container justify-center">
+                <div class="flex-item" style="flex: none; width: 100px;">Centered</div>
+            </div>
+            
+            <h3>6.4 Align Items Center</h3>
+            <div class="flex-container align-center" style="height: 100px;">
+                <div class="flex-item">Vertically Centered</div>
+            </div>
+            
+            <div class="code-example">
+.flex-container {
+    display: flex;
+}
+
+.flex-item {
+    flex: 1;  /* 동일한 비율로 확장 */
+}
+
+/* 방향 변경 */
+.flex-column {
+    flex-direction: column;
+}
+
+/* 정렬 */
+.justify-center {
+    justify-content: center;  /* 수평 중앙 정렬 */
+}
+
+.align-center {
+    align-items: center;  /* 수직 중앙 정렬 */
+}
+            </div>
+        </section>
+        
+        <!-- 7. Grid -->
+        <section class="section">
+            <h2>7. Grid Layout</h2>
+            
+            <h3>7.1 기본 Grid</h3>
+            <div class="grid-container">
+                <div class="grid-item">1 (span 2)</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+            </div>
+            
+            <div class="code-example">
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 3개 열, 동일한 크기 */
+    gap: 10px;  /* 간격 */
+}
+
+.grid-item:nth-child(1) {
+    grid-column: span 2;  /* 2개 열 차지 */
+}
+            </div>
+        </section>
+        
+        <!-- 8. 고급 선택자 -->
+        <section class="section">
+            <h2>8. 고급 선택자</h2>
+            
+            <div class="advanced-selectors">
+                <p>첫 번째 p 태그 (빨간색, 굵게)</p>
+                <p>두 번째 p 태그 (짝수 번째 배경)</p>
+                <p>세 번째 p 태그</p>
+                <p>네 번째 p 태그 (짝수 번째 배경)</p>
+                <p>마지막 p 태그 (파란색, 기울임)</p>
+            </div>
+            
+            <div class="code-example">
+.advanced-selectors p:first-child {
+    color: red;
+    font-weight: bold;
+}
+
+.advanced-selectors p:last-child {
+    color: blue;
+    font-style: italic;
+}
+
+.advanced-selectors p:nth-child(even) {
+    background-color: #f9f9f9;
+}
+            </div>
+        </section>
+        
+        <!-- 9. 조합 선택자 -->
+        <section class="section">
+            <h2>9. 조합 선택자</h2>
+            
+            <div class="parent">
+                <div class="direct-child">직계 자식 요소 (오렌지색)</div>
+                <div>
+                    <div class="any-descendant">모든 후손 요소 (초록색)</div>
+                </div>
+            </div>
+            
+            <div class="sibling">형제 요소</div>
+            <div class="adjacent">인접 형제 (보라색)</div>
+            <div class="sibling">일반 형제 (노란 배경)</div>
+            <div class="sibling">일반 형제 (노란 배경)</div>
+            
+            <div class="code-example">
+/* 직계 자식 선택자 */
+.parent > .direct-child {
+    color: orange;
+}
+
+/* 후손 선택자 */
+.parent .any-descendant {
+    color: green;
+}
+
+/* 인접 형제 선택자 */
+.sibling + .adjacent {
+    color: purple;
+}
+
+/* 일반 형제 선택자 */
+.general ~ .sibling {
+    background-color: #ffffcc;
+}
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        function toggleDisplay() {
+            const element = document.getElementById('toggle-element');
+            if (element.style.display === 'none') {
+                element.style.display = 'block';
+            } else {
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
