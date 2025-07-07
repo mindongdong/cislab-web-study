@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAPI 학습 클라이언트</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .api-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .api-link {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .api-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e1e5e9;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #34495e;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #3498db;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 5px;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+            box-shadow: 0 2px 8px rgba(149, 165, 166, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            box-shadow: 0 2px 8px rgba(39, 174, 96, 0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+        }
+
+        .result {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            position: relative;
+        }
+
+        .result.success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .result.error {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .result.loading {
+            background: #fff3cd;
+            border-color: #ffeaa7;
+            color: #856404;
+        }
+
+        .textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: 'Courier New', monospace;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+
+        .status-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #28a745;
+        }
+
+        .status-indicator.error {
+            background: #dc3545;
+        }
+
+        .status-indicator.loading {
+            background: #ffc107;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .endpoint-info {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        .method-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .method-get { background: #28a745; color: white; }
+        .method-post { background: #007bff; color: white; }
+        .method-put { background: #ffc107; color: black; }
+        .method-delete { background: #dc3545; color: white; }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .api-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 40px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 FastAPI 학습 클라이언트</h1>
+            <p>백엔드 웹 개발 입문자를 위한 FastAPI 실습 도구</p>
+            <div class="api-links">
+                <a href="http://localhost:8000/docs" target="_blank" class="api-link">📖 Swagger UI</a>
+                <a href="http://localhost:8000/redoc" target="_blank" class="api-link">📘 ReDoc</a>
+                <a href="http://localhost:8000" target="_blank" class="api-link">🏠 API 홈</a>
+            </div>
+        </div>
+
+        <div class="grid">
+            <!-- 경로 매개변수 테스트 -->
+            <div class="section">
+                <h3>🛣️ 경로 매개변수 (Path Parameters)</h3>
+                <div class="endpoint-info">
+                    <span class="method-badge method-get">GET</span>
+                    <code>/path/items/{item_id}</code>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pathItemId">아이템 ID (1-1000):</label>
+                    <input type="number" id="pathItemId" class="form-control" value="42" min="1" max="1000">
+                </div>
+                
+                <button class="btn" onclick="testPathParameters()">아이템 조회</button>
+                <button class="btn btn-secondary" onclick="testPathEnum()">모델 정보 조회</button>
+                
+                <div class="result" id="pathResult">결과가 여기에 표시됩니다.</div>
+            </div>
+
+            <!-- 쿼리 매개변수 테스트 -->
+            <div class="section">
+                <h3>🔍 쿼리 매개변수 (Query Parameters)</h3>
+                <div class="endpoint-info">
+                    <span class="method-badge method-get">GET</span>
+                    <code>/query/search</code>
+                </div>
+                
+                <div class="two-column">
+                    <div class="form-group">
+                        <label for="querySearch">검색어:</label>
+                        <input type="text" id="querySearch" class="form-control" value="FastAPI">
+                    </div>
+                    <div class="form-group">
+                        <label for="queryPage">페이지:</label>
+                        <input type="number" id="queryPage" class="form-control" value="1" min="1">
+                    </div>
+                </div>
+                
+                <div class="two-column">
+                    <div class="form-group">
+                        <label for="queryLimit">개수 제한:</label>
+                        <input type="number" id="queryLimit" class="form-control" value="10" min="1" max="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="querySort">정렬:</label>
+                        <select id="querySort" class="form-control">
+                            <option value="asc">오름차순</option>
+                            <option value="desc">내림차순</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="testQueryParameters()">검색 실행</button>
+                <button class="btn btn-secondary" onclick="testQueryUsers()">사용자 필터</button>
+                
+                <div class="result" id="queryResult">결과가 여기에 표시됩니다.</div>
+            </div>
+
+            <!-- 요청 본문 테스트 -->
+            <div class="section">
+                <h3>📝 요청 본문 (Request Body)</h3>
+                <div class="endpoint-info">
+                    <span class="method-badge method-post">POST</span>
+                    <code>/body/users</code>
+                </div>
+                
+                <div class="two-column">
+                    <div class="form-group">
+                        <label for="bodyUserName">이름:</label>
+                        <input type="text" id="bodyUserName" class="form-control" value="홍길동">
+                    </div>
+                    <div class="form-group">
+                        <label for="bodyUserEmail">이메일:</label>
+                        <input type="email" id="bodyUserEmail" class="form-control" value="hong@example.com">
+                    </div>
+                </div>
+                
+                <div class="two-column">
+                    <div class="form-group">
+                        <label for="bodyUserAge">나이:</label>
+                        <input type="number" id="bodyUserAge" class="form-control" value="30" min="13" max="150">
+                    </div>
+                    <div class="form-group">
+                        <label for="bodyUserPassword">비밀번호:</label>
+                        <input type="password" id="bodyUserPassword" class="form-control" value="Password123!">
+                    </div>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="bodyTerms" checked>
+                    <label for="bodyTerms">이용약관 동의</label>
+                </div>
+                
+                <button class="btn" onclick="testRequestBody()">사용자 생성</button>
+                <button class="btn btn-secondary" onclick="testProductCreate()">상품 생성</button>
+                
+                <div class="result" id="bodyResult">결과가 여기에 표시됩니다.</div>
+            </div>
+
+            <!-- 중첩 모델 테스트 -->
+            <div class="section">
+                <h3>🏗️ 중첩 모델 (Nested Models)</h3>
+                <div class="endpoint-info">
+                    <span class="method-badge method-post">POST</span>
+                    <code>/nested/offers</code>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nestedData">제안 데이터 (JSON):</label>
+                    <textarea id="nestedData" class="form-control textarea">{
+  "name": "게이밍 세트 특가",
+  "description": "게이밍을 위한 완벽한 세트 상품",
+  "items": [
+    {
+      "name": "게이밍 노트북",
+      "price": 1999.99,
+      "tags": ["gaming", "laptop", "high-performance"],
+      "images": [
+        {
+          "url": "https://picsum.photos/800/600",
+          "name": "노트북 이미지",
+          "type": "jpeg",
+          "size": 1024000,
+          "alt_text": "게이밍 노트북"
+        }
+      ],
+      "category": {
+        "id": 1,
+        "name": "컴퓨터"
+      },
+      "metadata": {
+        "brand": "GamingBrand",
+        "model": "GB-2024"
+      },
+      "status": "published"
+    }
+  ],
+  "seller": {
+    "name": "게이밍샵",
+    "personal_contact": {
+      "email": "seller@gaming.co.kr",
+      "phone": "010-1234-5678"
+    },
+    "verified": true,
+    "rating": 4.8
+  },
+  "discount_percentage": 10,
+  "valid_until": "2024-12-31T23:59:59"
+}</textarea>
+                </div>
+                
+                <button class="btn" onclick="testNestedModel()">제안 생성</button>
+                <button class="btn btn-secondary" onclick="loadNestedExample()">예시 로드</button>
+                
+                <div class="result" id="nestedResult">결과가 여기에 표시됩니다.</div>
+            </div>
+
+            <!-- 숫자 검증 테스트 -->
+            <div class="section">
+                <h3>🔢 숫자 검증 (Numeric Validation)</h3>
+                <div class="endpoint-info">
+                    <span class="method-badge method-get">GET</span>
+                    <code>/validation/items/{item_id}</code>
+                </div>
+                
+                <div class="two-column">
+                    <div class="form-group">
+                        <label for="validationItemId">상품 ID (1-1000):</label>
+                        <input type="number" id="validationItemId" class="form-control" value="100" min="1" max="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="validationRating">평점 (0.0-5.0):</label>
+                        <input type="number" id="validationRating" class="form-control" value="4.5" step="0.1" min="0" max="5">
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="testNumericValidation()">검증 테스트</button>
+                <button class="btn btn-secondary" onclick="testAdvancedFilter()">고급 필터</button>
+                
+                <div class="result" id="validationResult">결과가 여기에 표시됩니다.</div>
+            </div>
+        </div>
+
+        <!-- 종합 테스트 섹션 -->
+        <div class="section full-width">
+            <h3>🧪 종합 테스트</h3>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn btn-success" onclick="runAllTests()">모든 API 테스트</button>
+                <button class="btn btn-secondary" onclick="clearAllResults()">결과 초기화</button>
+                <button class="btn btn-danger" onclick="testErrorHandling()">에러 케이스 테스트</button>
+            </div>
+            
+            <div class="result" id="comprehensiveResult">종합 테스트 결과가 여기에 표시됩니다.</div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+        
+        // 공통 API 호출 함수
+        async function apiCall(url, options = {}) {
+            const fullUrl = url.startsWith('http') ? url : `${API_BASE}${url}`;
+            
+            try {
+                const response = await fetch(fullUrl, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...options.headers
+                    },
+                    ...options
+                });
+                
+                const data = await response.json();
+                return { 
+                    success: response.ok, 
+                    data, 
+                    status: response.status,
+                    statusText: response.statusText
+                };
+            } catch (error) {
+                return { 
+                    success: false, 
+                    data: { error: error.message }, 
+                    status: 0,
+                    statusText: 'Network Error'
+                };
+            }
+        }
+
+        // 결과 표시 함수
+        function displayResult(elementId, result, showCopyButton = true) {
+            const element = document.getElementById(elementId);
+            const statusClass = result.success ? 'success' : 'error';
+            const statusIcon = result.success ? '✅' : '❌';
+            
+            element.className = `result ${statusClass}`;
+            
+            const resultText = `${statusIcon} Status: ${result.status} ${result.statusText}\n\n${JSON.stringify(result.data, null, 2)}`;
+            element.textContent = resultText;
+            
+            // 복사 버튼 추가
+            if (showCopyButton) {
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.textContent = '복사';
+                copyBtn.onclick = () => copyToClipboard(resultText);
+                
+                // 기존 복사 버튼 제거
+                const existingBtn = element.querySelector('.copy-btn');
+                if (existingBtn) existingBtn.remove();
+                
+                element.style.position = 'relative';
+                element.appendChild(copyBtn);
+            }
+        }
+
+        // 로딩 상태 표시
+        function showLoading(elementId) {
+            const element = document.getElementById(elementId);
+            element.className = 'result loading';
+            element.innerHTML = '⏳ 요청 처리 중...\n<div class="status-indicator loading"></div>';
+        }
+
+        // 클립보드 복사
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('결과가 클립보드에 복사되었습니다!');
+            }).catch(err => {
+                console.error('복사 실패:', err);
+            });
+        }
+
+        // 1. 경로 매개변수 테스트
+        async function testPathParameters() {
+            const itemId = document.getElementById('pathItemId').value;
+            showLoading('pathResult');
+            
+            const result = await apiCall(`/path/items/${itemId}`);
+            displayResult('pathResult', result);
+        }
+
+        async function testPathEnum() {
+            showLoading('pathResult');
+            const result = await apiCall('/path/models/resnet');
+            displayResult('pathResult', result);
+        }
+
+        // 2. 쿼리 매개변수 테스트
+        async function testQueryParameters() {
+            const search = document.getElementById('querySearch').value;
+            const page = document.getElementById('queryPage').value;
+            const limit = document.getElementById('queryLimit').value;
+            const sort = document.getElementById('querySort').value;
+            
+            showLoading('queryResult');
+            
+            const params = new URLSearchParams({
+                q: search,
+                page: page,
+                limit: limit,
+                sort: sort
+            });
+            
+            const result = await apiCall(`/query/search?${params}`);
+            displayResult('queryResult', result);
+        }
+
+        async function testQueryUsers() {
+            showLoading('queryResult');
+            const result = await apiCall('/query/users?active=true&role=admin&page=1&size=5');
+            displayResult('queryResult', result);
+        }
+
+        // 3. 요청 본문 테스트
+        async function testRequestBody() {
+            const userData = {
+                name: document.getElementById('bodyUserName').value,
+                email: document.getElementById('bodyUserEmail').value,
+                age: parseInt(document.getElementById('bodyUserAge').value),
+                password: document.getElementById('bodyUserPassword').value,
+                terms_accepted: document.getElementById('bodyTerms').checked
+            };
+            
+            showLoading('bodyResult');
+            
+            const result = await apiCall('/body/users', {
+                method: 'POST',
+                body: JSON.stringify(userData)
+            });
+            displayResult('bodyResult', result);
+        }
+
+        async function testProductCreate() {
+            const productData = {
+                name: "테스트 상품",
+                price: 99.99,
+                category: "electronics", 
+                sku: "TEST12345",
+                weight: 1.5,
+                tags: ["테스트", "상품"]
+            };
+            
+            showLoading('bodyResult');
+            
+            const result = await apiCall('/body/products', {
+                method: 'POST',
+                body: JSON.stringify(productData)
+            });
+            displayResult('bodyResult', result);
+        }
+
+        // 4. 중첩 모델 테스트
+        async function testNestedModel() {
+            try {
+                const offerData = JSON.parse(document.getElementById('nestedData').value);
+                showLoading('nestedResult');
+                
+                const result = await apiCall('/nested/offers', {
+                    method: 'POST',
+                    body: JSON.stringify(offerData)
+                });
+                displayResult('nestedResult', result);
+            } catch (error) {
+                displayResult('nestedResult', { 
+                    success: false, 
+                    data: { error: 'Invalid JSON: ' + error.message },
+                    status: 400,
+                    statusText: 'Bad Request'
+                });
+            }
+        }
+
+        async function loadNestedExample() {
+            showLoading('nestedResult');
+            const result = await apiCall('/nested/examples');
+            displayResult('nestedResult', result);
+            
+            if (result.success && result.data.complex_offer) {
+                document.getElementById('nestedData').value = JSON.stringify(result.data.complex_offer, null, 2);
+            }
+        }
+
+        // 5. 숫자 검증 테스트
+        async function testNumericValidation() {
+            const itemId = document.getElementById('validationItemId').value;
+            const rating = document.getElementById('validationRating').value;
+            
+            showLoading('validationResult');
+            
+            const params = new URLSearchParams();
+            if (rating) params.append('rating', rating);
+            
+            const result = await apiCall(`/validation/items/${itemId}?${params}`);
+            displayResult('validationResult', result);
+        }
+
+        async function testAdvancedFilter() {
+            showLoading('validationResult');
+            
+            const params = new URLSearchParams({
+                price_min: '50.0',
+                price_max: '500.0',
+                stock_min: '10',
+                discount_min: '5.0',
+                limit: '5'
+            });
+            
+            const result = await apiCall(`/validation/advanced-filter?${params}`);
+            displayResult('validationResult', result);
+        }
+
+        // 6. 종합 테스트
+        async function runAllTests() {
+            showLoading('comprehensiveResult');
+            
+            const tests = [
+                { name: 'Path Parameters', url: '/path/items/1' },
+                { name: 'Query Parameters', url: '/query/search?q=test&page=1&limit=5' },
+                { name: 'Request Body', url: '/body/users', method: 'POST', body: {
+                    name: '테스트유저',
+                    email: 'test@example.com',
+                    password: 'Password123!',
+                    age: 25,
+                    terms_accepted: true
+                }},
+                { name: 'Nested Models', url: '/nested/examples' },
+                { name: 'Numeric Validation', url: '/validation/items/100?rating=4.5' }
+            ];
+            
+            const results = [];
+            
+            for (const test of tests) {
+                try {
+                    const options = test.method ? {
+                        method: test.method,
+                        body: test.body ? JSON.stringify(test.body) : undefined
+                    } : {};
+                    
+                    const result = await apiCall(test.url, options);
+                    results.push({
+                        test: test.name,
+                        success: result.success,
+                        status: result.status,
+                        url: test.url
+                    });
+                } catch (error) {
+                    results.push({
+                        test: test.name,
+                        success: false,
+                        error: error.message,
+                        url: test.url
+                    });
+                }
+            }
+            
+            const summary = {
+                total_tests: results.length,
+                passed: results.filter(r => r.success).length,
+                failed: results.filter(r => !r.success).length,
+                results: results,
+                timestamp: new Date().toISOString()
+            };
+            
+            displayResult('comprehensiveResult', { success: true, data: summary, status: 200, statusText: 'OK' });
+        }
+
+        async function testErrorHandling() {
+            showLoading('comprehensiveResult');
+            
+            const errorTests = [
+                { name: 'Invalid Path Parameter', url: '/path/items/abc' },
+                { name: 'Out of Range', url: '/path/items/9999' },
+                { name: 'Invalid Query Parameter', url: '/query/search?q=&page=-1' },
+                { name: 'Missing Required Field', url: '/body/users', method: 'POST', body: { name: 'test' } },
+                { name: 'Invalid JSON', url: '/nested/offers', method: 'POST', body: '{ invalid json }' }
+            ];
+            
+            const results = [];
+            
+            for (const test of errorTests) {
+                try {
+                    const options = test.method ? {
+                        method: test.method,
+                        body: test.body ? (typeof test.body === 'string' ? test.body : JSON.stringify(test.body)) : undefined
+                    } : {};
+                    
+                    const result = await apiCall(test.url, options);
+                    results.push({
+                        test: test.name,
+                        status: result.status,
+                        error_handled: !result.success,
+                        response: result.data
+                    });
+                } catch (error) {
+                    results.push({
+                        test: test.name,
+                        status: 0,
+                        error_handled: true,
+                        error: error.message
+                    });
+                }
+            }
+            
+            const summary = {
+                error_tests: results.length,
+                properly_handled: results.filter(r => r.error_handled).length,
+                results: results,
+                timestamp: new Date().toISOString()
+            };
+            
+            displayResult('comprehensiveResult', { success: true, data: summary, status: 200, statusText: 'Error Tests Complete' });
+        }
+
+        function clearAllResults() {
+            const resultElements = document.querySelectorAll('.result');
+            resultElements.forEach(element => {
+                element.className = 'result';
+                element.textContent = '결과가 여기에 표시됩니다.';
+            });
+        }
+
+        // 페이지 로드 시 서버 연결 확인
+        window.addEventListener('load', async () => {
+            try {
+                const result = await apiCall('/');
+                if (result.success) {
+                    console.log('✅ FastAPI 서버 연결 성공');
+                } else {
+                    console.log('❌ FastAPI 서버 연결 실패');
+                }
+            } catch (error) {
+                console.log('❌ 서버 연결 오류:', error.message);
+            }
+        });
+    </script>
+</body>
+</html>
