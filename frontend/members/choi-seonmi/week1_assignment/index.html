@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clone CGV</title>
+    <link rel="stylesheet" href="main.css">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  -->
+</head>
+<body>
+    <div id="cgvwrap">
+        <div class="cgv-ad-wrap" id="cgv_main_ad">
+
+        </div>
+        <!-- S Header -->
+        <header class="header">
+            <!-- S 서비스 메뉴 -->
+            <div class="header_content">
+                <div class="contents">
+                    <h1 onclick>
+                        <a href="#">
+                            <img src="https://img.cgv.co.kr/R2014/images/common/logo/logoRed.png" alt="CGV">
+                        </a>
+                        <span>DEEP DIVE SPACE</span>
+                    </h1>
+                    <ul class="memberInfo_wrap">
+                        <div class="ad-partner">
+                            <a href="http://www.cgv.co.kr/culture-event/event/detailViewUnited.aspx?seq=36085">
+                                <img src="https://img.cgv.co.kr/WingBanner/2025/0409/17441769177250.jpg" alt="프리텔레콤" onerror="this.onerror=null;javascript:;$('.ad-partner').hide();">
+                            </a>
+                        </div>
+                        <li>
+                            <a href="/user/login/?returnURL=https%3a%2f%2fwww.cgv.co.kr%2fdefault.aspx">
+                                <img src="https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png" alt="로그인">
+                                <span>로그인</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/user/join/">
+                                <img src="https://img.cgv.co.kr/R2014/images/common/ico/loginJoin.png" alt="회원가입">
+                                <span>회원가입</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/user/mycgv/">
+                                <img src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png" alt="MY CGV">
+                                <span>MY CGV</span>
+                            </a>
+                        </li>
+                                                <li>
+                            <a href="/support/default.aspx">
+                                <img src="https://img.cgv.co.kr/R2014/images/common/ico/loginCustomer.png" alt="고객센터">
+                                <span>고객센터</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- E 서비스 메뉴 -->
+            <!-- S 서브 메뉴 -->
+            <nav class="nav">
+                <div class="contents">
+                    <h1>
+                        <a href="#" tabindex="-1">
+                            <img src="https://img.cgv.co.kr/R2014/images/common/logo/logoWhite.png" alt="CGV">
+                        </a>
+                    </h1>
+                    <ul class="nav_menu">
+                        <li>
+                            <h2><a href="/movies/?lt=1&ft=0">영화</a></h2>
+                            <dl class="nav_overMenu" style="display: none;">
+                                <dt><h2><a href="/movies/?lt=1&ft=0" tabindex="-1">영화</a></h2></dt>
+                                <dd><h3><a href="/movies/?lt=1&ft=0">무비차트</a></h3></dd>
+                                <dd><h3><a href="/arthouse/">아트하우스</a></h3></dd>
+                                <dd><h3><a href="/culture-event/event/detailViewUnited.aspx?seq=30717">ICECON</a></h3></dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <h2><a href="/movies/?lt=1&ft=0">극장</a></h2>
+                            <dl class="nav_overMenu" style="display: none;">
+                                <dt><h2><a href="/movies/?lt=1&ft=0" tabindex="-1">극장</a></h2></dt>
+                                <dd><h3><a href="/movies/?lt=1&ft=0">CGV 극장</a></h3></dd>
+                                <dd><h3><a href="/arthouse/">특별관</a></h3></dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <h2><a href="/movies/?lt=1&ft=0"><strong>예매</strong></a></h2>
+                            <dl class="nav_overMenu" style="display: none;">
+                                <dt><h2><a href="/movies/?lt=1&ft=0" tabindex="-1">빠른예매</a></h2></dt>
+                                <dd><h3><a href="/movies/?lt=1&ft=0">상영스케줄</a></h3></dd>
+                                <dd><h3><a href="/arthouse/">English Ticketing</a></h3></dd>
+                                <dd><h3><a href="/culture-event/event/detailViewUnited.aspx?seq=30717">English Schedule</a></h3></dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <h2><a href="/movies/?lt=1&ft=0">스토어</a></h2>
+                            <dl class="nav_overMenu" style="display: none;">
+                                <dt><h2><a href="/movies/?lt=1&ft=0" tabindex="-1">스토어</a></h2></dt>
+                                <dd><h3><a href="/movies/?lt=1&ft=0">패키지</a></h3></dd>
+                                <dd><h3><a href="/arthouse/">영화관람권</a></h3></dd>
+                                <dd><h3><a href="/culture-event/event/detailViewUnited.aspx?seq=30717">기프트카드</a></h3></dd>
+                                <dd><h3><a href="/movies/?lt=1&ft=0">콤보</a></h3></dd>
+                                <dd><h3><a href="/arthouse/">팝콘</a></h3></dd>
+                                <dd><h3><a href="/culture-event/event/detailViewUnited.aspx?seq=30717">음료</a></h3></dd>
+                                <dd><h3><a href="/movies/?lt=1&ft=0">스낵</a></h3></dd>
+                                <dd><h3><a href="https://brand.naver.com/cgv" class="arrowR" target="_blank">씨네샵</a></h3></dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <h2 onclick="gaEventLog('PC_GNB','주메뉴_이벤트','')"><a href="/movies/?lt=1&ft=0">이벤트</a></h2>
+                            <dl class="nav_overMenu" style="display: none;">
+                                <dt><h2><a href="/movies/?lt=1&ft=0" tabindex="-1">이벤트</a></h2></dt>
+                                <dd><h3><a href="/movies/?lt=1&ft=0">SPECIAL</a></h3></dd>
+                                <dd><h3><a href="/arthouse/">영화/예매</a></h3></dd>
+                                <dd><h3><a href="/culture-event/event/detailViewUnited.aspx?seq=30717">멤버십/CLUB</a></h3></dd>
+                                <dd><h3><a href="/movies/?lt=1&ft=0">CGV 극장별</a></h3></dd>
+                                <dd><h3><a href="/arthouse/">제휴할인</a></h3></dd>
+                                <dd><h3><a href="/movies/?lt=1&ft=0">당첨자 발표</a></h3></dd>
+                                <dd><h3><a href="/arthouse/">종료된 이벤트</a></h3></dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <h2 onclick="gaEventLog('PC_GNB','주메뉴_해택','')"><a href="/movies/?lt=1&ft=0">혜택</a></h2>
+                            <dl class="nav_overMenu" style="display: none;">
+                                <dt><h2><a href="/movies/?lt=1&ft=0" tabindex="-1">혜택</a></h2></dt>
+                                <dd><h3><a href="/movies/?lt=1&ft=0">CGV 할인정보</a></h3></dd>
+                                <dd><h3><a href="/arthouse/">CLUB 서비스</a></h3></dd>
+                                <dd><h3><a href="/culture-event/event/detailViewUnited.aspx?seq=30717">VIP 라운지</a></h3></dd>
+                            </dl>
+                        </li>
+                    </ul>
+                    <div class="totalSearch_wrap">
+                        <label for="totalSearch">
+                            <input name="ctl00$subMenu$header_keyword" type="text" id="header_keyword" value="코난 예매">
+                            <input name="ctl00$subMenu$header_ad_keyword" type="hidden" id="header_ad_keyword" value="명탐정 코난 : 척안의 잔상">
+                        </label>
+                        <button type="button" class="btn_totalSearch" id="btn_header_search">검색</button>
+                    </div>
+                </div>
+            </nav>
+            <!-- E 서브 메뉴 -->
+        </header>
+        <!-- E Header -->
+        <!-- S Container -->
+        <main class="container">
+            <div id="ctl00_PlaceHolderContent_divMovieSelection_wrap" class="movieSelection_wrap">
+                <div class="contents">
+                    <div class="video_wrap">
+                        <video autoplay muted>
+                            <source src="https://adimg.cgv.co.kr/images/202507/king/king_1080x608_PC.mp4" type="video/mp4">
+                            이 브라우저는 Video 태그를 지원하지 않습니다. (Your browser does not support the video tag.)
+                        </video>
+                        <strong id="ctl00_PlaceHolderContent_AD_MOVIE_NM" class="movieSelection_title">킹 오브 킹스</strong>
+                        <span id="ctl00_PlaceHolderContent_AD_DESCRIPTION_NM" class="movieSelection_txt">
+                            "한국 영화 역대 북미 흥행 1위"
+                            <br>
+                            "7월 16일 대개봉"
+                        </span>
+                        <div class="movieSelection_video_controller_wrap">
+                            <a href="http://ad.cgv.co.kr/click/CGV/CGV_201401/main@MovieSelection2021?ads_id%3d53642%26creative_id%3d82774%26click_id%3d103856%26content_series%3d%26event%3d" id="ctl00_PlaceHolderContent_AD_CLIP_DETAIL_URL" class="btn_movieSelection_detailView">
+                                상세보기
+                            </a> 
+                            <a href="#none" id="ctl00_PlaceHolderContent_playStop" class="btn_movieSelection_playStop">Stop</a>
+                            <a href="#none" id="ctl00_PlaceHolderContent_soundOnOff" class="btn_movieSelection_soundOnOff">Sound On</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="movieChartBeScreen_wrap">
+                <div class="contents">
+                    <div class="movieChartBeScreen_btn_wrap">
+                        <div class="tabBtn_wrap">
+                            <h3><a href="#none" class="active" id="btnMovie">무비차트</a></h3>
+                            <h3><a href="#none" id="btnReserMovie">상영예정작</a></h3>
+                        </div>
+                        <a href="/movies/?lt=1&ft=0" id="btn_allView_Movie" class="btn_allView">전체보기</a>
+                    </div>
+                    <div class="swiper movieChart_list swiper-container-initialized swiper-container-horizontal" id="movieChart_list">
+                        <div class="swiper-button-prev swiper-button-disabled" tabindex="0" role="button" aria-label="이전 슬라이드" aria-disabled="true"></div>
+                        <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+                            <div class="swiper-slide swiper-slide-movie swiper-slide-active" style="width: 170.4px; margin-right: 32px;">
+                                <div class="img_wrap" data-scale="false" tabindex="0">
+                                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000089/89800/89800_320.jpg" alt="슈퍼맨" onerror="errorImage(this)">
+                                    <div class="movieAgeLimit_wrap"><i class="cgvIcon etc age12">12</i></div>
+                                    <div class="screenType_wrap">
+                                        <i class="screenType"><img src="https://img.cgv.co.kr/R2014/images/common/logo/imax_white.png" alt="max"></i>
+                                        <i class="screenType"><img src="https://img.cgv.co.kr/R2014/images/common/logo/forDX_white.png" alt="forDX"></i>
+                                        <i class="screenType"><img src="https://img.cgv.co.kr/R2014/images/common/logo/screenx_white.png" alt="screenx"></i>
+                                    </div>
+                                    <div class="movieChart_btn_wrap">
+                                        <a href="/movies/detail-view/?midx=89800" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '슈퍼맨');" class="btn_movieChart_detail">상세보기</a>
+                                        <a href="/ticket/?MOVIE_CD=20042077&MOVIE_CD_GROUP=20041858" onclick="gaEventLog('PC_메인', '무비차트_예매하기','슈퍼맨')" class="btn_movieChart_ticketing">예매하기</a>
+                                    </div>
+                                </div>
+                                <div class="movie_info_wrap">
+                                    <strong class="movieName">슈퍼맨</strong>
+                                    <span><img src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldeneggPreegg.png" alt="Golden Egg Preegg"></span>
+                                    <span>"예매율 35.6%"</span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide swiper-slide-movie swiper-slide-active" style="width: 170.4px; margin-right: 32px;">
+                                <div class="img_wrap" data-scale="false" tabindex="0">
+                                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000089/89800/89800_320.jpg" alt="슈퍼맨" onerror="errorImage(this)">
+                                    <div class="movieAgeLimit_wrap"><i class="cgvIcon etc age12">12</i></div>
+                                    <div class="screenType_wrap">
+                                        <i class="screenType"><img src="https://img.cgv.co.kr/R2014/images/common/logo/imax_white.png" alt="max"></i>
+                                        <i class="screenType"><img src="https://img.cgv.co.kr/R2014/images/common/logo/forDX_white.png" alt="forDX"></i>
+                                        <i class="screenType"><img src="https://img.cgv.co.kr/R2014/images/common/logo/screenx_white.png" alt="screenx"></i>
+                                    </div>
+                                    <div class="movieChart_btn_wrap">
+                                        <a href="/movies/detail-view/?midx=89800" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '슈퍼맨');" class="btn_movieChart_detail">상세보기</a>
+                                        <a href="/ticket/?MOVIE_CD=20042077&MOVIE_CD_GROUP=20041858" onclick="gaEventLog('PC_메인', '무비차트_예매하기','슈퍼맨')" class="btn_movieChart_ticketing">예매하기</a>
+                                    </div>
+                                </div>
+                                <div class="movie_info_wrap">
+                                    <strong class="movieName">슈퍼맨</strong>
+                                    <span><img src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldeneggPreegg.png" alt="Golden Egg Preegg"></span>
+                                    <span>"예매율 35.6%"</span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide swiper-slide-movie swiper-slide-active" style="width: 170.4px; margin-right: 32px;">
+                                <div class="img_wrap" data-scale="false" tabindex="0">
+                                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000089/89800/89800_320.jpg" alt="슈퍼맨" onerror="errorImage(this)">
+                                    <div class="movieAgeLimit_wrap"><i class="cgvIcon etc age12">12</i></div>
+                                    <div class="screenType_wrap">
+                                        <i class="screenType"><img src="https://img.cgv.co.kr/R2014/images/common/logo/imax_white.png" alt="max"></i>
+                                        <i class="screenType"><img src="https://img.cgv.co.kr/R2014/images/common/logo/forDX_white.png" alt="forDX"></i>
+                                        <i class="screenType"><img src="https://img.cgv.co.kr/R2014/images/common/logo/screenx_white.png" alt="screenx"></i>
+                                    </div>
+                                    <div class="movieChart_btn_wrap">
+                                        <a href="/movies/detail-view/?midx=89800" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '슈퍼맨');" class="btn_movieChart_detail">상세보기</a>
+                                        <a href="/ticket/?MOVIE_CD=20042077&MOVIE_CD_GROUP=20041858" onclick="gaEventLog('PC_메인', '무비차트_예매하기','슈퍼맨')" class="btn_movieChart_ticketing">예매하기</a>
+                                    </div>
+                                </div>
+                                <div class="movie_info_wrap">
+                                    <strong class="movieName">슈퍼맨</strong>
+                                    <span><img src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldeneggPreegg.png" alt="Golden Egg Preegg"></span>
+                                    <span>"예매율 35.6%"</span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide swiper-slide-movie swiper-slide-active" style="width: 170.4px; margin-right: 32px;">
+                                <div class="img_wrap" data-scale="false" tabindex="0">
+                                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000089/89800/89800_320.jpg" alt="슈퍼맨" onerror="errorImage(this)">
+                                    <div class="movieAgeLimit_wrap"><i class="cgvIcon etc age12">12</i></div>
+                                    <div class="screenType_wrap">
+                                        <i class="screenType"><img src="https://img.cgv.co.kr/R2014/images/common/logo/imax_white.png" alt="max"></i>
+                                        <i class="screenType"><img src="https://img.cgv.co.kr/R2014/images/common/logo/forDX_white.png" alt="forDX"></i>
+                                        <i class="screenType"><img src="https://img.cgv.co.kr/R2014/images/common/logo/screenx_white.png" alt="screenx"></i>
+                                    </div>
+                                    <div class="movieChart_btn_wrap">
+                                        <a href="/movies/detail-view/?midx=89800" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '슈퍼맨');" class="btn_movieChart_detail">상세보기</a>
+                                        <a href="/ticket/?MOVIE_CD=20042077&MOVIE_CD_GROUP=20041858" onclick="gaEventLog('PC_메인', '무비차트_예매하기','슈퍼맨')" class="btn_movieChart_ticketing">예매하기</a>
+                                    </div>
+                                </div>
+                                <div class="movie_info_wrap">
+                                    <strong class="movieName">슈퍼맨</strong>
+                                    <span><img src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldeneggPreegg.png" alt="Golden Egg Preegg"></span>
+                                    <span>"예매율 35.6%"</span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide swiper-slide-movie swiper-slide-active" style="width: 170.4px; margin-right: 32px;">
+                                <div class="img_wrap" data-scale="false" tabindex="0">
+                                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000089/89800/89800_320.jpg" alt="슈퍼맨" onerror="errorImage(this)">
+                                    <div class="movieAgeLimit_wrap"><i class="cgvIcon etc age12">12</i></div>
+                                    <div class="screenType_wrap">
+                                        <i class="screenType"><img src="https://img.cgv.co.kr/R2014/images/common/logo/imax_white.png" alt="max"></i>
+                                        <i class="screenType"><img src="https://img.cgv.co.kr/R2014/images/common/logo/forDX_white.png" alt="forDX"></i>
+                                        <i class="screenType"><img src="https://img.cgv.co.kr/R2014/images/common/logo/screenx_white.png" alt="screenx"></i>
+                                    </div>
+                                    <div class="movieChart_btn_wrap">
+                                        <a href="/movies/detail-view/?midx=89800" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '슈퍼맨');" class="btn_movieChart_detail">상세보기</a>
+                                        <a href="/ticket/?MOVIE_CD=20042077&MOVIE_CD_GROUP=20041858" onclick="gaEventLog('PC_메인', '무비차트_예매하기','슈퍼맨')" class="btn_movieChart_ticketing">예매하기</a>
+                                    </div>
+                                </div>
+                                <div class="movie_info_wrap">
+                                    <strong class="movieName">슈퍼맨</strong>
+                                    <span><img src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldeneggPreegg.png" alt="Golden Egg Preegg"></span>
+                                    <span>"예매율 35.6%"</span>
+                                </div>
+                            </div>
+                          
+                        </div>
+                        <div class="swiper-button-next" tabindex="0" role="button" aria-label="다음 슬라이드" aria-disabled="false"></div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                    <div class="swiper movieChart_list swiper-container-initialized swiper-container-horizontal" id="movieChart_list_Reser" style="display: none;">
+                        <div class="swiper-button-prev swiper-button-disabled" tabindex="0" role="button" aria-label="이전 슬라이드" aria-disabled="true"></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div id="ctl00_PlaceHolderContent_event_wrap" class="event_wrap">
+                <div class="contents">
+                    <div class="event_title_wrap">
+                        <h3>EVENT</h3>
+                        <a href="#none" class="btn_eventControl active">playStop</a>
+                        <a href="/culture-event/event/defaultNew.aspx" id="btn_allView_Event" class="btn_allView">전체보기</a>
+                    </div>
+                    <div class="event_list_wrap">
+                        <div class="swiper event_list swiper-container-initialized swiper-container-horizontal">
+                            <div class="swiper-button-prev swiper-button-disabled" tabindex="0" role="button" aria-label="이전 슬라이드" aria-disabled="ture"></div>
+                            <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                                <div class="swiper-slide swiper-slide-active" style="width: 310.667px; margin-right: 24px;">
+                                    <a onclick="gaEventLog('PC_메인', '이벤트', '[쥬라기월드-새로운시작]공룡붐은온다 상영회');" href="/culture-event/event/detailViewUnited.aspx?seq=44946" tabindex="-1">
+                                        <div class="img_wrap">
+                                            <img src="https://img.cgv.co.kr/WebApp/contents/eventV4/44946/17515908005490.jpg" alt="[쥬라기월드-새로운시작]공룡붐은온다 상영회" onerror="errorImage(this)">
+                                        </div>
+                                        <strong>[쥬라기월드-새로운시작]공룡붐은온다 상영회</strong>
+                                        <span>2025.07.04~2025.07.12</span>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide swiper-slide-active" style="width: 310.667px; margin-right: 24px;">
+                                    <a onclick="gaEventLog('PC_메인', '이벤트', '[쥬라기월드-새로운시작]공룡붐은온다 상영회');" href="/culture-event/event/detailViewUnited.aspx?seq=44946" tabindex="-1">
+                                        <div class="img_wrap">
+                                            <img src="https://img.cgv.co.kr/WebApp/contents/eventV4/44946/17515908005490.jpg" alt="[쥬라기월드-새로운시작]공룡붐은온다 상영회" onerror="errorImage(this)">
+                                        </div>
+                                        <strong>[쥬라기월드-새로운시작]공룡붐은온다 상영회</strong>
+                                        <span>2025.07.04~2025.07.12</span>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide swiper-slide-active" style="width: 310.667px; margin-right: 24px;">
+                                    <a onclick="gaEventLog('PC_메인', '이벤트', '[쥬라기월드-새로운시작]공룡붐은온다 상영회');" href="/culture-event/event/detailViewUnited.aspx?seq=44946" tabindex="-1">
+                                        <div class="img_wrap">
+                                            <img src="https://img.cgv.co.kr/WebApp/contents/eventV4/44946/17515908005490.jpg" alt="[쥬라기월드-새로운시작]공룡붐은온다 상영회" onerror="errorImage(this)">
+                                        </div>
+                                        <strong>[쥬라기월드-새로운시작]공룡붐은온다 상영회</strong>
+                                        <span>2025.07.04~2025.07.12</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="swiper-button-next" tabindex="0" role="button" aria-label="다음 슬라이드" aria-disabled="flase"></div>
+                            <span class="swiper-notlification" aria-live="assertive" aria-atomic="ture"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="specialHall_wrap">
+                <div class="contents"></div>
+            </div>
+
+            <div class="giftcon_wrap">
+                <div class="contents"></div>
+            </div>
+
+            <div class="noticeClient_wrap"></div>
+        </main>
+        <!-- E Container -->
+        <!-- S Popup -->
+        <div class="com_pop_wrap">
+            <div class="com_pop_fog"></div>
+        </div>
+        <div class="pop_wrap">
+            <div id="pop_supportOS" class="popup" style="display:none"></div>
+            <div id="pop_supportBrower" class="popup" style="display:none"></div>
+        </div>
+        <!-- E Popup -->
+        <!-- S 예매하기 및 TOP Fixed 버튼 -->
+        <div class="fixedBtn_wrap topBtn"></div>
+        <!-- E 예매하기 및 TOP Fixed 버튼 -->
+        <!-- S Footer -->
+        <Footer>
+            <div id="BottomWrapper" class="sect-ad">
+
+            </div>
+            <ul class="policy_list"></ul>
+            <article class="comany_info_wrap"></article>
+
+            <div class="adFloat2" style="display:none"></div>
+        </Footer>
+            <!-- E Footer -->
+    </div>
+
+
+</body>
+</html>
