@@ -4,7 +4,7 @@
 
 ## 📋 학습 내용 출처 자료
 
-### :construction_site: 웹 아키텍처 이해
+### :globe_with_meridians: 웹 아키텍처 이해
 
 - [신입 웹 개발자일 때 알았더라면 좋았을 기본 웹 아키텍처 개념](https://kschoi.github.io/cs/the-basic-archtecture-concepts/)
 - [기본적인 웹 아키텍처 개념들](https://velog.io/@whattsup_kim/%EA%B8%B0%EB%B3%B8%EC%A0%81%EC%9D%B8-%EC%9B%B9-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EA%B0%9C%EB%85%90%EB%93%A4-bclu6cjr)
