@@ -1,0 +1,46 @@
+# FastAPI Backend Dependencies for Lecture 01
+
+# Core FastAPI framework
+fastapi==0.104.1
+
+# ASGI server for running FastAPI applications
+uvicorn[standard]==0.24.0
+
+# Data validation and settings management using Python type annotations
+pydantic==2.5.0
+
+# Email validation support for Pydantic
+email-validator==2.1.0
+
+# Support for multipart/form-data requests
+python-multipart==0.0.6
+
+# JSON Web Token implementation for authentication (for future lessons)
+pyjwt==2.8.0
+
+# Password hashing library (for future lessons)
+passlib[bcrypt]==1.7.4
+
+# HTTP client library for testing and external API calls
+httpx==0.25.2
+
+# Testing framework
+pytest==7.4.3
+pytest-asyncio==0.21.1
+
+# Development dependencies
+black==23.11.0          # Code formatter
+flake8==6.1.0          # Code linter
+mypy==1.7.1            # Type checker
+
+# Optional: Database support (for future lessons)
+# sqlalchemy==2.0.23
+# alembic==1.12.1
+# psycopg2-binary==2.9.9  # PostgreSQL adapter
+# asyncpg==0.29.0         # Async PostgreSQL adapter
+
+# Optional: Caching (for future lessons)  
+# redis==5.0.1
+
+# Optional: Background tasks (for future lessons)
+# celery==5.3.4
