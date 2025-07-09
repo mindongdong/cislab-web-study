@@ -23,14 +23,14 @@ class Post(BaseModel):
     title: str | None = None
     content: str | None = None
     created_at: datetime = datetime.now()
-    views: int | None = None
+    views: int = 0
 
 class PostCreate(BaseModel):
     board_id:int
     title: str
     content: str | None = None
 
-# ---
+# --- 목업 데이터 ---
 
 mock_users = [
     User(user_id=1, username="alice", email="alice@example.com"),
@@ -55,6 +55,7 @@ mock_posts = [
 
 app = FastAPI()
 
+# --- API 엔드포인트 ---
 # 1. 게시판 관련 API
 
 @app.get("/boards", response_model=List[Board])
@@ -70,30 +71,31 @@ def get_board(
     for board in mock_boards:
         if board.board_id == board_id:
             return board
-    # return board for board in
-
 
 # 2. 게시글 관련 API
 
-@app.get("/boards/{board_id}/posts")
+@app.get("/boards/{board_id}/posts", response_model=List[Post])
 def get_posts(
     board_id: int
 ):
     """특정 게시판의 게시글 목록을 조회합니다."""
-    # TODO: 구현
-    pass
+    post_list = []
+    for post in mock_posts:
+        if post.board_id == board_id:
+            post_list.append(post)
+    return post_list
     
-@app.get("/posts/{post_id}")
+@app.get("/posts/{post_id}", response_model=Post)
 def get_post(post_id: int):
     """특정 게시글을 조회합니다."""
-    # TODO: 구현
-    pass
+    for post in mock_posts:
+        if post.post_id == post_id:
+            return post
 
-@app.post("/posts")
+@app.post("/posts", response_model=Post)
 def create_post(
-    new_post: PostCreate
+    new_post: PostCreate, title: str, content: str | None
 ):
     """새로운 게시글을 생성합니다."""
-    # TODO: 구현
-    pass
-
+    new_post = PostCreate(board_id=len(mock_posts + 1), title=title, content=content)
+    mock_posts.append(new_post)
