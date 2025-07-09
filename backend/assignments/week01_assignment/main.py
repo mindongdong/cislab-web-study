@@ -65,7 +65,7 @@ def get_boards():
 
 @app.get("/boards/{board_id}", response_model=Board)
 def get_board(
-	board_id: int
+	board_id: int = Path(...)
 ):
     """특정 게시판 정보를 조회합니다."""
     for board in mock_boards:
@@ -76,14 +76,16 @@ def get_board(
 
 @app.get("/boards/{board_id}/posts", response_model=List[Post])
 def get_posts(
-    board_id: int
+    board_id: int = Path(...),
+    skip: int = Query(0),
+    limit: int = Query(10)
 ):
     """특정 게시판의 게시글 목록을 조회합니다."""
     post_list = []
     for post in mock_posts:
         if post.board_id == board_id:
             post_list.append(post)
-    return post_list
+    return post_list[skip : skip + limit]
     
 @app.get("/posts/{post_id}", response_model=Post)
 def get_post(post_id: int):
@@ -94,8 +96,18 @@ def get_post(post_id: int):
 
 @app.post("/posts", response_model=Post)
 def create_post(
-    new_post: PostCreate, title: str, content: str | None
+    new_post: PostCreate
 ):
     """새로운 게시글을 생성합니다."""
-    new_post = PostCreate(board_id=len(mock_posts + 1), title=title, content=content)
-    mock_posts.append(new_post)
+    new_post_id = max(post.post_id for post in mock_posts) + 1 if mock_posts else 1
+
+    post_to_add = Post(
+        post_id=new_post_id,
+        board_id=new_post.board_id,
+        user_id=1, 
+        title=new_post.title,
+        content=new_post.content
+    )
+    
+    mock_posts.append(post_to_add)
+    return post_to_add
