@@ -1,0 +1,622 @@
+/* 사이트에서 주로 이용할 폰트 불러오기 */
+@font-face {
+    font-family: "Pretendard-Regular";
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Pretendard-Bold";
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* 일부 태그에 대한 기본 속성(주로 폰트 등) 적용 */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f1f9ff;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+    font-family: "Pretendard-Bold";
+    font-size: 37.5px;
+}
+
+h2 {
+    margin: 0;
+    padding: 0;
+    font-family: "Pretendard-Bold";
+}
+
+h3 {
+    margin: 0;
+    padding: 0;
+    font-family: "Pretendard-Regular";
+}
+
+p {
+    margin: 0;
+    padding: 0;
+    font-family: "Pretendard-Regular";
+    line-height: 1.75em;
+}
+
+span {
+    font-family: "Pretendard-Regular";
+}
+
+hr {
+    margin: 1.5em 0;
+    background: rgb(206, 206, 206);
+    height: 1px;
+    border: 0;
+}
+
+/* 하이퍼링크 요소에 사이트 컬러 테마에 맞는 스타일 적용 */
+a {
+    transition: all 0.25s;
+}
+
+a:link {
+    color: rgb(6, 174, 204);
+    text-decoration: none;
+}
+
+a:visited {
+    color: rgb(0, 110, 161);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(6, 174, 204);
+    font-size: 125%;
+    text-decoration: underline;
+}
+
+a:active {
+    color: rgb(0, 110, 161);
+    text-decoration: none;
+}
+
+/* 헤더(내비게이션 바) 바탕 요소 스타일 */
+.header {
+    top: 0;
+    background: linear-gradient(100deg, rgba(6, 174, 204, 0.7), rgba(0, 110, 161, 0.7));
+    backdrop-filter: blur(10px);
+    height: 3.5em;
+    position: sticky;
+    z-index: 10;
+    margin: 0;
+    padding: 0 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* header에서 분산 배치 적용한 다음, 내부에 header__left와 header__right를 배치하여 좌우 양끝에 요소 정렬 배치 */
+.header__left{
+    height: 3.5em;
+    position: relative;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.header__right{
+    height: 3.5em;
+    position: relative;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.header__logo {
+    margin: 0 2em 0 0;
+    padding: 0 0.5em;
+    height: 3em;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.header__logo > img {
+    height: 1.5em;
+}
+
+.header__logo:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+    border-radius: 7px;
+}
+
+.header__logo:active {
+    background-color: rgb(26, 107, 145);
+    border-radius: 7px;
+}
+
+.header__tab {
+    margin: 0 0 0 1em;
+    padding: 0.25em 0.5em;
+    height: 2em;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-family: "Pretendard-Regular";
+    font-size: 16.5px;
+    color: white;
+    border-radius: 7px;
+    transition: all 0.3s;
+}
+
+.header__tab:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+    border-radius: 7px;
+}
+
+.header__tab:active {
+    background-color: rgb(26, 107, 145);
+    border-radius: 7px;
+}
+
+.header__tab > img {
+    height: 1.5em
+}
+
+/* header__tab 요소의 '무작위 버튼'용 변형 */
+.header__tab--random {
+    margin: 0 0.5em 0 0;
+    padding: 0.25em 0.5em;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Pretendard-Regular";
+    font-size: 16.5px;
+    color: white;
+    background-color: white;
+    border-radius: 7px;
+    transition: all 0.3s;
+}
+
+.header__tab--random > img {
+    height: 1.25em
+}
+
+/* header__tab 요소의 '검색란'용 변형 */
+.header__tab--search {
+    margin: 0;
+    padding: 0.25em 0.5em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Pretendard-Regular";
+    font-size: 16.5px;
+    color: rgb(150, 150, 150);
+    background-color: white;
+    border-radius: 7px;
+    transition: all 0.3s;
+}
+
+.header__tab--search > img {
+    margin: 0 0 0 1em;
+    height: 1.25em;
+}
+
+.header__tab--search > form > input {
+    border: 0px;
+    width: 9em;
+    font-family: "Pretendard-Regular";
+    font-size: 16.5px;
+}
+
+/* article와 aside 좌우로 나뉜 레이아웃을 감싸는 main 박스 */
+.main {
+    width: 70%;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.article {
+    width: 77%;
+    margin: 1em 1em 1em 0;
+    padding: 1.5em;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 7px;
+    background-color: white;
+}
+
+.article__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+/* article 내 title 밑의 하이라이트 장식 요소 */
+.article__title__highlight {
+    width: 8.15em;
+    height: 0.5em;
+    margin: -0.5em 0 0 0;
+    background: linear-gradient(135deg, rgba(6, 174, 204, 0.3), rgba(0, 110, 161, 0.3));
+}
+
+.article__title__right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.article__button {
+    margin: 0;
+    padding: 0 0.75em;
+    height: 2.5em;
+    background-color: #f1f9ff;
+    border: 1px solid rgb(206, 206, 206);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.25s;
+    font-family: "Pretendard-Regular";
+    color: #4898bd;
+}
+
+.article__button--primary {
+    margin: 0;
+    padding: 0 0.75em;
+    height: 2.5em;
+    background-color: #4898bd;
+    border: 1px solid rgb(206, 206, 206);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.25s;
+    font-family: "Pretendard-Regular";
+    color: white;
+}
+
+.article__button:hover {
+    z-index: 8;
+    background-color: white;
+    box-shadow: 0px 0px 20px 0px rgba(72, 152, 189, 0.7);
+}
+
+.article__button--primary:hover {
+    z-index: 8;
+    background-color: #89c2dd;
+    color: #286581;
+    box-shadow: 0px 0px 20px 0px rgba(72, 152, 189, 0.7);
+}
+
+/* button끼리 양옆에 붙어있을 시, 사이의 모서리 라운딩을 제거하고 윤곽선 1px만큼 margin을 없애 딱 붙어있는 레이아웃 구현 */
+.article__button + .article__button {
+    margin-left: -1px;
+}
+
+/* 첫 번째와 마지막으로 붙어있는 button에는 모서리 라운딩 적용 */
+.article__button:first-child, .article__button--primary:first-child {
+    border-radius: 7px 0 0 7px;
+}
+
+.article__button:last-child, .article__button--primary:last-child {
+    border-radius: 0 7px 7px 0;
+}
+
+/* 박스 내 혼자 있는 button에는 양옆 모두 모서리 라운딩 적용 */
+.article__button:only-child, .article__button--primary:only-child {
+    margin: 0 0 0 0.5em;
+    border-radius: 7px 7px 7px 7px;
+}
+
+.article__button > img, .article__button--primary > img {
+    height: 1.25em;
+}
+
+/* nth-child 선택자 사용을 위해 버튼을 감싸주는 박스 */
+.article__button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.article__advertisement {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 7.5em;
+    margin: 0;
+    padding: 0 0 0 1.25em;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 7px;
+    background: linear-gradient(135deg, rgba(6, 174, 204, 0.7), rgba(0, 110, 161, 0.7));
+    color:white;
+}
+
+.article__sort {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 7px;
+}
+
+.article__text {
+    text-align: center;
+}
+
+/* 표 형태의 원본 레이아웃을 구현하기 위한 바탕 박스 */
+.article__table {
+    border: 1px solid #4eacc9;
+}
+
+/* 바탕 박스 내에 행을 구분하여 내용을 넣기 위한 셀 박스 */
+.article__table__wrapper {
+    width: 100%;
+    border-bottom: 1px solid rgb(206, 206, 206);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* 마지막 셀 박스의 경우 하단 border을 표시하지 않음 */
+.article__table__wrapper:last-child {
+    border-bottom: 0;
+}
+
+/* 바탕 박스 내에 열을 구분하여 내용을 넣기 위한 셀 박스 */
+.article__table__wrapper--horizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+/* 셀 박스 내에 텍스트를 넣기 위한 스타일 */
+.article__table__wrapper--text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
+/* 셀 박스 내에 텍스트를 넣기 위한 스타일(유색 배경) */
+.article__table__wrapper--text--colored {
+    border-bottom: 1px solid rgb(206, 206, 206);
+    padding: 0 0 0 1em;
+    min-height: 3em;
+    background-color: #4eacc9;
+    color: white;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+/* 셀 박스 내에 아이콘을 넣기 위한 스타일 */
+.article__table__wrapper--icon {
+    margin: 0;
+    padding: 1em;
+    border-right: 1px solid rgb(206, 206, 206);
+    background-color: white;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+/* 셀 박스 내에 아이콘을 넣기 위한 스타일(유색 배경) */
+.article__table__wrapper--icon--colored {
+    margin: 0;
+    padding: 1em;
+    border-right: 1px solid rgb(206, 206, 206);
+    background-color: #4eacc9;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.article__table__wrapper--icon > img {
+    height: 5em;
+}
+
+.article__table__wrapper--icon--colored > img {
+    height: 5em;
+}
+
+.article__table__wrapper--text--colored > img {
+    height: 1.5em;
+    margin: 0 0.5em 0 0;
+}
+
+/* 오와 열을 맞추기 위한 노력 */
+.article__table__wrapper > h2, .article__table__wrapper--text > h2 {
+    margin: 0 0 0 1.25rem;
+}
+
+.article__table__wrapper > p, .article__table__wrapper--text > p {
+    margin: 0 1.25rem 0 1.25rem;
+}
+
+.article__table__wrapper--text > .article__table__wrapper {
+    border: 0;
+}
+
+.article__table__wrapper--text--colored:last-child {
+    border-bottom: 0;
+}
+
+.article__notice {
+    border: 1px solid rgb(206, 206, 206);
+    border-top: 5px solid #4eacc9;
+    padding: 1em 1em 0.5em 1em;
+}
+
+.article__notice > h2 {
+    color: #4eacc9;
+}
+
+.article__notice > ul {
+    margin: 1em 0 0 -1em;
+}
+
+.article__notice > ul > li {
+    margin: 0;
+    padding: 0.5em 0;
+    border-top: 1px solid rgb(206, 206, 206);
+}
+
+.article__footer {
+    text-align: right;
+}
+
+.article__text > form > input[type="email"], .article__text > form > input[type="password"] {
+    margin: 0.5em 0 1em 0;
+    padding: 1em;
+    min-width: 30em;
+    background-color: #f1f9ff;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 7px;
+}
+
+.aside {
+    width: 23%;
+    margin: 1em 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.aside__ranking {
+    margin: 0 0 1em 0;
+    padding: 1.5em;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 7px;
+    background-color: white;
+    font-family: "Pretendard-Regular";
+    line-height: 0;
+}
+
+.aside__recent {
+    margin: 0 0 1em 0;
+    padding: 1.5em;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 7px;
+    background-color: white;
+    font-family: "Pretendard-Regular";
+}
+
+/* title에서 분산 배치 적용한 다음, 내부에 title__left와 title__right를 배치하여 좌우 양끝에 요소 정렬 배치 */
+.aside__recent__title {
+    margin: 0 0 1em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.aside__recent__title__left {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-family: "Pretendard-Regular";
+    font-size: 20px;
+}
+
+.aside__recent__title img {
+    height: 1em;
+}
+
+/* content에서 분산 배치 적용한 다음, 내부에 content__left와 content__right를 배치하여 좌우 양끝에 요소 정렬 배치 */
+.aside__recent__content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.aside__recent__content__left {
+    line-height: 175%;
+}
+
+.aside__recent__content__right {
+    font-size: 13px;
+    text-align: right;
+    line-height: 215%;
+}
+
+.aside__advertisement {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 4.5em;
+    height: 20em;
+    position: sticky;
+    z-index: 9;
+    margin: 0 0 1em 0;
+    padding: 0;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 7px;
+    background: linear-gradient(135deg, rgba(6, 174, 204, 0.7), rgba(0, 110, 161, 0.7));
+    line-height: 0.5;
+    color:white;
+}
+
+/* recent 요소의 '푸앙뉴스'용 변형 */
+.aside__recent--news {
+    top: 25.5em;
+    position: sticky;
+    z-index: 9;
+    margin: 0;
+    padding: 1.5em;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 7px;
+    background-color: white;
+    font-family: "Pretendard-Regular";
+}
+
+.footer {
+    border-top: 1px solid rgb(206, 206, 206);
+    background-color: white;
+    height: 7em;
+    margin: 0;
+    padding: 0 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+}
+
+.footer__wrapper {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.footer__wrapper > img {
+    height: 2em;
+    margin: 0 1.5em 0 0;
+}
+
+.footer__text {
+    font-family: "Pretendard-Regular";
+    font-size: 15px;
+    line-height: 135%;
+}
+
+.footer__text--notice {
+    margin: 1em 0 0 0;
+    font-family: "Pretendard-Regular";
+    font-size: 12px;
+    line-height: 135%;
+}
+
+.test {
+    background: red;
+}
+

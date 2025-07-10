@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   height="800"
+   width="800"
+   version="1.1"
+   id="_x32_"
+   viewBox="0 0 512 512"
+   xml:space="preserve"
+   sodipodi:docname="person-svgrepo-com.svg"
+   inkscape:export-filename="person.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs2" /><sodipodi:namedview
+   id="namedview2"
+   pagecolor="#ffffff"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"><inkscape:page
+     x="0"
+     y="0"
+     width="512"
+     height="512"
+     id="page2"
+     margin="0"
+     bleed="0" /></sodipodi:namedview>
+<style
+   type="text/css"
+   id="style1">
+	.st0{fill:#000000;}
+</style>
+<g
+   id="g2"
+   transform="matrix(0.79182156,0,0,0.79182156,53.293648,53.29368)"
+   style="fill:#ffffff;fill-opacity:1">
+	<path
+   class="st0"
+   d="m 458.159,404.216 c -18.93,-33.65 -49.934,-71.764 -100.409,-93.431 -28.868,20.196 -63.938,32.087 -101.745,32.087 -37.828,0 -72.898,-11.89 -101.767,-32.087 C 103.764,332.452 72.759,370.567 53.84,404.216 28.731,448.848 48.417,512 91.842,512 c 43.426,0 164.164,0 164.164,0 0,0 120.726,0 164.153,0 43.424,0 63.11,-63.152 38,-107.784 z"
+   id="path1"
+   style="fill:#ffffff;fill-opacity:1" />
+	<path
+   class="st0"
+   d="m 256.005,300.641 c 74.144,0 134.231,-60.108 134.231,-134.242 V 134.241 C 390.236,60.108 330.149,0 256.005,0 181.85,0 121.753,60.108 121.753,134.242 V 166.4 c 0,74.133 60.098,134.241 134.252,134.241 z"
+   id="path2"
+   style="fill:#ffffff;fill-opacity:1" />
+</g>
+</svg>

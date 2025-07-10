@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>푸앙위키:대문 - 푸앙위키</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" href="./assets/favicon.png" />
+    </head>
+    <body>
+        <!--헤더(내비게이션 바) 구역-->
+        <header class="header">
+            <!--좌·우측에 각각 밀착된 레이아웃을 위해 먼저 header로 감싸고 분산 정렬을 적용한 다음, header__left와 header__right로 나누어 요소 배치-->
+            <div class="header__left">
+                <div class="header__logo" onclick = "location.href = './index.html'">
+                    <img src="./assets/logo.png" alt="푸앙위키 로고" />
+                </div>
+                <div class="header__tab">
+                    <img src="./assets/clock.svg" alt="최근 변경 아이콘" />
+                    &nbsp;&nbsp;최근 변경
+                </div>
+                <div class="header__tab">
+                    <img src="./assets/speech.svg" alt="최근 토론 아이콘" />
+                    &nbsp;&nbsp;최근 토론
+                </div>
+                <div class="header__tab">
+                    <img src="./assets/suitcase.svg" alt="특수 기능 아이콘" />
+                    &nbsp;&nbsp;특수 기능
+                </div>
+            </div>
+            <div class="header__right">
+                <div class="header__tab--random">
+                    <img src="./assets/random.svg" alt="랜덤 아이콘" />
+                </div>
+                <div class="header__tab--search">
+                    <form>
+                        <input type="text" name="search" placeholder="여기에서 검색">
+                    </form>
+                    <img src="./assets/search.svg" alt ="검색 아이콘" />
+                    <img src="./assets/arrow.svg" alt="화살표 아이콘" />
+                </div>
+                <div class="header__tab" onclick = "location.href = './subpage.html'">
+                    <img src="./assets/person.svg" alt="계정 아이콘" />
+                </div>
+            </div>
+        </header>
+        <!--메인 사이트 구역-->
+        <main class="main">
+            <article class="article">
+                <div class="article__title">
+                    <div class="article__title__left">
+                        <h1>푸앙위키:대문</h1>
+                        <div class="article__title__highlight"></div>
+                        <p style="margin-top: 0.5em; margin-bottom: 0.5em;">최근 수정 시각: 2025-07-08 15:30:00</p>
+                    </div>
+                    <div class="article__title__right">
+                        <!--nth-child 선택자 적용을 위해 필요에 따라 child를 분류할 수 있도록 button-wrapper로 일차적으로 감싼 다음 내부에 버튼 배치-->
+                        <div class="article__button-wrapper">
+                            <div class="article__button">
+                                <img src="./assets/star.svg" alt="별 아이콘">
+                            </div>
+                            <div class="article__button">
+                                <img src="./assets/edit.svg" alt="편집 아이콘">
+                                &nbsp;편집
+                            </div>
+                            <div class="article__button">
+                                <img src="./assets/speechBlue.svg" alt="토론 아이콘">
+                                &nbsp;토론
+                            </div>
+                            <div class="article__button">
+                                <img src="./assets/book.svg" alt="역사 아이콘">
+                                &nbsp;역사
+                            </div>
+                        </div>
+                        <div class="article__button-wrapper">
+                            <div class="article__button">
+                                <img src="./assets/dot.svg" alt="삼점 아이콘">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="article__advertisement">
+                    <img src="./assets/puang.svg" alt="푸앙이" style="height: 5em;" /><br>
+                    <span style="margin: -1em 0 0 0.5em; font-family: 'Pretendard-Bold'; font-size: 2.5em;"><br>광고</span>
+                </div>
+                <div class="article__sort">
+                    분류: <a href="#">푸앙위키</a>
+                </div>
+                <hr>
+                <div class="article__text">
+                    <br>
+                    <h2>여러분이 가꾸어 나가는 <a href="#">지식의 푸앙이</a></h2>
+                    <p><a href="#">푸앙위키</a>에 오신 것을 환영합니다!<br><br>
+                    푸앙위키는 누구나 기여할 수 있는 위키입니다.<br>
+                    검증되지 않았거나 편향된 내용이 있을 수 있습니다.</p><br>
+                </div>
+                <hr>
+                <!--원본 사이트의 표 기반 레이아웃을 구현하기 위한 분투-->
+                <div class="article__table">
+                    <div class="article__table__wrapper">
+                        <div class="article__table__wrapper--icon--colored">
+                            <img src="./assets/question.svg" />
+                        </div>
+                        <div class="article__table__wrapper--text">
+                            <h2 style="margin-bottom: 0.5rem;">푸앙위키에 처음 오셨나요?</h2>
+                            <p>먼저 <a href="#">푸앙위키의 규정</a>과 <a href="#">학칙 위반 등 자주 하는 실수</a>, <a href="#">도움말</a>을 확인해 보세요.</p>
+                        </div>
+                    </div>
+                    <div class="article__table__wrapper">
+                        <div class="article__table__wrapper--icon--colored">
+                            <img src="./assets/speak.svg" />
+                        </div>
+                        <div class="article__table__wrapper--text">
+                            <h2 style="margin-bottom: 0.5rem;">푸앙위키 게시판</h2>
+                            <p><a href="#">공지</a> · <a href="#">청룡연못</a> · <a href="#">문의</a> · 
+                                <a href="#">신고</a> · <a href="#">편집 요청</a> · <a href="#">차단 소명/해제 요청</a> · 
+                                <a href="#">다중 계정 검사</a> · <a href="#">토론 문의</a> · <a href="#">개발 문의</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="article__table__wrapper">
+                        <div class="article__table__wrapper--icon--colored">
+                            <img src="./assets/gavel.svg" />
+                        </div>
+                        <div class="article__table__wrapper--text">
+                            <h2 style="margin-bottom: 0.5rem;">권리침해 문의</h2>
+                            <p>권리자의 임시조치 및 저작권 침해 관련 문의 방법이 <a href="#">권리침해 도움말</a>에 설명되어 있습니다.</p>
+                        </div>
+                    </div>
+                    <div class="article__table__wrapper">
+                        <div class="article__table__wrapper--icon--colored">
+                            <img src="./assets/law.svg" />
+                        </div>
+                        <div class="article__table__wrapper--text">
+                            <h2 style="margin-bottom: 0.5rem;">중재 제도</h2>
+                            <p>토론 중재 요청을 받고 있습니다. <a href="#">게시판</a>에서 요청하실 수 있습니다.</p>
+                        </div>
+                    </div>
+                    <div class="article__table__wrapper">
+                        <div class="article__table__wrapper--icon--colored">
+                            <img src="./assets/shield.svg" />
+                        </div>
+                        <div class="article__table__wrapper--text">
+                            <h2 style="margin-bottom: 0.5rem;">운영진 지원</h2>
+                            <p>푸앙위키에서 <a href="#">운영진</a>을 상시 모집합니다. <a href="#">이곳</a>에서 지원하실 수 있습니다.</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="article__table">
+                    <div class="article__table__wrapper--text--colored" style="justify-content: center;">
+                        <h2>푸앙위키 프로젝트</h2>
+                    </div>
+                    <!--이 표만 세로로 2개 행을 차지하는 셀이 등장하여 horizontal로 가로 배치후 내부 wrapper에서 따로 또 세로 배치하는 것으로 임시 조치-->
+                    <div class="article__table__wrapper--horizontal">
+                        <div class="article__table__wrapper--icon">
+                            <img src="./assets/wolgaesoo.png" />
+                        </div>
+                        <div class="article__table__wrapper--text">
+                            <div class="article__table__wrapper">
+                                <p>프로젝트에 참여해서 관련 문서에 기여의 손길을 보내주세요!</p>
+                            </div>
+                            <hr style="margin: 0 0 0 0;">
+                            <div class="article__table__wrapper">
+                                <p><a href="#">푸앙위키 학술지 프로젝트</a>, <a href="#">푸앙위키 틀 개선 프로젝트</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article__table__wrapper--text--colored" style="justify-content: center;">
+                        <p>프로젝트 목록</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="article__table">
+                    <div class="article__table__wrapper--text--colored">
+                        <img src="./assets/faviconWhite.png" />
+                        <h3>푸앙위키의 규정</h3>
+                    </div>
+                    <div class="article__table__wrapper" style="padding: 0.5em 0 0.5em 0;">
+                        <p><a href="#">기본 방침</a> (<a href="#">문서 관리 방침 </a>·<a href="#"> 토론 관리 방침 </a>·<a href="#"> 이용자 관리 방침 </a>·<a href="#"> 운영 관리 방침/운영진 선출</a>) ·<a href="#"> 편집지침 </a>(<a href="#">일반 문서 </a>·<a href="#"> 특수 문서 </a>·<a href="#"> 특정 분야 </a>(<a href="#">인문사회 </a>·<a href="#"> 과학기술 </a>·<a href="#"> 문화예술 </a>·<a href="#"> 창작물) </a>·<a href="#"> 등재 기준 </a>·<a href="#"> 표제어</a>)</p>
+                    </div>
+                    <div class="article__table__wrapper--text--colored">
+                        <img src="./assets/faviconWhite.png" />
+                        <h3>푸앙위키의 도움말</h3>
+                    </div>
+                    <div class="article__table__wrapper" style="padding: 0.5em 0 0.5em 0;">
+                        <p><a href="#">FAQ</a> · <a href="#">도움말</a> (<a href="#">기능</a> · <a href="#">편집</a> · <a href="#">문법</a> (<a href="#">심화</a> · <a href="#">수식</a> · <a href="#">개발</a>) · <a href="#">토론</a> · <a href="#">설정</a> · <a href="#">소명</a> · <a href="#">권리침해</a> · <a href="#">자주 하는 실수</a> · <a href="#">문서 삭제식 이동</a> · <a href="#">더미</a>)</p>
+                    </div>
+                    <div class="article__table__wrapper--text--colored">
+                        <img src="./assets/faviconWhite.png" />
+                        <h3>푸앙위키의 운영</h3>
+                    </div>
+                    <div class="article__table__wrapper" style="padding: 0.5em 0 0.5em 0;">
+                        <p><a href="#">관리자</a> · <a href="#">중재자</a> · <a href="#">역대 운영진</a> · <a href="#">운영진 지원</a> · <a href="#">운영 도움말 </a>(<a href="#">관리</a> · <a href="#">중재</a> · <a href="#">권한</a>) · <a href="#">접근 제한 </a>(<a href="#">문서 목록</a>) · <a href="#">운영회의 </a>(<a href="#">시행규칙</a> · <a href="#">안건 건의</a>) · <a href="#">진행 중인 회의</a> · <a href="#">봇 리스트</a> · <a href="#">투명성 보고서</a> · <a href="#">소급 적용 규정 일람</a> · <a href="#">공지 목록</a></p>
+                    </div>
+                    <div class="article__table__wrapper--text--colored">
+                        <img src="./assets/faviconWhite.png" />
+                        <h3>푸앙위키의 기능</h3>
+                    </div>
+                    <div class="article__table__wrapper" style="padding: 0.5em 0 0.5em 0;">
+                        <p><a href="#"><a href="#">분류</a> · <a href="#">게시판</a> · <a href="#">엔진</a> (<a href="#">업데이트</a>) · <a href="#">계정</a> · <a href="#">통계</a> · <a href="#">연습장</a> · <a href="#">내 문서함</a> · <a href="#">문서 작성 요청</a></p>
+                    </div>
+                    <div class="article__table__wrapper--text--colored">
+                        <img src="./assets/faviconWhite.png" />
+                        <h3>푸앙위키의 분류</h3>
+                    </div>
+                    <div class="article__table__wrapper" style="padding: 0.5em 0 0.5em 0;">
+                        <p><a href="#"><a href="#">프로젝트</a> · <a href="#">주요 페이지 링크</a> · <a href="#">보존문서</a> · <a href="#">파일</a> · <a href="#">틀</a> · <a href="#">템플릿</a></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="article__notice">
+                    <h2>주요 운영 알림</h2>
+                    <ul>
+                        <li><p><a href="#">푸앙위키:편집지침/등재 기준</a>에서 인물 등재 제한 관련 규정이 개정되었습니다. 이 규정은 소급 적용됩니다. <a href="#">변경 내용 보기</a></p></li>
+                        <li><p><a href="#">푸앙위키:편집지침/특정 분야/문화예술</a>에서 음원 순위 관련 규정이 개정되었습니다. 이 규정은 소급 적용됩니다. <a href="#">변경 내용 보기</a></p></li>
+                        <li><p><a href="#">푸앙위키:기본방침/이용자 관리 방침</a>에서 부적절한 계정명에 대한 소명 규정이 개정되었습니다. <a href="#">변경 내용 보기</a></p></li>
+                        <li><p><a href="#">푸앙위키:기본방침/이용자 관리 방침</a>에서 일부 규정 상의 실정법 언급 관련 재명시 관련 규정이 개정되었습니다. <a href="#">변경 내용 보기</a></p></li>
+                        <li><p><a href="#">푸앙위키:편집지침/특정 분야/인문사회</a>에서 시간표 관련 규정이 개정되었습니다. <a href="#">변경 내용 보기</a></p></li>
+                        <li><p><a href="#">푸앙위키:편집지침/등재 기준</a>에서 위키 사이트 관련 규정이 개정되었습니다. <a href="#">변경 내용 보기</a></p></li>
+                        <li><p><a href="#">푸앙위키:편집지침/등재 기준</a>에서 단체 문단 관련 규정이 개정되었습니다. <a href="#">변경 내용 보기</a></p></li>
+                    </ul>
+                </div>
+                <hr>
+                <div class="article__notice">
+                    <h2>주요 운영 알림</h2>
+                    <ul>
+                        <li><p>최근 관리자 확인을 받은 규정 개정 토론이 없습니다.</p></li>
+                    </ul>
+                </div>
+                <hr>
+                <div class="article__footer">
+                    <img src="./assets/license.png" />
+                    <p style="line-height: 1.5em;">
+                        이 저작물은 <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/kr/">CC BY-NC-SA 2.0 KR</a>에 따라 이용할 수 있습니다. (단, 라이선스가 명시된 일부 문서 및 삽화 제외)
+                        <br>기여하신 문서의 저작권은 각 기여자에게 있으며, 각 기여자는 기여하신 부분의 저작권을 갖습니다.
+                        <br>
+                        <br>푸앙위키는 백과사전이 아니며 검증되지 않았거나, 편향적이거나, 잘못된 서술이 있을 수 있습니다.
+                        <br>푸앙위키는 위키위키입니다. 여러분이 직접 문서를 고칠 수 있으며, 다른 사람의 의견을 원할 경우 직접 토론을 발제할 수 있습니다.
+                    </p>
+                </div>
+            </article>
+            <aside class="aside">
+                <div class="aside__ranking">
+                    1&nbsp;&nbsp;&nbsp;
+                    <a href="https://github.com/mindongdong/cislab-web-study">cislab-web-study</a>
+                </div>
+                <div class="aside__recent">
+                    <div class="aside__recent__title">
+                        <div class="aside__recent__title__left">
+                            <img src="./assets/clockGray.svg">
+                            &nbsp;&nbsp;최근 변경
+                        </div>
+                        <img src="./assets/next.svg">
+                    </div>
+                    <div class="aside__recent__content">
+                        <div class="aside__recent__content__left">
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#cislab-%EC%9B%B9-%EA%B0%9C%EB%B0%9C-%EC%8A%A4%ED%84%B0%EB%94%94">CISLAB 웹 개발 스터...</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%EC%86%8C%EA%B0%9C">소개</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%EC%B0%B8%EC%97%AC%EC%9E%90">참여자</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%EC%8A%A4%ED%84%B0%EB%94%94-%EA%B7%9C%EC%B9%99">스터디 규칙</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%EC%BB%A4%EB%A6%AC%ED%81%98%EB%9F%BC">커리큘럼</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%ED%8C%80-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8">팀 프로젝트</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%EC%B6%94%EC%B2%9C-%EA%B0%95%EC%9D%98">추천 강의</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0">프로젝트 구조</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study/blob/main/resources/references/vscode-extensions.md">VSCode 필수 확장...</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0">Git 사용 가이드</a><br>
+                        </div>
+                        <div class="aside__recent__content__right">
+                            3초 전<br>
+                            14초 전<br>
+                            15초 전<br>
+                            9분 전<br>
+                            26분 전<br>
+                            53분 전<br>
+                            58분 전<br>
+                            97분 전<br>
+                            9시간 전<br>
+                            32시간 전<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="aside__advertisement">
+                    <img src="./assets/puang.svg" alt="푸앙이" style="height: 10em;" /><br>
+                    <span style="font-family: 'Pretendard-Bold'; font-size: 2.5em;"><br>광고</span>
+                </div>
+                <div class="aside__recent--news">
+                    <div class="aside__recent__title">
+                        <div class="aside__recent__title__left">
+                            <img src="./assets/news.svg">
+                            &nbsp;&nbsp;푸앙뉴스
+                        </div>
+                        <img src="./assets/next.svg">
+                    </div>
+                    <div class="aside__recent__content">
+                        <div class="aside__recent__content__left">
+                            <a href="https://www.cau.ac.kr/cms/FR_CON/BoardView.do?SITE_NO=2&BBS_SEQ=28782&BOARD_SEQ=4&MENU_ID=100">2025학년도 하기 계절학기 ...</a><br>
+                            <a href="https://www.cau.ac.kr/cms/FR_CON/BoardView.do?SITE_NO=2&BBS_SEQ=28916&BOARD_SEQ=4&MENU_ID=100">2025학년도 2학기 수강신...</a><br>
+                            <a href="https://www.cau.ac.kr/cms/FR_CON/BoardView.do?SITE_NO=2&BBS_SEQ=28869&BOARD_SEQ=4&MENU_ID=100">2025학년도 2학기 재입학·...</a><br>
+                            <a href="https://www.cau.ac.kr/cms/FR_CON/BoardView.do?SITE_NO=2&BBS_SEQ=28391&BOARD_SEQ=4&MENU_ID=100">2025학년도 하계 디지털·금...</a><br>
+                            <a href="https://www.cau.ac.kr/cms/FR_CON/BoardView.do?SITE_NO=2&BBS_SEQ=28969&BOARD_SEQ=4&MENU_ID=100">205관 신축 관련 부대공사 ...</a><br>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+        <!--최하단 푸터 구역-->
+        <footer class="footer">
+            <div class="footer__wrapper">
+                <img src="./assets/logoColored.png" />
+                <div class="footer__text">
+                    puang.wiki&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="https://github.com/mindongdong/cislab-web-study/tree/main/frontend/members/kim-dogyun">Contacts</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="https://github.com/mindongdong/cislab-web-study/tree/main/frontend/assignments/week01_assignment">Terms of Service</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    Operated by CISLAB@CAU&nbsp;&nbsp;&nbsp;&nbsp;
+                    Made with ❤️ in Anseong, Korea<br>
+                    Time zone in Asia/Seoul&nbsp;&nbsp;&nbsp;&nbsp;
+                    Powered by HTML&CSS
+                </div>
+            </div>
+                <div class="footer__text--notice">
+                    This site is not protected by reCAPTCHA and the Google 
+                    <a href="https://policies.google.com/privacy">Privacy Policy</a> and 
+                    <a href="https://policies.google.com/terms">Terms of Service</a> does not apply.
+                </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>로그인 - 푸앙위키</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" href="./assets/favicon.png" />
+    </head>
+    <body>
+        <header class="header">
+            <div class="header__left">
+                <div class="header__logo" onclick = "location.href = './index.html'">
+                    <img src="./assets/logo.png" alt="푸앙위키 로고" />
+                </div>
+                <div class="header__tab">
+                    <img src="./assets/clock.svg" alt="최근 변경 아이콘" />
+                    &nbsp;&nbsp;최근 변경
+                </div>
+                <div class="header__tab">
+                    <img src="./assets/speech.svg" alt="최근 토론 아이콘" />
+                    &nbsp;&nbsp;최근 토론
+                </div>
+                <div class="header__tab">
+                    <img src="./assets/suitcase.svg" alt="특수 기능 아이콘" />
+                    &nbsp;&nbsp;특수 기능
+                </div>
+            </div>
+            <div class="header__right">
+                <div class="header__tab--random">
+                    <img src="./assets/random.svg" alt="랜덤 아이콘" />
+                </div>
+                <div class="header__tab--search">
+                    <form>
+                        <input type="text" name="search" placeholder="여기에서 검색">
+                    </form>
+                    <img src="./assets/search.svg" alt ="검색 아이콘" />
+                    <img src="./assets/arrow.svg" alt="화살표 아이콘" />
+                </div>
+                <div class="header__tab" onclick = "location.href = './subpage.html'">
+                    <img src="./assets/person.svg" alt="계정 아이콘" />
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            <article class="article">
+                <div class="article__title">
+                    <div class="article__title__left">
+                        <h1>로그인</h1>
+                    </div>
+                </div>
+                <div class="article__text" style="margin-top: 3em; display: flex; justify-content: center;">
+                    <form style="text-align: left;">
+                        <label for="id"><p>Email</p></label>
+                        <input id="id" type="email" />
+                        <label for="pw"><p>Password</p></label>
+                        <input id="pw" type="password" />
+                        <p><a href="#">비밀번호를 잊으셨나요?</a></p>
+                        <br>
+                        <br>
+                        <div class="article__button-wrapper" style="justify-content: space-between;">
+                            <div class="article__button-wrapper">
+                                <input type="checkbox" /><span>&nbsp;&nbsp;자동 로그인</span>
+                            </div>
+                            <div class="article__button-wrapper">
+                                <div class="article__button-wrapper">
+                                    <div class="article__button">계정 만들기</div>
+                                </div>
+                                <div class="article__button-wrapper">
+                                    <div class="article__button--primary">로그인</div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </article>
+            <aside class="aside">
+                <div class="aside__ranking">
+                    1&nbsp;&nbsp;&nbsp;
+                    <a href="https://github.com/mindongdong/cislab-web-study">cislab-web-study</a>
+                </div>
+                <div class="aside__recent">
+                    <div class="aside__recent__title">
+                        <div class="aside__recent__title__left">
+                            <img src="./assets/clockGray.svg">
+                            &nbsp;&nbsp;최근 변경
+                        </div>
+                        <img src="./assets/next.svg">
+                    </div>
+                    <div class="aside__recent__content">
+                        <div class="aside__recent__content__left">
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#cislab-%EC%9B%B9-%EA%B0%9C%EB%B0%9C-%EC%8A%A4%ED%84%B0%EB%94%94">CISLAB 웹 개발 스터...</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%EC%86%8C%EA%B0%9C">소개</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%EC%B0%B8%EC%97%AC%EC%9E%90">참여자</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%EC%8A%A4%ED%84%B0%EB%94%94-%EA%B7%9C%EC%B9%99">스터디 규칙</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%EC%BB%A4%EB%A6%AC%ED%81%98%EB%9F%BC">커리큘럼</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%ED%8C%80-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8">팀 프로젝트</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%EC%B6%94%EC%B2%9C-%EA%B0%95%EC%9D%98">추천 강의</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0">프로젝트 구조</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study/blob/main/resources/references/vscode-extensions.md">VSCode 필수 확장...</a><br>
+                            <a href="https://github.com/mindongdong/cislab-web-study?tab=readme-ov-file#-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0">Git 사용 가이드</a><br>
+                        </div>
+                        <div class="aside__recent__content__right">
+                            3초 전<br>
+                            14초 전<br>
+                            15초 전<br>
+                            9분 전<br>
+                            26분 전<br>
+                            53분 전<br>
+                            58분 전<br>
+                            97분 전<br>
+                            9시간 전<br>
+                            32시간 전<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="aside__advertisement">
+                    <img src="./assets/puang.svg" alt="푸앙이" style="height: 10em;" /><br>
+                    <span style="font-family: 'Pretendard-Bold'; font-size: 2.5em;"><br>광고</span>
+                </div>
+                <div class="aside__recent--news">
+                    <div class="aside__recent__title">
+                        <div class="aside__recent__title__left">
+                            <img src="./assets/news.svg">
+                            &nbsp;&nbsp;푸앙뉴스
+                        </div>
+                        <img src="./assets/next.svg">
+                    </div>
+                    <div class="aside__recent__content">
+                        <div class="aside__recent__content__left">
+                            <a href="https://www.cau.ac.kr/cms/FR_CON/BoardView.do?SITE_NO=2&BBS_SEQ=28782&BOARD_SEQ=4&MENU_ID=100">2025학년도 하기 계절학기 ...</a><br>
+                            <a href="https://www.cau.ac.kr/cms/FR_CON/BoardView.do?SITE_NO=2&BBS_SEQ=28916&BOARD_SEQ=4&MENU_ID=100">2025학년도 2학기 수강신...</a><br>
+                            <a href="https://www.cau.ac.kr/cms/FR_CON/BoardView.do?SITE_NO=2&BBS_SEQ=28869&BOARD_SEQ=4&MENU_ID=100">2025학년도 2학기 재입학·...</a><br>
+                            <a href="https://www.cau.ac.kr/cms/FR_CON/BoardView.do?SITE_NO=2&BBS_SEQ=28391&BOARD_SEQ=4&MENU_ID=100">2025학년도 하계 디지털·금...</a><br>
+                            <a href="https://www.cau.ac.kr/cms/FR_CON/BoardView.do?SITE_NO=2&BBS_SEQ=28969&BOARD_SEQ=4&MENU_ID=100">205관 신축 관련 부대공사 ...</a><br>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <footer class="footer">
+            <div class="footer__wrapper">
+                <img src="./assets/logoColored.png" />
+                <div class="footer__text">
+                    puang.wiki&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="https://github.com/mindongdong/cislab-web-study/tree/main/frontend/members/kim-dogyun">Contacts</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="https://github.com/mindongdong/cislab-web-study/tree/main/frontend/assignments/week01_assignment">Terms of Service</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    Operated by CISLAB@CAU&nbsp;&nbsp;&nbsp;&nbsp;
+                    Made with ❤️ in Anseong, Korea<br>
+                    Time zone in Asia/Seoul&nbsp;&nbsp;&nbsp;&nbsp;
+                    Powered by HTML&CSS
+                </div>
+            </div>
+                <div class="footer__text--notice">
+                    This site is not protected by reCAPTCHA and the Google 
+                    <a href="https://policies.google.com/privacy">Privacy Policy</a> and 
+                    <a href="https://policies.google.com/terms">Terms of Service</a> does not apply.
+                </div>
+        </footer>
+    </body>
+</html>
