@@ -40,7 +40,7 @@ CISLAB 웹 개발 스터디는 프론트엔드와 백엔드 개발을 학습하�
 | 김도균 | Frontend Developer | [tansan7271](https://github.com/tansan7271)      |
 | 오성진 | Backend Developer  | [Bcyan77](https://github.com/Bcyan77)         |
 | 김진서 | Backend Developer  | [tragicoding](https://github.com/tragicoding/)    |
-| 김주환 | Backend Developer  | [github](https://github.com)    |
+| 김주환 | Backend Developer  | [jkwltx177](https://github.com/jkwltx177)    |
 
 ## 📌 스터디 규칙
 
@@ -116,7 +116,7 @@ CISLAB 웹 개발 스터디는 프론트엔드와 백엔드 개발을 학습하�
 | 팀     | 프론트엔드 | 백엔드 |
 | ------ | ---------- | ------ |
 | Team 1 | 최선미     | 오성진 |
-| Team 2 | 김도균     | 김진서 |
+| Team 2 | 김도균     | 김진서 | 김주환 |
 
 ### 📝 프로젝트 규칙
 
