@@ -1,47 +1,19 @@
-# Week 3: Git 협업 워크플로우 및 실전 활용
+# 📚 Week 3 - Git 명령어 및 Git 전략
 
-## 📚 학습 자료
+Git 동작 원리, 브랜치 전략, 협업 워크플로우를 학습하는 주차입니다.
 
-이번 주차에서는 Git의 핵심 명령어와 실제 협업 상황에서 자주 마주치는 케이스들을 학습합니다.
+## 📋 학습 내용 출처 자료
 
-### 제공된 학습 자료
+### :gear: Git 동작 원리 및 워크플로우
 
-1. **[Git 명령어 완벽 가이드](./git-commands-visual-guide.html)**
-   - Git의 모든 필수 명령어를 시각적으로 설명
-   - 각 명령어의 개념과 사용법을 한눈에 파악
-   - 실전 팁과 함께 구성
+- [Git 동작 원리 + git Pull Request + Git 워크 플로우](https://velog.io/@turtle601/Git-동작-원리-Git-워크-플로우)
 
-2. **[Git 케이스 스터디](./git-case-studies-visual.html)**
-   - 실제 개발하면서 자주 발생하는 상황별 해결 방법
-   - git add 되돌리기, commit 취소, 충돌 해결 등
-   - 단계별 해결 방법을 시각적으로 제시
+### :twisted_rightwards_arrows: Git 브랜치 전략
 
-## 📝 과제 안내
+- [Git (2) Git-flow / Trunk-based](https://velog.io/@boseong-choi/git2)
+- [야구로 쉽게 이해해 보는 Git Flow 전략 이야기](https://www.sktenterprise.com/bizInsight/blogDetail/dev/11737)
+- [Git 브랜치 전략(Git Flow, Github Flow, Trunk-Based Development)](https://wonsss.github.io/etc/git-branch-strategy/)
 
-### 과제 목표
-Git 명령어를 실습하고, 실제 상황에서 문제를 해결하는 경험을 쌓기
+### :movie_camera: 추천 강의 영상
 
-### 과제 내용
-
-1. **Git 실습 기록**
-   - 제공된 학습 자료를 참고하여 각 명령어를 직접 실습
-   - 실습 과정과 결과를 스크린샷과 함께 정리
-
-2. **케이스 스터디 실습**
-   - 학습 자료에 있는 3가지 케이스를 모두 실습
-   - 각 케이스별로 해결 과정을 단계별로 기록
-
-3. **추가 실습 (선택)**
-   - 브랜치 병합 시나리오 실습
-   - rebase vs merge 비교
-   - git stash 활용 사례
-
-### 제출 방법
-
-1. 자신의 members 폴더에 week3 디렉토리 생성
-   ```
-   [your-position]/members/[your-name]/week3/
-   ```
-
-2. 다음 파일들을 포함하여 제출:
-   - `README.md`: 블로그 링크 및 내용 정리
+- **(알아두면 개발팀장가능) GitFlow vs Trunk-based 협업방식**: https://youtu.be/EV3FZ3cWBp8?si=IZDOlNJqE0mc3Oa3
