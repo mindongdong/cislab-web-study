@@ -40,7 +40,7 @@ Git 명령어를 실습하고, 실제 상황에서 문제를 해결하는 경험
 
 1. 자신의 members 폴더에 week3 디렉토리 생성
    ```
-   common/members/[your-name]/week3/
+   [your-position]/members/[your-name]/week3/
    ```
 
 2. 다음 파일들을 포함하여 제출:
