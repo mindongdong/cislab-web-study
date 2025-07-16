@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 -0.5 20 20"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="book.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.00875"
+     inkscape:cx="399.00867"
+     inkscape:cy="400"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <title
+     id="title1">book [#1207]</title>
+  <desc
+     id="desc1">Created with Sketch.</desc>
+  <defs
+     id="defs1" />
+  <g
+     id="Page-1"
+     stroke="none"
+     stroke-width="1"
+     fill="none"
+     fill-rule="evenodd"
+     transform="matrix(0.81999605,0,0,0.81999605,1.8000395,1.7100375)"
+     style="fill:#4898bd;fill-opacity:1">
+    <g
+       id="Dribbble-Light-Preview"
+       transform="translate(-260,-2759)"
+       fill="#000000"
+       style="fill:#4898bd;fill-opacity:1">
+      <g
+         id="icons"
+         transform="translate(56,160)"
+         style="fill:#4898bd;fill-opacity:1">
+        <path
+           d="m 222,2612.4071 c 0,0.4386 -0.271,0.8288 -0.676,0.9716 l -6.324,2.2267 v -11.8904 -0.1818 l 5.676,-1.9987 c 0.649,-0.229 1.324,0.2661 1.324,0.9717 z m -9,-8.6921 v 11.8904 l -6.324,-2.2267 c -0.405,-0.1428 -0.676,-0.533 -0.676,-0.9716 v -9.9009 c 0,-0.7056 0.675,-1.2007 1.324,-0.9717 l 5.676,1.9987 z m 8.337,-4.5971 -7.006,2.5265 c -0.214,0.077 -0.448,0.077 -0.662,0 l -7.006,-2.5265 c -1.301,-0.4694 -2.663,0.5217 -2.663,1.938 v 12.0599 c 0,0.8812 0.547,1.6649 1.36,1.9463 l 8.32,2.884 c 0.208,0.072 0.432,0.072 0.64,0 l 8.32,-2.884 c 0.813,-0.2814 1.36,-1.0651 1.36,-1.9463 v -12.0599 c 0,-1.4163 -1.362,-2.4074 -2.663,-1.938 z"
+           id="book-[#1207]"
+           style="fill:#4898bd;fill-opacity:1" />
+      </g>
+    </g>
+  </g>
+</svg>
