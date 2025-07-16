@@ -16,4 +16,6 @@ Git 동작 원리, 브랜치 전략, 협업 워크플로우를 학습하는 주�
 
 ### :movie_camera: 추천 강의 영상
 
+- **제대로 파는 Git & GitHub (대학생 전체강의 반값할인)**: https://youtu.be/1I3hMwQU6GU?si=J7ScKRdF62x9bRhJ
 - **(알아두면 개발팀장가능) GitFlow vs Trunk-based 협업방식**: https://youtu.be/EV3FZ3cWBp8?si=IZDOlNJqE0mc3Oa3
+- **CI/CD 5분 개념 정리 (현업에서 쓰는 개발 프로세스)**: https://youtu.be/0Emq5FypiMM?si=_b5lZj3am8uX0wZ4
