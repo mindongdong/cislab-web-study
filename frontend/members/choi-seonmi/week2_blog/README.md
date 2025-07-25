@@ -1,4 +1,4 @@
-블로그 링크: [OSI 참조 모델과 TCP/IP 프로토콜 계층 구조](https://choisunmi00.github.io/posts/%EA%B3%84%EC%B8%B5%EA%B5%AC%EC%A1%B0/)
+블로그 링크: [OSI 참조 모델과 TCP/IP 프로토콜 계층 구조](https://choisunmi00.github.io/deploy/posts/tcpip/)
 
 ## 한 눈에 보기
 

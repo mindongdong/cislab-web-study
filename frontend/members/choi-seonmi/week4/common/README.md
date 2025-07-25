@@ -1,4 +1,4 @@
-블로그 링크: [Git으로 일어나는 일](https://choisunmi00.github.io/posts/git/)
+블로그 링크: [Git으로 일어나는 일](https://choisunmi00.github.io/deploy/posts/git/)
 
 - Git 편하게 사용하기
 - Conflict
