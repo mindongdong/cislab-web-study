@@ -1,0 +1,462 @@
+#root {
+  height: 100vh;
+  font-family: "Pretendard-Regular";
+  color: #3e3f29;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.background {
+  margin: 0;
+  padding: 1em;
+  background-color: #dccfc0;
+  display: flex;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.bookList {
+  margin: 0;
+  background-color: #f1f0e4;
+  border-radius: 1em;
+  vertical-align: top;
+  flex-basis: 25%;
+  box-shadow: 0 0 20px 0 rgba(188, 168, 141, 10);
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 25%;
+}
+
+.bookForm {
+  margin: 0 0 0 1em;
+  padding: 2em;
+  background-color: #f1f0e4;
+  border-radius: 1em;
+  vertical-align: top;
+  flex-grow: 1;
+  box-shadow: 0 0 20px 0 rgba(188, 168, 141, 10);
+  display: flex;
+  flex-direction: column;
+}
+
+.lobster-regular {
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 3em;
+  color: #3e3f29;
+}
+
+.bookListTitle {
+  border-radius: 1em;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+.bookListTitleBottom {
+  border-radius: 1em;
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(transparent 20%, rgba(241, 240, 228, 1));
+  mask: linear-gradient(transparent, black 50%);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  height: 7em;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+}
+
+.bookListDeleteButton {
+  border-radius: 1em;
+  margin: 1em;
+  padding: 1em;
+  transition: all 0.25s;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.bookListDeleteButton:hover {
+  transform: scale(1.25);
+  color: #3e3f29;
+  text-shadow: 0px 0px 20px rgba(62, 63, 41, 0.5);
+}
+
+.bookListDeleteButton:active {
+  transform: scale(0.9);
+  color: #3e3f29;
+}
+
+.bookListTitleBackgroundBlur {
+  border-radius: 1em;
+  mask: linear-gradient(black 60%, black, transparent);
+  backdrop-filter: blur(10px);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.bookListTitleBackground {
+  border-radius: 1em;
+  background: linear-gradient(rgba(241, 240, 228, 1) 50%, transparent);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.bookListTitleLogo {
+  margin: 0 0 0.5em 0;
+  padding: 2em 2em 0 2em;
+  display: flex;
+  justify-content: space-between;
+  z-index: 20;
+  position: relative;
+}
+
+.bookListTitleCount {
+  margin: 0 0 0.5em 0;
+  padding: 0 2em 2em 2em;
+  display: flex;
+  justify-content: space-between;
+  z-index: 20;
+  position: relative;
+}
+
+.bookListTitleLogo > img {
+  height: 3em;
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard-Bold";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff")
+    format("woff");
+  font-weight: 700;
+  font-style: bold;
+}
+
+.bookListItem {
+  margin: 2em 0;
+  padding: 0 2em;
+  height: 100%;
+  overflow-x: visible;
+  overflow-y: auto;
+  z-index: 9;
+  flex-grow: 1;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.bookListItem::-webkit-scrollbar {
+  display: none;
+}
+
+.bookItem {
+  margin: 0 0 1em 0;
+  padding: 1em;
+  border-radius: 1em;
+  background-color: #dccfc0;
+  transition: all 0.25s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 3;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+
+.bookItemDelete {
+  border-radius: 1em;
+  background-color: #796956;
+  color: #dccfc0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2em 1em 0.5em 1em;
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  transition: all 0.25s;
+  display: flex;
+}
+
+.bookItemDelete .activate {
+  opacity: 1;
+}
+
+.bookItemDelete:hover {
+  background-color: rgb(190, 39, 12);
+  color: white;
+}
+
+.bookItemDelete:active {
+  background-color: rgb(126, 8, 8);
+}
+
+.bookItemLeft {
+  max-width: 100%;
+}
+
+.bookItemLeftName {
+  margin: 0 0 0.25em 0;
+  font-family: "Pretendard-Bold";
+  color: #3e3f29;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.bookItemLeftReview {
+  padding: 0 1em 0 0;
+  color: #3e3f29;
+  overflow-wrap: break-word;
+}
+
+.bookItemRight {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: right;
+}
+
+.bookItemRightAuthor {
+  margin: 0.5em 0 0.25em 0;
+  color: #b6a085;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.bookItemRating {
+  display: flex;
+  justify-content: right;
+}
+
+.bookItemRightRatingStar {
+  display: flex;
+  justify-content: left;
+  position: relative;
+}
+
+.bookItemRightRatingStar > img {
+  height: 1.25em;
+  bottom: 0;
+  position: absolute;
+  z-index: 7;
+}
+
+.bookItemRightRatingColor {
+  background: #b6a085;
+  margin: 0.05em;
+  height: 1.15em;
+  width: 5.5em;
+  z-index: 5;
+}
+
+.bookItemRightRatingColorFilled {
+  background: #3e3f29;
+  margin: 0.05em;
+  height: 1.15em;
+  width: 3em;
+  position: absolute;
+  z-index: 6;
+}
+
+.bookFormTitle {
+  margin: 0 0 3em 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bookFormTitleButton {
+  width: 4em;
+  margin: 0.5em 0 0 0;
+  padding: 1em;
+  background-color: #dccfc0;
+  border-radius: 1em;
+  font-family: "Pretendard-Bold";
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookFormTitleButton:hover {
+  background-color: #b6a085;
+  box-shadow: 0 0 20px 0 rgba(188, 168, 141, 0.5);
+  transform: scale(1.1);
+}
+
+.bookFormTitleButton:active {
+  background-color: #796956;
+  transform: scale(0.9);
+}
+
+.bookFormInput {
+  margin: 1em 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bookFormInput:first-child {
+  margin: 0;
+}
+
+.bookFormInput > input {
+  padding: 1em;
+  border: none;
+  border-radius: 1em;
+  background-color: #dccfc0;
+  font-family: "Pretendard-Regular";
+  width: 90%;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.bookFormInput > textarea {
+  resize: none;
+  padding: 1em;
+  border: none;
+  border-radius: 1em;
+  background-color: #dccfc0;
+  font-family: "Pretendard-Regular";
+  width: 90%;
+  font-size: 1em;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #b6a085;
+}
+
+.bookFormInputRating {
+  padding: 1em;
+  border: none;
+  border-radius: 1em;
+  background-color: #dccfc0;
+  font-family: "Pretendard-Regular";
+  width: 90%;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin: 0 1em;
+  appearance: none;
+  background-color: rgba(241, 240, 228, 0.5);
+  border-radius: 1em;
+  height: 1em;
+  box-sizing: border-box;
+}
+
+[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 3rem;
+  height: 1rem;
+  border-radius: 1em;
+  background-color: #b6a085;
+  transition: all 0.1s ease-in-out;
+}
+
+[type="range"]::-webkit-slider-thumb:active {
+  background-color: #3e3f29;
+}
+
+.bookItemWrapper {
+  opacity: 1;
+  height: auto;
+  transform: scale(1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+}
+
+.bookItemWrapper.appear.fade-out {
+  opacity: 0;
+  transform: scale(0);
+  pointer-events: none;
+  flex: 0;
+  height: 0;
+}
+
+.bookItemWrapper.before-appear {
+  opacity: 0;
+  transform: scale(0.1);
+}
+
+.bookItemWrapper.appear {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.bookItemDeleteHelper {
+  transition: all 0.3s;
+}
+
+.bookAnimation {
+  overflow: hidden;
+  position: absolute;
+  border-radius: 5em;
+  height: 72.5%;
+  width: 62.5%;
+  bottom: 3em;
+  right: 3em;
+  padding: 1em;
+  z-index: 30;
+  box-sizing: border-box;
+  background-color: #dccfc0;
+  opacity: 0;
+  transform: scale(1) scaleX(1) scaleY(1);
+  box-shadow: 0 0 90px rgba(121, 105, 86, 0.5);
+  margin-left: 0;
+  transition: opacity 0.1s, transform 0.4s ease, margin-right 0.4s ease-in-out,
+    bottom 0.4s, background-color 0.4s;
+  pointer-events: none;
+}
+
+.bookAnimation.isAdding {
+  opacity: 1;
+  transform: scale(0);
+  margin-right: 55%;
+  bottom: -200px;
+}
+
+.bookAnimation.isAddingFinished {
+  background-color: #dccfc0;
+  opacity: 0;
+  transform: scale(1);
+  transition: none;
+}
