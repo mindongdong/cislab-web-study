@@ -25,7 +25,7 @@
 (3) 전체 카테고리 목록 리스트 조회
 (4) 새 도서 등록 -isbn 중복 확인후 resposne
 (5) 새 카테고리 등록 -name_exist로 중복 검사후 response
-(6) 도서 정보 수정 -book_exist로 실제 존재 확인후 resposne
+(6) 도서 정보 수정 -book로 실제 존재 확인후 resposne
 (7) 도서 삭제
 (8) 재고관리 - quantity와 operation 변수
 
