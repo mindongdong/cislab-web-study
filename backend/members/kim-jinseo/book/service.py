@@ -6,6 +6,9 @@ from fastapi import HTTPException
 
 from layers.DTO import BookModel,CategoryModel
 
+import sys,os
+sys.path.append(os.path.join(os.path.dirname((__file__),'..')))
+
 # 고찰1 : scalar() 와 get()... get()은 PK값으로만 조회 가능하지만, 캐시로 접근하기 때문에 훨씬 빠르다.
 # 고찰2 : sqlalchemy의 get(), dict의 get()
 
@@ -31,13 +34,13 @@ def read_all_book_list(session:Session, search=None, category_id = None, min_pri
 #id조회 도서목록 조회
 def read_book_by_id(book_id : int, session : Session):
     #book = session.scalar(select(Book).where(Book.id==book_id))
-    book = session.get(Book,book_id) #캐시로 접근하기 때문에 더 빠르다. 어차피 PK로 접근 할거면
+    book = session.get(Book,book_id) #캐시로 접근하기 때문에 더 빠르다. 어차피 PK로 접근 할거면. README 참고
     if not book:
         raise HTTPException(status_code=404, detail='Not Found')
     return book
 
 #전체 카테고리 목록 리스트 조회
-def read_all_category_list(session : Session)
+def read_all_category_list(session : Session):
     return session.scalars(select(Category)).all()
 
 #새 도서 등록
@@ -76,9 +79,9 @@ def update_book(book_id : int , session : Session , update_data : BookModel):
     if not book_exist:
         raise HTTPException(status_code=404, detail='not found')
     
-    updated_book = Book(update_data.model_dump(exclude_unset=True))
+    updated_book = Book(**update_data.model_dump(exclude_unset=True))
     for column,value in updated_book.items():
-        setattr(book, column, value) #ORM 테이블 Book의 해당 속성을 동적으로 수정
+        setattr(updated_book, column, value) #ORM 테이블 Book의 해당 객체 속성을 동적으로 수정
     session.commit()
     session.refresh(updated_book)
     return updated_book
@@ -116,6 +119,6 @@ def update_stock(session : Session , book_id : int, payload: dict):
     
     session.commit()
     session.refresh(book)
-    retrun book
+    return book
     
     

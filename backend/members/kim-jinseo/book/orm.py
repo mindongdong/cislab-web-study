@@ -1,6 +1,8 @@
 from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, Integer,VARCHAR, DATE, TIMESTAMP, String, func, ForeignKey, Text
 from sqlalchemy.orm import relationship
+import sys,os
+sys.path.append(os.path.join(os.path.dirname((__file__),'..')))
 
 Base = declarative_base()
 

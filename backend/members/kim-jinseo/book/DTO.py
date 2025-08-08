@@ -1,6 +1,8 @@
 from pydantic import BaseModel, StringConstraints, ConfigDict
 from typing import Annotated, List
 from datetime import datetime,date
+import sys,os
+sys.path.append(os.path.join(os.path.dirname((__file__),'..')))
 
 a_str = Annotated[str, StringConstraints(max_length=200)]
 b_str = Annotated[str,StringConstraints(max_length=100)]
