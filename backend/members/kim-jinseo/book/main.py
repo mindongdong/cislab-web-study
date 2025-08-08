@@ -1,6 +1,8 @@
 from fastapi import FastAPI, Depends, Query
 from sqlalchemy.orm import Session
 from typing import List, Optional
+import sys,os
+sys.path.append(os.path.join(os.path.dirname((__file__),'..')))
 
 
 from layers.connection import get_db
