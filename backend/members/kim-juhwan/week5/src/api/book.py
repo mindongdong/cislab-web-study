@@ -2,7 +2,7 @@ from typing import List
 
 from database.connection import get_db
 from database.orm import Book
-from database.repository import get_books, get_book_by_book_id, create_book, update_book, delete_book
+from database.repository import get_books, get_book_by_book_id, create_book, update_book, delete_book, update_book_stock
 from fastapi import Depends, HTTPException, APIRouter, Query
 
 from schema.request import CreateBookRequest, UpdateBookRequest, UpdateStockRequest
