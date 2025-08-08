@@ -20,10 +20,10 @@ def get_categories_handler(
 
     if order and order == "DESC":
         return CategoryListSchema(
-            books=[CategorySchema.from_orm(category) for category in categories[::-1]]
+            categories=[CategorySchema.from_orm(category) for category in categories[::-1]]
         )
     return CategoryListSchema(
-        todos=[CategorySchema.from_orm(category) for category in categories]
+        categories=[CategorySchema.from_orm(category) for category in categories]
     )
 
 

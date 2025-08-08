@@ -69,7 +69,6 @@ class Category(Base):
     @classmethod
     def create(cls, request: CreateCategoryRequest) -> "Category":
         return cls(
-            title=request.title,
             name=request.name,
             description=request.description
         )
