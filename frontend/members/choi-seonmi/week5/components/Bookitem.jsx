@@ -1,8 +1,8 @@
 
-const Bookitem = ({books, onClickDelButton}) => {
+const Bookitem = ({books, onClickDelButton, theme}) => {
     if (books.length == 0) {
         return (
-            <div className='Booklist'>
+            <div className={`Booklist Booklist-${theme}`}>
                 <h3>☰ &nbsp; 읽은 책의 목록</h3>
                 <div>
                     <p>✔ 읽은 책: {books.length}권</p>
@@ -13,15 +13,15 @@ const Bookitem = ({books, onClickDelButton}) => {
     }
     else {
         return (
-            <div className='Bookitem'>
+            <div className={`Booklist Booklist-${theme}`}>
                 <h3>☰ &nbsp; 읽은 책의 목록</h3>
                 <div>
                     <p>✔ 읽은 책: {books.length}권</p>
                     {books.map((book) => (
-                        <div key={book.id} className="card">
+                        <div key={book.id} className={`card card-${theme}`}>
                             <div className='Bookitem-text'>
                                 <button 
-                                    className='button-del' 
+                                    className={`button-del button-del-${theme}`}
                                     onClick={() => onClickDelButton(book.id)}
                                 >
                                     ╳
