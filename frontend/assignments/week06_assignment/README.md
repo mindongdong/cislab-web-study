@@ -22,7 +22,8 @@
 - **BookReducer 구현**
     
     ```javascript
-    // 액션 타입 예시const ACTION_TYPES = {  ADD_BOOK: 'ADD_BOOK',  DELETE_BOOK: 'DELETE_BOOK',  UPDATE_BOOK: 'UPDATE_BOOK',  LOAD_BOOKS: 'LOAD_BOOKS',  TOGGLE_FAVORITE: 'TOGGLE_FAVORITE'};
+    // 액션 타입 예시
+const ACTION_TYPES = {  ADD_BOOK: 'ADD_BOOK',  DELETE_BOOK: 'DELETE_BOOK',  UPDATE_BOOK: 'UPDATE_BOOK',  LOAD_BOOKS: 'LOAD_BOOKS',  TOGGLE_FAVORITE: 'TOGGLE_FAVORITE'};
     ```
     
 - useState 대신 useReducer로 책 목록 상태 관리
