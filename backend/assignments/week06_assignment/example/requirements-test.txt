@@ -1,0 +1,37 @@
+# Test dependencies for the book management API
+# Core testing framework
+pytest==7.4.0
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+pytest-mock==3.11.1
+
+# FastAPI testing
+httpx==0.24.1
+requests==2.31.0
+
+# Database testing
+pytest-postgresql==5.0.0
+sqlalchemy-utils==0.41.1
+
+# Mocking and fixtures
+responses==0.23.3
+factory-boy==3.3.0
+faker==19.3.1
+
+# Coverage and reporting
+coverage==7.2.7
+pytest-html==3.2.0
+
+# Additional testing utilities
+freezegun==1.2.2  # Time mocking
+pytest-xdist==3.3.1  # Parallel test execution
+pytest-order==1.1.0  # Test execution order
+
+# Development dependencies (if not in main requirements)
+python-dotenv==1.0.0
+pydantic==1.10.12
+fastapi==0.103.0
+uvicorn==0.23.2
+sqlalchemy==1.4.49
+pymysql==1.1.0
+cryptography==41.0.4
