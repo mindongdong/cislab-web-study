@@ -1,0 +1,159 @@
+.bookList {
+  margin: 0;
+  background-color: var(--foreground-color);
+  border-radius: 1em;
+  vertical-align: top;
+  flex-basis: 25%;
+  box-shadow: 0 0 20px 0 var(--slightly-pale-color);
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 25%;
+  transition: all 0.3s;
+}
+
+.bookListTitle {
+  border-radius: 1em;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.bookListTitleBottom {
+  border-radius: 1em;
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(transparent 20%, var(--foreground-color));
+  mask: linear-gradient(transparent, black 50%);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  height: 7em;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.14, 1.89, 0.58, 1);
+}
+
+.bookListTitleBottomWrapper {
+  display: flex;
+  height: 7em;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.bookListDeleteButton {
+  border-radius: 1em;
+  margin: 1em;
+  padding: 1em;
+  transition: all 0.25s;
+  display: flex;
+  justify-content: left;
+  align-items: end;
+}
+
+.bookListDeleteButton:hover {
+  transform: scale(1.25);
+  color: var(--primary-text-color);
+  text-shadow: 0px 0px 20px var(--secondary-text-color);
+}
+
+.bookListDeleteButton:active {
+  transform: scale(0.9);
+  color: var(--primary-text-color);
+}
+
+.bookListTitleBackgroundBlur {
+  border-radius: 1em;
+  mask: linear-gradient(black 60%, black, transparent);
+  backdrop-filter: blur(10px);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  transition: all 0.15s;
+}
+
+.bookListTitleBackground {
+  border-radius: 1em;
+  background: linear-gradient(var(--foreground-color) 68%, transparent);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  transition: all 0.1s;
+}
+
+.bookListTitleLogo {
+  margin: 0 0 0.5em 0;
+  padding: 2em 2em 0 2em;
+  display: flex;
+  justify-content: space-between;
+  z-index: 20;
+  position: relative;
+  pointer-events: all;
+}
+
+.bookListTitleLogo > img {
+  height: 3em;
+}
+
+.bookListItem {
+  margin: 2em 0;
+  padding: 0 2em;
+  height: 100%;
+  overflow-x: visible;
+  overflow-y: auto;
+  z-index: 9;
+  flex-grow: 1;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.bookListItem::-webkit-scrollbar {
+  display: none;
+}
+
+.bookListStat {
+  width: 100%;
+  padding: 0 2em;
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.14, 1.89, 0.58, 1);
+}
+
+.bookListStatBackground {
+  width: 100%;
+  background-color: var(--background-transparent-color);
+  border-radius: 1em;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.darkModeButton {
+  padding: 0.5em;
+  background-color: var(--background-color);
+  border-radius: 1em;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.darkModeButton:hover {
+  background-color: var(--secondary-text-color);
+  box-shadow: 0 0 20px 0 var(--slightly-pale-color);
+  transform: scale(1.1);
+}
+
+.darkModeButton:active {
+  background-color: var(--highlight-color);
+  transform: scale(0.9);
+}
