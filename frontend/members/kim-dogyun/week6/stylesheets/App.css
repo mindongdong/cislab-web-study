@@ -1,0 +1,185 @@
+#root {
+  height: 100vh;
+  font-family: "Pretendard-Regular";
+  color: var(--primary-text-color);
+  overflow: hidden;
+}
+
+:root[color-theme="light"] {
+  --foreground-color: #f1f0e4;
+  --background-color: #dccfc0;
+  --primary-text-color: #3e3f29;
+  --secondary-text-color: #b6a085;
+  --highlight-color: #796956;
+  --slightly-pale-color: #e2d8cb;
+  --danger-color: rgb(190, 39, 12);
+  --danger-active-color: rgb(126, 8, 8);
+  --background-transparent-color: rgba(220, 207, 192, 0.5);
+  --transparent-color: rgba(0, 0, 0, 0);
+}
+
+:root[color-theme="dark"] {
+  --foreground-color: #796956;
+  --background-color: #5f5241;
+  --primary-text-color: #dcd7c9;
+  --secondary-text-color: #948068;
+  --highlight-color: #b6a085;
+  --slightly-pale-color: #504638;
+  --danger-color: rgb(255, 81, 81);
+  --danger-active-color: rgb(231, 46, 46);
+  --background-transparent-color: rgba(95, 82, 65, 0.5);
+  --transparent-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.background {
+  margin: 0;
+  padding: 1em;
+  background-color: var(--background-color);
+  display: flex;
+  height: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+
+.lobster-regular {
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 3em;
+  color: var(--primary-text-color);
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard-Bold";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff")
+    format("woff");
+  font-weight: 700;
+  font-style: bold;
+}
+
+.bookItemDeleteHelper {
+  transition: all 0.3s;
+}
+
+.bookAnimation {
+  overflow: hidden;
+  position: absolute;
+  border-radius: 5em;
+  height: 72.5%;
+  width: 62.5%;
+  bottom: 3em;
+  right: 3em;
+  padding: 1em;
+  z-index: 30;
+  box-sizing: border-box;
+  background-color: var(--background-color);
+  opacity: 0;
+  transform: scale(1) scaleX(1) scaleY(1);
+  box-shadow: 0 0 90px var(--secondary-text-color);
+  margin-left: 0;
+  transition: opacity 0.1s, transform 0.4s ease, margin-right 0.4s ease-in-out,
+    bottom 0.4s, background-color 0.4s;
+  pointer-events: none;
+}
+
+.bookAnimation.isAdding {
+  opacity: 1;
+  transform: scale(0);
+  margin-right: 55%;
+  bottom: -200px;
+}
+
+.bookAnimation.isAddingFinished {
+  background-color: var(--background-color);
+  opacity: 0;
+  transform: scale(1);
+  transition: none;
+}
+
+.bookBlocker {
+  position: absolute;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  display: flex;
+  pointer-events: none;
+}
+
+.bookListBlocker {
+  height: 100%;
+  background-color: var(--background-transparent-color);
+  width: 25%;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+
+.bookFormBlocker {
+  margin: 0 0 0 1em;
+  height: 100%;
+  background-color: var(--background-transparent-color);
+  flex-grow: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+
+.bookListBlocker.active {
+  height: 100%;
+  background-color: var(--background-transparent-color);
+  width: 26%;
+  opacity: 1;
+  pointer-events: auto;
+  backdrop-filter: blur(5px);
+}
+
+.bookFormBlocker.active {
+  height: 100%;
+
+  background-color: var(--background-transparent-color);
+  flex-grow: 1;
+  opacity: 1;
+  pointer-events: auto;
+  backdrop-filter: blur(5px);
+}
+
+.bookEditAnimation {
+  overflow: hidden;
+  position: fixed;
+  border-radius: 2em;
+  height: auto;
+  width: 62.5%;
+  bottom: 3em;
+  right: 3em;
+  padding: 1em;
+  z-index: 30;
+  box-sizing: border-box;
+  background-color: var(--background-color);
+  opacity: 0;
+  transform: scale(1) scaleX(1) scaleY(1);
+  box-shadow: 0 0 90px var(--secondary-text-color);
+  margin-left: 0;
+  transition: opacity 0.3s cubic-bezier(0.97, 0.01, 0.89, 0.41),
+    transform 0.9s cubic-bezier(0.63, 0.04, 0, 0.99),
+    margin-right 0.9s cubic-bezier(0.63, 0.04, 0, 0.99),
+    top 0.9s cubic-bezier(0.63, 0.04, 0, 0.99), background-color 0.3s;
+  pointer-events: none;
+}
