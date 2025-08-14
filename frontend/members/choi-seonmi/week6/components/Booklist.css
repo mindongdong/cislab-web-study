@@ -1,0 +1,40 @@
+.Booklist {
+  margin: 0 auto;
+  width: 300px;
+}
+
+.Booklist-dark {
+  color: rgb(232, 232, 232);
+}
+
+.p-noread {
+  margin: 0 auto;
+  width: 200px;
+  text-align: center;
+  line-height: 200px;
+}
+
+.Bookitem {
+  margin: 0 auto;
+  width: 300px;
+}
+
+.p-last {
+  margin-bottom: 16px;
+
+}
+
+.filter-button {
+  cursor: pointer;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.filter-button-dark {
+  background-color: #5a5a5a;
+  color: rgb(232, 232, 232)
+}
