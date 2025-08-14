@@ -70,7 +70,7 @@ def sample_book():
 5. **DELETE /books/{book_id} 테스트**
     
     - 정상 삭제 ✅
-    - 존재하지 않는 도서 삭제 시도
+    - 존재하지 않는 도서 삭제 시도 ✅
     - 삭제 후 재조회 확인
 6. **PATCH /books/{book_id}/stock 테스트**
     
