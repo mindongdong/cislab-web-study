@@ -75,13 +75,13 @@ def create_category(session : Session, category_data : CategoryModel):
 #도서 정보 수정
 def update_book(book_id : int , session : Session , update_data : BookModel): 
     #book_exist = session.scalar(select(Book).where(Book.id==update_data.id))
-    book_exist = session.get(Book, book_id) #실존 확인용 book_exist
-    if not book_exist:
+    book= session.get(Book, book_id) #실존 확인용 book
+    if not book:
         raise HTTPException(status_code=404, detail='not found')
     
     updated_book = Book(**update_data.model_dump(exclude_unset=True))
     for column,value in updated_book.items():
-        setattr(updated_book, column, value) #ORM 테이블 Book의 해당 객체 속성을 동적으로 수정
+        setattr(book, column, value) #ORM 테이블 Book의 해당 객체 속성을 동적으로 수정
     session.commit()
     session.refresh(updated_book)
     return updated_book
