@@ -1,0 +1,167 @@
+.bookItem {
+  will-change: height;
+  margin: 0 0 1em 0;
+  padding: 1em;
+  border-radius: 1em;
+  background: linear-gradient(
+    135deg,
+    var(--foreground-color) 20%,
+    var(--background-color) 50%
+  );
+  transition: all 0.25s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 3;
+  width: 100%;
+  box-sizing: border-box;
+  background-size: 300%;
+  background-position: 100%;
+  transition: all 0.25s;
+}
+
+.bookItem:hover {
+  background-position: 40%;
+}
+
+.bookItem:active {
+  transform: scale(0.9);
+}
+
+.bookItemDelete {
+  border-radius: 1em;
+  background-color: var(--highlight-color);
+  color: var(--background-color);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2em 1em 0.5em 1em;
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  transition: all 0.25s;
+  display: flex;
+  opacity: 0;
+}
+
+.bookItemDelete .activate {
+  opacity: 1;
+}
+
+.bookItemDelete:hover {
+  background-color: var(--danger-color);
+}
+
+.bookItemDelete:active {
+  background-color: var(--danger-active-color);
+}
+
+.bookItemLeft {
+  max-width: 100%;
+}
+
+.bookItemLeftName {
+  margin: 0 0 0.25em 0;
+  font-family: "Pretendard-Bold";
+  color: var(--primary-text-color);
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.bookItemLeftReview {
+  padding: 0 1em 0 0;
+  color: var(--primary-text-color);
+  overflow-wrap: break-word;
+}
+
+.bookItemRight {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: right;
+}
+
+.bookItemRightAuthor {
+  margin: 0.5em 0 0.25em 0;
+  color: var(--secondary-text-color);
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.bookItemRating {
+  display: flex;
+  justify-content: right;
+}
+
+.bookItemRightRatingStar {
+  display: flex;
+  justify-content: left;
+  position: relative;
+}
+
+.bookItemRightRatingStar > img {
+  height: 1.25em;
+  bottom: 0;
+  position: absolute;
+  z-index: 7;
+}
+
+.bookItemRightRatingColor {
+  background: var(--secondary-text-color);
+  margin: 0.05em;
+  height: 1.15em;
+  width: 5.5em;
+  z-index: 5;
+}
+
+.bookItemRightRatingColorFilled {
+  background: var(--primary-text-color);
+  margin: 0.05em;
+  height: 1.15em;
+  width: 3em;
+  position: absolute;
+  z-index: 6;
+}
+
+.bookItemWrapper {
+  opacity: 1;
+  height: auto;
+  transform: scale(1);
+  transition: all 0.3s cubic-bezier(0.41, -0.01, 0, 0.94);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+}
+
+.bookItemWrapper.appear.fade-out {
+  opacity: 0;
+  transform: scale(0);
+  pointer-events: none;
+  flex: 0;
+  height: 0;
+}
+
+.bookItemWrapper.before-appear {
+  opacity: 0;
+  transform: scale(0.1);
+}
+
+.bookItemWrapper.appear {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.bookItemDown {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  color: var(--secondary-text-color);
+}
+
+.bookItemDown > img {
+  height: 1.1em;
+  margin: 0 0.35em 0 0;
+}

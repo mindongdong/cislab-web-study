@@ -1,0 +1,51 @@
+.card {
+  width: 280px;
+  background-color: #f8f8f8;
+  margin: 40px auto;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.card-dark {
+  background-color: #5a5a5a;
+}
+
+.Bookitem-text > p {
+  word-wrap: break-word;
+}
+
+.button-del {
+  margin-left: 255px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.button-del:hover {
+  transform: rotate(180deg)
+}
+
+.button-del-dark {
+  color: #f8f8f8;
+}
+
+.highlight {
+    border: 2px solid rgb(24, 24, 24);
+}
+
+.highlight-dark {
+    border: 2px solid rgb(212, 212, 212);
+}
+
+.button-favorite {
+    border: none;
+    background-color: #f8f8f8;
+    cursor: pointer;
+    font-size: 16px
+}
+
+.button-favorite-dark {
+    background-color: #5a5a5a;
+    color: white;
+}

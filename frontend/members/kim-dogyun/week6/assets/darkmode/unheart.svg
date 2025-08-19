@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800"
+   height="800"
+   viewBox="0 0 24 24"
+   fill="none"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="unheart.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.504375"
+     inkscape:cx="258.73606"
+     inkscape:cy="232.96159"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <defs
+     id="defs1" />
+  <g
+     id="g1"
+     transform="matrix(0.94328153,0,0,0.94328153,0.68060551,0.68223041)">
+    <path
+       id="path1"
+       style="baseline-shift:baseline;clip-rule:evenodd;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#dcd7c9;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;enable-background:accumulate;stop-color:#000000;stop-opacity:1;fill-opacity:1"
+       d="m 7.7913867,3.0579492 c -0.3180576,0.00782 -0.6362638,0.042386 -0.9517383,0.105293 l 1.9291993,1.9291992 c 0.9111101,0.2017051 1.7764643,0.750043 2.4713673,1.5598828 a 1.0001,1.0001 0 0 0 1.51957,0 c 1.51122,-1.7611757 3.765465,-2.2686709 5.650371,-0.7069922 1.895115,1.5701366 2.106879,4.149275 0.650391,6.017578 -0.35273,0.452431 -0.941412,1.0806 -1.640332,1.780899 l 1.427812,1.427812 C 19.567176,14.441968 20.199351,13.75486 20.638652,13.191387 22.723164,10.51749 22.377051,6.6361934 19.685566,4.40625 17.265766,2.4014025 14.138315,2.8768912 12,4.7285156 11.050005,3.905446 9.9477969,3.2825597 8.7421875,3.1132617 8.4273639,3.0690525 8.1094443,3.0501309 7.7913867,3.0579492 Z M 4.5991992,4.1683008 C 4.4950966,4.2458959 4.3922946,4.3277648 4.2909961,4.414043 1.6528459,6.6610021 1.2625277,10.514184 3.3496289,13.191387 c 1.6543569,2.122031 6.0440133,5.997501 7.5136521,7.294922 0.163376,0.144267 0.326669,0.337318 0.716778,0.453164 0.274215,0.08151 0.55226,0.08132 0.826171,0 0.390292,-0.1159 0.555522,-0.309098 0.71877,-0.453164 0.799734,-0.706019 2.464149,-2.175411 4.081934,-3.710274 l -1.433907,-1.433906 c -1.453719,1.375894 -2.971633,2.741245 -3.778886,3.45668 C 10.42731,17.410196 6.181178,13.573172 4.9258008,11.96291 3.471882,10.097913 3.7169605,7.5310014 5.5879102,5.9374805 5.7339527,5.8130929 5.8829629,5.7019006 6.0343359,5.6034375 Z" />
+    <rect
+       style="fill:#dcd7c9;fill-opacity:1;stroke:#dcd7c9;stroke-width:0.10674;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2"
+       width="2.1892378"
+       height="23.942461"
+       x="-1.8321159"
+       y="4.1143079"
+       ry="1.0946189"
+       transform="rotate(-45)" />
+  </g>
+</svg>

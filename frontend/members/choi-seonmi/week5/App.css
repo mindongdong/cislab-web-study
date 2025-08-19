@@ -1,11 +1,29 @@
 body {
+  margin: 0px;
+}
+
+body.dark {
   padding: 20px;
-  background-color: #8c8c8c
+  background-color: #2b2b2b
+}
+
+.container {
+  padding: 20px;
+  background-color: #8c8c8c;
+}
+
+.container-dark {
+  background-color: #2b2b2b;
 }
 
 .App {
   margin: 0 auto;
   width: 400px;
+}
+
+.Headers {
+  display: flex;
+  align-items: center;
 }
 
 p {
@@ -16,14 +34,33 @@ h1 {
   color: white;
 }
 
-section {
+.section {
   background-color: #ebebeb;
   padding: 20px;
   border-radius: 20px;
   margin: 10px;
 }
 
+.section-dark {
+  background-color: #464646;
+}
 
+.button-mode {
+  margin: 30px;
+  margin-bottom: 20px;
+  border-radius: 60px;
+  border: none;
+  padding: 10px;
+  padding-left: 13px;
+  padding-right: 13px;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  box-shadow: 1px 4px 0 rgba(63, 63, 63, 0.5);
+}
+
+.button-mode:active {
+  box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
+}
 
 /* Bookform */
 
@@ -31,6 +68,11 @@ section {
   margin: 0 auto;
   width: 300px;
 }
+
+.Bookform-dark {
+  color: rgb(232, 232, 232);
+}
+
 
 .input-info {
   width: 200px;
@@ -58,6 +100,11 @@ input[type='radio']:checked {
   box-shadow: 0 0 0 1px #d5d5d5; 
 }
 
+.input-info-dark {
+  background-color: #5a5a5a;
+  color: rgb(232, 232, 232);
+}
+
 .button-add {
   border-radius: 10px;
   width: 80px;
@@ -73,7 +120,11 @@ input[type='radio']:checked {
 
 .button-add:active {
   box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
-  color: white;
+}
+
+.button-add-dark {
+  background-color: #d5d5d5;
+  color: #2b2b2b;
 }
 
 textarea {
@@ -85,16 +136,20 @@ textarea {
   background-color: #f8f8f8;
 }
 
-
-/* Booklist */
-
-
+.textarea-dark {
+  background-color: #5a5a5a;;
+  color: rgb(232, 232, 232);
+}
 
 /* Bookitem */
 
 .Booklist {
   margin: 0 auto;
   width: 300px;
+}
+
+.Booklist-dark {
+  color: rgb(232, 232, 232);
 }
 
 .p-noread {
@@ -110,6 +165,10 @@ textarea {
   margin: 40px auto;
   border-radius: 20px;
   padding: 10px;
+}
+
+.card-dark {
+  background-color: #5a5a5a;
 }
 
 .Bookitem {
@@ -129,6 +188,15 @@ textarea {
 .button-del {
   margin-left: 255px;
   border: none;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.button-del:hover {
+  transform: rotate(180deg)
+}
+
+.button-del-dark {
+  color: #f8f8f8;
 }

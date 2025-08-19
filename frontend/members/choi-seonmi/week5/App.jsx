@@ -10,7 +10,7 @@ function App() {
   const [form, setFormData] = useState({
     title: '',
     author: '',
-    star: 0,
+    star: '3',
     memo: ''
   })
 
@@ -46,18 +46,30 @@ function App() {
 
   }
 
+  const [theme, setTheme] = useState('light')
+  const changeTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light')
+  }
+
   return (
+    <div className={`container container-${theme}`}>
     <div className='App'>
-      <h1> ⟪ 간단 독서기록장 ⟫ </h1>
+      <div class='Headers'>
+        <h1> ⟪ 간단 독서기록장 ⟫ </h1>
+        <button className='button-mode' onClick={changeTheme}> 
+          {theme === 'light' ? '☀︎' : <i class="fa-solid fa-moon"></i> } 
+          </button>
+      </div>
 
-      <section>
-        <Bookform form={form} setFormData={setFormData} onClickAddButton={onClickAddButton} inputFocus={inputFocus}/>
-      </section>
+      <div className={`section section-${theme}`}>
+        <Bookform form={form} setFormData={setFormData} onClickAddButton={onClickAddButton} inputFocus={inputFocus} theme={theme}/>
+      </div>
       
-      <section>
-        <Bookitem books={books} onClickDelButton={onClickDelButton}/>
-      </section>
+      <div className={`section section-${theme}`}>
+        <Bookitem books={books} onClickDelButton={onClickDelButton} theme={theme}/>
+      </div>
 
+    </div>
     </div>
   )
 }

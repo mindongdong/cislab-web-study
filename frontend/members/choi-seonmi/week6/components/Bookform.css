@@ -1,0 +1,77 @@
+
+.Bookform {
+  margin: 0 auto;
+  width: 300px;
+}
+
+.Bookform-dark {
+  color: rgb(232, 232, 232);
+}
+
+
+.input-info {
+  width: 200px;
+  border: 0px;
+  border-radius: 10px;
+  height: 30px;
+  padding: 5px;
+  background-color: #f8f8f8;
+  outline: none;
+}
+
+input[type='radio'] {
+  appearance: none; 
+  width: 13px;
+  height: 13px;
+  border: 1px solid #000000; 
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: #f8f8f8;
+}
+
+input[type='radio']:checked {
+  background-color: #353535; 
+  border: 3px solid #fdf9f3; 
+  box-shadow: 0 0 0 1px #d5d5d5; 
+}
+
+.input-info-dark {
+  background-color: #5a5a5a;
+  color: rgb(232, 232, 232);
+}
+
+.button-add {
+  border-radius: 10px;
+  width: 80px;
+  border: 0px;
+  padding: 10px;
+  margin: 20px;
+  margin-left: 220px;
+  background-color: #606060;
+  cursor: pointer;
+  box-shadow: 1px 3px 0 rgba(154, 154, 154, 0.5);
+  color: white;
+}
+
+.button-add:active {
+  box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
+}
+
+.button-add-dark {
+  background-color: #d5d5d5;
+  color: #2b2b2b;
+}
+
+textarea {
+  width: 290px;
+  border-radius: 10px;
+  border: none;
+  resize: none;
+  outline: none;
+  background-color: #f8f8f8;
+}
+
+.textarea-dark {
+  background-color: #5a5a5a;;
+  color: rgb(232, 232, 232);
+}
